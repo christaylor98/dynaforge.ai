@@ -1,0 +1,7 @@
+{
+  "command": "/pause",
+  "message": "Automation paused. Use /resume to continue.",
+  "phase": "1",
+  "response_id": "phase1-pause-v1",
+  "status": "paused"
+}

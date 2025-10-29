@@ -16,7 +16,8 @@ Phase 1 delivers the core agent execution loop with concern lifecycle management
 - Orchestration script `pipelines/phase1_orchestrator.py` generates briefing, design, implementation, and QA collateral.
 - Demo entrypoint: `make phase1-demo` (writes run log to `artifacts/phase1/orchestration/run.json`).
 - Concern lifecycle mirroring available via `pipelines/concern_tools.py sync`; next step is integrating it into automated workflows.
-- Upcoming implementation tasks: interaction stub expansion, QA enforcement integration, status snapshots, pause/resume tooling.
+- Interaction stub covers lifecycle commands (`/ack`, `/resolve`, `/assign`, `/pause`, `/resume`, `/promote`); sample transcripts stored under `artifacts/phase1/commands/`.
+- Upcoming implementation tasks: QA enforcement integration, status snapshots, pause/resume tooling.
 
 <!-- concerns:start -->
 

@@ -1,0 +1,8 @@
+{
+  "assigned_to": "tester",
+  "command": "/assign",
+  "concern_id": "C-001",
+  "phase": "1",
+  "response_id": "phase1-assign-v1",
+  "status": "assigned"
+}

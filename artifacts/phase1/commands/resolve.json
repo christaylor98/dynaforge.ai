@@ -1,0 +1,8 @@
+{
+  "command": "/resolve",
+  "concern_id": "C-001",
+  "phase": "1",
+  "resolution_note": "Patched bug",
+  "response_id": "phase1-resolve-v1",
+  "status": "resolved"
+}

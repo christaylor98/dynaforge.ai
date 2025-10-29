@@ -1,0 +1,9 @@
+{
+  "action": "Review WS-101 through WS-108 and prepare status snapshots.",
+  "command": "/clarify",
+  "guidance": "Phase 1 focuses on concern lifecycle, approvals, and expanded command interfaces.",
+  "phase": "1",
+  "reference_doc": "docs/PHASE1_PLAN.md",
+  "response_id": "phase1-clarify-v1",
+  "topic": "Concern lifecycle"
+}

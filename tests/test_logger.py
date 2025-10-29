@@ -17,6 +17,7 @@ class TestAuditLogger(unittest.TestCase):
         self.root = Path(self.tmp_dir.name)
 
     def test_log_handoff_writes_schema_compliant_entry(self) -> None:
+        """TC-FR06-001: Handoff entries persist with schema-compliant structure."""
         logger = AuditLogger(root=self.root, schema_version="0.1.0-test")
         entry = logger.log_handoff(
             phase="0",
@@ -37,6 +38,7 @@ class TestAuditLogger(unittest.TestCase):
         self.assertEqual(contents, [entry])
 
     def test_log_concern_rejects_unknown_severity(self) -> None:
+        """TC-FR06-001: Concern logger rejects unsupported severity values."""
         logger = AuditLogger(root=self.root)
 
         with self.assertRaisesRegex(ValueError, "Unsupported severity"):
@@ -48,6 +50,7 @@ class TestAuditLogger(unittest.TestCase):
             )
 
     def test_log_command_persists_arguments(self) -> None:
+        """TC-FR06-001: Command entries capture arguments and metadata."""
         logger = AuditLogger(root=self.root)
         entry = logger.log_command(
             phase="0",

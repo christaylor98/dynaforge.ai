@@ -1,0 +1,8 @@
+{
+  "command": "/promote",
+  "message": "Promotion request for phase2 queued for human approval.",
+  "phase": "1",
+  "response_id": "phase1-promote-v1",
+  "status": "pending_approval",
+  "target_phase": "phase2"
+}

@@ -22,6 +22,7 @@ class TestPolicyParser(unittest.TestCase):
         return self.policy_path
 
     def test_validate_policy_success(self) -> None:
+        """TC-FR11-001: Policy parser validates well-formed schema."""
         data = {
             "policy": {
                 "phase": "0",
@@ -42,6 +43,7 @@ class TestPolicyParser(unittest.TestCase):
         self.assertIn("coverage >=", summary)
 
     def test_missing_policy_section_raises(self) -> None:
+        """TC-FR11-001: Policy parser rejects missing policy section."""
         data = {"notifications": {"on_failure": []}}
         path = self.write_policy(data)
         loaded = policy_parser.load_policy(path)

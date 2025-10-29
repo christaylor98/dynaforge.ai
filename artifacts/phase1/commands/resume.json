@@ -1,0 +1,7 @@
+{
+  "command": "/resume",
+  "message": "Automation resumed. Monitoring concern queue.",
+  "phase": "1",
+  "response_id": "phase1-resume-v1",
+  "status": "active"
+}

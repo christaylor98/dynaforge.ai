@@ -1,0 +1,8 @@
+{
+  "command": "/ack",
+  "concern_id": "C-001",
+  "message": "Concern C-001 acknowledged and queued for follow-up.",
+  "phase": "1",
+  "response_id": "phase1-ack-v1",
+  "status": "acknowledged"
+}

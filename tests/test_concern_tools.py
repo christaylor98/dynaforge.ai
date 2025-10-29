@@ -38,6 +38,7 @@ class ConcernToolsTest(unittest.TestCase):
         self.project_detail.write_text(text, encoding="utf-8")
 
     def test_raise_and_sync_places_concern_in_open_table(self) -> None:
+        """TC-FR07-001: Raised concern appears in open Markdown section after sync."""
         entry = concern_tools.raise_concern(
             phase="1",
             raised_by="tester",
@@ -57,6 +58,7 @@ class ConcernToolsTest(unittest.TestCase):
         self.assertIn("Sample concern for sync.", content)
 
     def test_resolve_concern_moves_entry_to_resolved_table(self) -> None:
+        """TC-FR07-001: Resolved concern moves to resolved section with metadata."""
         entry = concern_tools.raise_concern(
             phase="1",
             raised_by="tester",

@@ -12,18 +12,21 @@ class Phase1OrchestratorApprovalTest(unittest.TestCase):
         self.root = Path(self.tmp_dir.name)
 
     def test_ensure_approval_accepts_document_with_pattern(self) -> None:
+        """TC-FR10-001: Approval check passes when marker present."""
         doc = self.root / "approved.md"
         doc.write_text("✅ Approved by Human 2025-10-29\n", encoding="utf-8")
         phase1_orchestrator.ensure_approval(doc, "✅ Approved by Human")
         # No exception means pass.
 
     def test_ensure_approval_rejects_document_without_pattern(self) -> None:
+        """TC-FR10-001: Approval check raises when marker missing."""
         doc = self.root / "missing.md"
         doc.write_text("Waiting for approval.\n", encoding="utf-8")
         with self.assertRaises(PermissionError):
             phase1_orchestrator.ensure_approval(doc, "✅ Approved by Human")
 
     def test_ensure_approval_raises_for_missing_file(self) -> None:
+        """TC-FR10-001: Approval check raises for missing document."""
         doc = self.root / "ghost.md"
         with self.assertRaises(FileNotFoundError):
             phase1_orchestrator.ensure_approval(doc, "✅ Approved by Human")
