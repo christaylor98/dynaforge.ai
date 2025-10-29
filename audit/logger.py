@@ -20,6 +20,7 @@
 #       "schema_version": "0.1.0",
 #       "timestamp": "2024-01-01T00:00:00.000Z",
 #       "phase": "0",
+#       "concern_id": "abc123",
 #       "raised_by": "tester",
 #       "severity": "medium",
 #       "message": "Missing log rotation plan.",
@@ -47,6 +48,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping, MutableMapping, Optional, Sequence
+from uuid import uuid4
 
 __all__ = ["AuditLogger", "log_handoff", "log_concern", "log_command"]
 
@@ -110,6 +112,7 @@ class ConcernPayload:
     raised_by: str
     severity: str
     message: str
+    concern_id: Optional[str] = None
     resolution: Optional[str] = None
     metadata: Optional[Mapping[str, Any]] = None
 
@@ -127,6 +130,8 @@ class ConcernPayload:
             "severity": severity,
             "message": self.message,
         }
+        if self.concern_id:
+            entry["concern_id"] = self.concern_id
         if self.resolution is not None:
             entry["resolution"] = self.resolution
         metadata = _prepare_metadata(self.metadata)
@@ -219,6 +224,7 @@ class AuditLogger:
         raised_by: str,
         severity: str,
         message: str,
+        concern_id: Optional[str] = None,
         resolution: Optional[str] = None,
         metadata: Optional[Mapping[str, Any]] = None,
         timestamp: Optional[str] = None,
@@ -228,6 +234,7 @@ class AuditLogger:
             raised_by=raised_by,
             severity=severity,
             message=message,
+            concern_id=concern_id or uuid4().hex,
             resolution=resolution,
             metadata=metadata,
         )

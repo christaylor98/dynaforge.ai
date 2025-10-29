@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "brief": "docs/PHASE1_BRIEF.md",
+    "design_spec": "design/DESIGN_SPEC.md",
+    "implementation_plan": "docs/IMPLEMENTATION_PLAN.md",
+    "test_plan": "tests/TEST_PLAN.md",
+    "test_results": "tests/TEST_RESULTS.md"
+  },
+  "scenario": {
+    "acceptance_criteria": [
+      "Concern mirroring helper produces deterministic Markdown for docs/PROJECT_DETAIL.md.",
+      "Expanded interaction stub logs commands with appropriate metadata.",
+      "Tester artifacts describe pass/fail evidence and pending work."
+    ],
+    "context": "Phase 0 established the repository skeleton and logging primitives. Phase 1 must now operationalize the full agent loop with concern tracking, human approvals, and policy enforcement.",
+    "deliverables": [
+      "Phase 1 brief, design spec, implementation plan, and QA plan.",
+      "`make phase1-demo` executing orchestrated workflow.",
+      "Artifacts under `artifacts/phase1/` evidencing the loop."
+    ],
+    "focus_areas": [
+      "Mirror concern entries from JSONL into Markdown summaries.",
+      "Extend CLI interaction stub with lifecycle commands (/ack, /resolve, /assign, /pause, /resume, /promote).",
+      "Integrate QA policy enforcement prior to promotions.",
+      "Provide status snapshots exposing open concerns and QA posture."
+    ],
+    "objective": "Implement concern lifecycle mirroring, lifecycle commands, and QA enforcement gates.",
+    "phase": "1",
+    "success_metrics": [
+      "Concern lifecycle documented and observable in Markdown + JSONL.",
+      "Interaction stub returns deterministic payloads for lifecycle commands.",
+      "QA policy enforcement blocks promotion when thresholds fail."
+    ],
+    "title": "Concern Lifecycle Integration"
+  }
+}

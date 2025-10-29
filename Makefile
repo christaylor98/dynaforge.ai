@@ -1,7 +1,9 @@
 ARTIFACT_DIR := artifacts/phase0
 DEMO_DIR := $(ARTIFACT_DIR)/demo
+PHASE1_ARTIFACT_DIR := artifacts/phase1
+PHASE1_ORCHESTRATION_DIR := $(PHASE1_ARTIFACT_DIR)/orchestration
 
-.PHONY: demo audit clean
+.PHONY: demo phase1-demo audit clean
 
 demo:
 	@mkdir -p $(DEMO_DIR)
@@ -12,9 +14,14 @@ demo:
 	@tail -n 1 audit/handoff.jsonl > $(DEMO_DIR)/handoff_latest.jsonl
 	@echo "Demo artifacts written to $(DEMO_DIR)"
 
+phase1-demo:
+	@mkdir -p $(PHASE1_ORCHESTRATION_DIR)
+	@python3 pipelines/phase1_orchestrator.py --log $(PHASE1_ORCHESTRATION_DIR)/run.log > $(PHASE1_ORCHESTRATION_DIR)/run.json
+	@echo "Phase 1 orchestration artifacts written to $(PHASE1_ORCHESTRATION_DIR)"
+
 audit:
 	@python3 pipelines/audit_summary.py
 
 clean:
-	@rm -rf $(DEMO_DIR)
+	@rm -rf $(DEMO_DIR) $(PHASE1_ORCHESTRATION_DIR)
 	@echo "Demo artifacts removed."
