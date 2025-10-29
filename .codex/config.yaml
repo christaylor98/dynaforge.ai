@@ -1,0 +1,4 @@
+# ~/.codex/config.yaml
+include:
+  - ".codex/rules/architecture.md"
+  - ".codex/rules/assistant-style.md"

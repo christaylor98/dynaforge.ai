@@ -1,0 +1,9 @@
+version: 1
+rules:
+
+include:
+  - docs/VISION.md
+  - docs/REQUIREMENTS.md
+  - docs/WORKFLOW.md
+  - docs/PROMPT_GUIDE.md
+
