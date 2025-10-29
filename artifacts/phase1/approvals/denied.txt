@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/chris/dev/over-lord/pipelines/phase1_orchestrator.py", line 166, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/chris/dev/over-lord/pipelines/phase1_orchestrator.py", line 156, in main
+    ensure_approval(args.approval_doc, args.approval_pattern)
+  File "/home/chris/dev/over-lord/pipelines/phase1_orchestrator.py", line 75, in ensure_approval
+    raise PermissionError(
+PermissionError: Approval pattern '✅ Approved by Human' not found in artifacts/phase1/approvals/no_approval.md. Please obtain human approval before running the orchestrator.

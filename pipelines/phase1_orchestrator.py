@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase 1 orchestration skeleton with optional run logging."""
+"""Phase 1 orchestration skeleton with approval gating and optional run logging."""
 
 from __future__ import annotations
 
@@ -54,6 +54,8 @@ SCENARIO: Mapping[str, Any] = {
 ARTIFACT_ROOT = Path("artifacts/phase1/orchestration")
 SUMMARY_PATH = ARTIFACT_ROOT / "summary.json"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_APPROVAL_DOC = PROJECT_ROOT / "docs" / "PROJECT_OVERVIEW.md"
+DEFAULT_APPROVAL_PATTERN = "✅ Approved by Human"
 
 
 def _relative_path(path: Path) -> str:
@@ -62,6 +64,18 @@ def _relative_path(path: Path) -> str:
         return str(path.relative_to(PROJECT_ROOT))
     except ValueError:
         return str(path)
+
+
+def ensure_approval(path: Path, pattern: str) -> None:
+    path = path.expanduser()
+    if not path.exists():
+        raise FileNotFoundError(f"Approval document not found: {path}")
+    content = path.read_text(encoding="utf-8")
+    if pattern not in content:
+        raise PermissionError(
+            f"Approval pattern '{pattern}' not found in {path}. "
+            "Please obtain human approval before running the orchestrator."
+        )
 
 
 def orchestrate() -> dict[str, Any]:
@@ -115,12 +129,31 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Optional path to append run summaries (used for validation evidence).",
     )
+    parser.add_argument(
+        "--approval-doc",
+        type=Path,
+        default=DEFAULT_APPROVAL_DOC,
+        help=f"Path to approval document (default: {DEFAULT_APPROVAL_DOC}).",
+    )
+    parser.add_argument(
+        "--approval-pattern",
+        default=DEFAULT_APPROVAL_PATTERN,
+        help=f"String that must be present in approval document (default: '{DEFAULT_APPROVAL_PATTERN}').",
+    )
+    parser.add_argument(
+        "--skip-approval",
+        action="store_true",
+        help="Bypass approval check (for testing only).",
+    )
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+
+    if not args.skip_approval:
+        ensure_approval(args.approval_doc, args.approval_pattern)
 
     summary = orchestrate()
     if args.log:
