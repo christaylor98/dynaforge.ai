@@ -124,6 +124,7 @@ Updates:
 
 ## 9. Immediate Actions (Phase 0–1)
 
+* [x] Provide Phase 0 demo workflow via `make demo`, `make audit`, and `make clean` (artifacts stored under `artifacts/phase0/demo`).
 * [ ] Implement `PROGRESS.md` auto-generation pipeline.
 * [ ] Extend QA engine to validate doc freshness and sync.
 * [ ] Integrate concern summarization into Discord notifier.

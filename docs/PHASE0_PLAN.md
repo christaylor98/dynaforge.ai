@@ -3,6 +3,16 @@
 ## 1. Purpose & Scope
 Establish the minimal but complete skeleton of the Code Overlord framework so subsequent phases can iterate safely. Phase 0 focuses on repository structure, audit/logging primitives, initial agent stubs, and a usable interaction mock with deterministic validation.
 
+## Reference Documents
+- `docs/WORKFLOW.md` — end-to-end process checkpoints for agents and humans.
+- `docs/PROMPT_GUIDE.md` — shared prompting conventions for cross-agent alignment.
+- `docs/project-qa.md` — QA entry/exit criteria and reporting templates.
+- `.codex/context/architecture-summary.md` — current architecture snapshot and component map.
+- `.codex/rules.yaml` — operational ruleset governing Codex CLI behavior during execution.
+- `docs/brain-storming.md` — ideation backlog that informs upcoming workstreams.
+- `docs/REQUIREMENTS.md` — high-level functional and non-functional requirements for Code Overlord.
+- `docs/ARCHITECTURE.md` — detailed architecture design and module interactions.
+
 ### Phase Goals
 - Provide a consistent project layout (`docs/`, `design/`, `tests/`, `audit/`, `pipelines/`, etc.).
 - Deliver baseline logging and handoff artifacts to prove auditability.
@@ -63,3 +73,12 @@ Establish the minimal but complete skeleton of the Code Overlord framework so su
 - Upon completion, human reviewer validates Phase 0 via `/promote phase0` (or documented equivalent), triggering tag `v0.1.0-phase0`.
 - All steps logged through `audit/handoff_*.json` and `audit/commands.jsonl` to maintain traceability.
 
+## 8. Current Completion Status
+- ✅ WS-01 Repository Skeleton — directories and placeholders established (`docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`, `tests/TEST_PLAN.md`).
+- ✅ WS-02 Audit Logging Primitives — JSONL logger, helpers, and sample artifacts in place (`audit/logger.py`, `audit/sample_handoff.jsonl`).
+- ✅ WS-03 Concern API & Schema Docs — helper exports plus schema addendum in `docs/WORKFLOW.md:84`.
+- ✅ WS-04 Interaction Stub — `/status` and `/clarify` implemented with command logging (`pipelines/interaction_stub.py`, `audit/commands.jsonl`).
+- ✅ WS-05 Project Manager Skeleton — auto-refresh of docs and logged handoffs (`agents/project_manager.py`, `audit/handoff.jsonl`).
+- ✅ WS-06 QA Policy Parser Stub — parser, sample policy, and tests delivered (`pipelines/policy_parser.py`, `QA_POLICY.yaml`, `tests/test_policy_parser.py`).
+- ✅ WS-07 Demo Workflow Target — `make demo`, `make audit`, and `make clean` available via the new `Makefile`; demo artifacts written to `artifacts/phase0/demo`.
+- ✅ WS-08 Documentation Updates — Overview/Detail docs reflect Phase 0 readiness and usage guidance (`docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`).

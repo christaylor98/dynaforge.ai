@@ -1,0 +1,15 @@
+{
+  "policy": {
+    "phase": "0",
+    "coverage_threshold": 0.8,
+    "reproducibility_threshold": 0.95,
+    "gates": [
+      {"id": "coverage", "metric": "coverage", "operator": ">=", "target": 0.8},
+      {"id": "reproducibility", "metric": "reproducibility", "operator": ">=", "target": 0.95}
+    ]
+  },
+  "notifications": {
+    "on_failure": ["raise_concern", "notify_human"],
+    "discord_channel": "#qa-alerts"
+  }
+}

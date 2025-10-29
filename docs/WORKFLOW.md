@@ -88,6 +88,11 @@ Daily digest pushed to Discord; weekly human note appended manually.
 * Human responds `/resolve <id>` after fix.
 * PM posts “return to normal” notice and resumes loop.
 
+##### Audit Schema Addendum
+- **Handoff entries** append to `audit/handoff.jsonl` via `AuditLogger.log_handoff()`. Required keys: `record_type="handoff"`, `schema_version`, ISO-8601 `timestamp`, `phase`, `from_agent`, `to_agent`, `summary`. Optional lists `artifacts` and `concerns`, plus free-form `metadata`.
+- **Concern entries** append to `audit/concerns.jsonl` via `AuditLogger.log_concern()`. Required keys: `record_type="concern"`, `schema_version`, ISO-8601 `timestamp`, `phase`, `raised_by`, `severity` (`low|medium|high|critical`), and `message`. Optional `resolution` and structured `metadata`.
+- All audit artifacts follow JSON Lines formatting; each line is a self-contained record signed with schema version `0.1.0`.
+
 ---
 
 #### 8. Testing Environments
