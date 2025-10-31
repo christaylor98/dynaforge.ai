@@ -41,11 +41,13 @@
 | FR-34 | Run maturity gate reviews, logging upgrade recommendations and outcomes as `CH-###` entries. | Governance Officer | Triggered per milestone or on demand. |
 | FR-35 | Enable maturity-aware prompts/behavior for PM, GO, CE, IM, QA/TQA, and related agents. | Platform / Agent Owners | High effort: shared libraries + regression tests required. |
 | FR-36 | Track maturity metrics (time-in-level, upgrade count, active criteria) and surface in `PROJECT_OVERVIEW.md` & CLI `/status`. | PM / Analytics owner | Permanent record plus quick CLI access. |
+| FR-37 | Produce approved requirement elaboration files (`docs/requirements/elaborations/FR-###_elaboration.md`) before implementation; leverage RE agent workflow with HR/GO approval gates. | Requirement Elaboration Agent (RE) / Governance Officer | Requirement Elaboration Guide; Elaboration lifecycle and automation hooks. |
 
 ## Traceability, Change, and Maturity Artifacts
 - `TRACABILITY.md` must gain risk classifications, `### Unmapped Elements`, `### Test Quality Summary`, `### Artifact Integrity`, and metrics footer sections.
 - `CHANGELOG.md` records every change object, including maturity upgrades and partial approvals.
 - `IMPACT_REPORT.md`, `IM_PROGRESS.md`, and `GOVERNANCE_REPORT.md` capture change impact, task execution, and compliance evidence respectively.
+- Requirement elaborations live under `docs/requirements/elaborations/` and must be approved (per FR-37) before Implementation Manager decomposes workstreams.
 - `PROJECT_METADATA.md` stores maturity level, last review date, readiness criteria, and next target level; agents read this to adjust enforcement.
 - Audit logs (`audit/*.jsonl`) append `change_id`, `maturity_level`, and content hashes for reproducibility.
 
@@ -57,6 +59,7 @@
 - **Maturity Reviews:** Conduct per milestone (or on human request/change); Governance Officer leads reviews with fallback automation on downgrade.
 - **Downgrades:** Supported; agents revert to lighter processes automatically but past work is not reprocessed.
 - **Maturity Metrics Visibility:** Must appear in `PROJECT_OVERVIEW.md` and CLI `/status` for rapid checks.
+- **Requirement Elaborations:** Implementation Manager must not create `WS-*` entries for an FR until its elaboration file is marked Approved by HR and GO.
 
 Outstanding items inherited from CR001:
 - Define canonical templates for `CHANGE_LOG.md`, `IMPACT_REPORT.md`, and Traceability Gap summaries.
