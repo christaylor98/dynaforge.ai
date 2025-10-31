@@ -30,7 +30,7 @@
 | FR-24 (proposed) | Expose `/impact` and `/trace` CLI commands in the interaction stub for on-demand impact and traceability reports. | Interaction Stub owner | Implementation Strategy Phase E; CLI extension recommendation. |
 
 ## Traceability, Audit, and Artifact Updates
-- **Risk Classification & Depth:** Extend `TRACABILITY.md` tables with `Risk` and required depth metadata; ensure QA/TQA populate coverage ratios in the `### Test Quality Summary`.
+- **Risk Classification & Depth:** Extend `TRACEABILITY.md` tables with `Risk` and required depth metadata; ensure QA/TQA populate coverage ratios in the `### Test Quality Summary`.
 - **Unmapped Elements Report:** Generate `### Unmapped Elements` sections enumerating unlinked FRs, orphan tests, and stale WS entries, owned by the QA Auditor.
 - **Artifact Integrity Ledger:** Record artifact path, hash, and timestamp in each traceability refresh to satisfy Governance Officer evidence checks.
 - **Change & Impact Logs:** Produce `CHANGE_LOG.md` and `IMPACT_REPORT.md` as part of the Implementation Strategy (Phase A) for longitudinal requirement tracking.

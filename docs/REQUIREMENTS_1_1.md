@@ -44,7 +44,7 @@
 | FR-37 | Produce approved requirement elaboration files (`docs/requirements/elaborations/FR-###_elaboration.md`) before implementation; leverage RE agent workflow with HR/GO approval gates. | Requirement Elaboration Agent (RE) / Governance Officer | Requirement Elaboration Guide; Elaboration lifecycle and automation hooks. |
 
 ## Traceability, Change, and Maturity Artifacts
-- `TRACABILITY.md` must gain risk classifications, `### Unmapped Elements`, `### Test Quality Summary`, `### Artifact Integrity`, and metrics footer sections.
+- `TRACEABILITY.md` must gain risk classifications, `### Unmapped Elements`, `### Test Quality Summary`, `### Artifact Integrity`, and metrics footer sections.
 - `CHANGELOG.md` records every change object, including maturity upgrades and partial approvals.
 - `IMPACT_REPORT.md`, `IM_PROGRESS.md`, and `GOVERNANCE_REPORT.md` capture change impact, task execution, and compliance evidence respectively.
 - Requirement elaborations live under `docs/requirements/elaborations/` and must be approved (per FR-37) before Implementation Manager decomposes workstreams.
