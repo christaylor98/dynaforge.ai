@@ -1,7 +1,7 @@
 # Phase 0 Plan — Foundation
 
 ## 1. Purpose & Scope
-Establish the minimal but complete skeleton of the Code Overlord framework so subsequent phases can iterate safely. Phase 0 focuses on repository structure, audit/logging primitives, initial agent stubs, and a usable interaction mock with deterministic validation.
+Establish the minimal but complete skeleton of the Dynaforge.ai framework so subsequent phases can iterate safely. Phase 0 focuses on repository structure, audit/logging primitives, initial agent stubs, and a usable interaction mock with deterministic validation.
 
 ## Reference Documents
 - `docs/WORKFLOW.md` — end-to-end process checkpoints for agents and humans.
@@ -10,7 +10,7 @@ Establish the minimal but complete skeleton of the Code Overlord framework so su
 - `.codex/context/architecture-summary.md` — current architecture snapshot and component map.
 - `.codex/rules.yaml` — operational ruleset governing Codex CLI behavior during execution.
 - `docs/brain-storming.md` — ideation backlog that informs upcoming workstreams.
-- `docs/REQUIREMENTS.md` — high-level functional and non-functional requirements for Code Overlord.
+- `docs/REQUIREMENTS.md` — high-level functional and non-functional requirements for Dynaforge.ai.
 - `docs/ARCHITECTURE.md` — detailed architecture design and module interactions.
 
 ### Phase Goals
@@ -31,7 +31,7 @@ Establish the minimal but complete skeleton of the Code Overlord framework so su
 | WS-05 | Project Manager Skeleton | Create `agents/project_manager.py` with ability to read requirements, update doc placeholders, and call logging helpers. | PM Agent | WS-01–WS-04 | Dry-run script populates summary docs; diff captured for review. |
 | WS-06 | QA Policy Parser Stub | Implement `pipelines/policy_parser.py` that loads `QA_POLICY.yaml`, validates schema, and prints summary. | Tester | WS-01 | Unit test with sample policy; failure cases raise explicit errors. |
 | WS-07 | Demo Workflow Target | Add `Makefile` targets: `make demo`, `make audit`, `make clean`. Demo should execute PM skeleton, interaction stub, and generate logs. | PM Agent + Implementer | WS-01–WS-06 | Running `make demo` produces artifacts (docs updated, audit logs, terminal summary) verified by Tester. |
-| WS-08 | Documentation Updates | Update `docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`, `docs/OVERLORD_WORKFLOW.md` with Phase 0 progress and instructions. | PM Agent | WS-01–WS-07 | Human reviewer approves documentation (`✅ Approved by Human <date>`). |
+| WS-08 | Documentation Updates | Update `docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`, `docs/DYNAFORGE_WORKFLOW.md` with Phase 0 progress and instructions. | PM Agent | WS-01–WS-07 | Human reviewer approves documentation (`✅ Approved by Human <date>`). |
 
 ## 3. Validation Plan
 

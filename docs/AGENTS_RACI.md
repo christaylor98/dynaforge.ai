@@ -1,7 +1,7 @@
 # Agents RACI Matrix
 
 ## Purpose
-This document consolidates the accountability model for the Code Overlord agent ecosystem after Change Requests `CR001 → CR001.3` and requirements update `REQUIREMENTS_1_1`. It establishes a single reference for who is **Responsible, Accountable, Consulted,** and **Informed (RACI)** across the major workflows so prompts, audit metadata, and governance tooling remain consistent.
+This document consolidates the accountability model for the Dynaforge.ai agent ecosystem after Change Requests `CR001 → CR001.3` and requirements update `REQUIREMENTS_1_1`. It establishes a single reference for who is **Responsible, Accountable, Consulted,** and **Informed (RACI)** across the major workflows so prompts, audit metadata, and governance tooling remain consistent.
 
 ## Agent Roster
 | Agent | Core Focus | Primary Artifacts / Signals |

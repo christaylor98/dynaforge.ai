@@ -1,4 +1,4 @@
-# Code Overlord Vision
+# Dynaforge.ai Vision
 
 ## Mission
 Create an autonomous, multi-agent engineering workshop that can design, implement, test, and refine software systems while keeping a human supervisor in authoritative control over direction, quality, and release decisions.

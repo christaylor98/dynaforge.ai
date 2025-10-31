@@ -1151,7 +1151,7 @@ Every project lives somewhere along a **maturity curve**:
 ### 1. Add a `project.yaml` or `PROJECT_METADATA.md`
 
 ```yaml
-name: Overlord
+name: "dynaforge.ai"
 maturity_level: M1
 last_review: 2025-10-30
 criteria:
@@ -1295,7 +1295,7 @@ Each promotion must be logged in `CHANGELOG.md` as a `CH-###` with category `Mat
 ## 🧾 Example: `PROJECT_METADATA.md`
 
 ```yaml
-name: overlord
+name: "dynaforge.ai"
 maturity_level: M1
 last_review: 2025-10-30
 criteria:
@@ -1343,4 +1343,3 @@ elif project.maturity_level >= "M3":
 
 When you’re ready, I can also produce a short **“Maturity Review Checklist”** for the Governance Officer — a one-pager that lists the readiness criteria for each level (so the GO agent can automatically propose an upgrade when conditions are met). Would you like that next?
 ```
-

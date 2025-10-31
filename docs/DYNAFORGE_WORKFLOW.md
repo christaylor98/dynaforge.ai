@@ -1,8 +1,8 @@
-# 🧩 CODE_OVERLORD_WORKFLOW.md — Autonomous Coding Workflow
+# 🧩 DYNAFORGE_WORKFLOW.md — Autonomous Coding Workflow
 
 ## 1. Purpose
 
-Define the operating workflow for **Code Overlord**, focusing on maintaining a high degree of autonomy while ensuring architectural, requirements, and testing documentation remain synchronized and accurate.
+Define the operating workflow for **Dynaforge.ai**, focusing on maintaining a high degree of autonomy while ensuring architectural, requirements, and testing documentation remain synchronized and accurate.
 
 This workflow minimizes human intervention — the system must self-report, self-correct, and surface concerns rather than require manual oversight.
 
@@ -133,4 +133,4 @@ Updates:
 
 ---
 
-This workflow ensures that Code Overlord operates with **low friction**, **high accountability**, and **clear communication**, keeping the architecture, requirements, and testing states synchronized at all times.
+This workflow ensures that Dynaforge.ai operates with **low friction**, **high accountability**, and **clear communication**, keeping the architecture, requirements, and testing states synchronized at all times.

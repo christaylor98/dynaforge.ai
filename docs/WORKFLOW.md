@@ -1,15 +1,15 @@
-Ah — got it. You don’t want the *workflow that Overlord will run later*; you want the *workflow for us building Overlord itself*.
-So this will describe **how we (human + agent + code) will build, test, and iterate the Code Overlord project** — the development roadmap, not its runtime.
+Ah — got it. You don’t want the *workflow that Dynaforge.ai will run later*; you want the *workflow for us building Dynaforge.ai itself*.
+So this will describe **how we (human + agent + code) will build, test, and iterate the Dynaforge.ai project** — the development roadmap, not its runtime.
 
 Here’s how we can structure that:
 
 ---
 
-### 🧭 CODE_OVERLORD_PROJECT_WORKFLOW.md — Development Plan
+### 🧭 DYNAFORGE_PROJECT_WORKFLOW.md — Development Plan
 
 #### 1. Purpose
 
-Establish a practical, low-friction workflow for building and validating the Code Overlord framework itself — defining phases, testing strategy, review cadence, and how we surface progress and issues.
+Establish a practical, low-friction workflow for building and validating the Dynaforge.ai framework itself — defining phases, testing strategy, review cadence, and how we surface progress and issues.
 
 ---
 
@@ -27,7 +27,7 @@ Establish a practical, low-friction workflow for building and validating the Cod
 
 | Phase                         | Focus                                           | Deliverables                                  | Review Trigger                            |
 | ----------------------------- | ----------------------------------------------- | --------------------------------------------- | ----------------------------------------- |
-| **P0 – Bootstrapping**        | Repo skeleton, documentation, audit schema      | `CODE_OVERLORD.md`, `logger.py`, Discord mock | Human confirms structure + audit works    |
+| **P0 – Bootstrapping**        | Repo skeleton, documentation, audit schema      | `docs/project-qa.md`, `logger.py`, Discord mock | Human confirms structure + audit works    |
 | **P1 – Core Agents**          | PM, Designer, Implementer, Tester base classes  | Basic handoff chain, `audit/` records         | Demo run shows handoff + logging          |
 | **P2 – QA Engine**            | Policy reader, test executor, metrics collector | `QA_POLICY.yaml`, `QA_REPORT.md`              | Metrics reproducible, 1st end-to-end pass |
 | **P3 – GitOps Integration**   | Auto-commit, merge logic, audit merge events    | `gitops/` scripts, merge logs                 | Merge succeeds + rollback test passes     |

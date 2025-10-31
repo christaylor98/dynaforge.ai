@@ -103,7 +103,7 @@ class ProjectManager:
             "# Project Overview",
             "",
             "## Mission",
-            "Build the Code Overlord framework with auditable agent workflows and human governance checkpoints.",
+            "Build the Dynaforge.ai framework with auditable agent workflows and human governance checkpoints.",
             "",
             "## Current Phase Snapshot",
             "- Phase: `0 — Foundation`",

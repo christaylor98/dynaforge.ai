@@ -1,4 +1,4 @@
-# Code Overlord Requirements
+# Dynaforge.ai Requirements
 
 ## 1. Functional Requirements
 
@@ -50,4 +50,3 @@
 - **Phase 1** must implement core agents, QA policy enforcement, concern logging, and human approval hooks.
 - **Phase 2** must add CI/CD integration, linting/static analysis hooks, and expanded observability (dashboards, drift detection).
 - **Phase 3** must enable adaptive policy tuning and extended agent roles, leveraging accumulated QA and concern data.
-

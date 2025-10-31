@@ -1,7 +1,7 @@
-# Code Overlord Architecture
+# Dynaforge.ai Architecture
 
 ## System Overview
-Code Overlord is a multi-agent orchestration layer that manages the full software lifecycle under human governance. The system is organized into coordinated layers:
+Dynaforge.ai is a multi-agent orchestration layer that manages the full software lifecycle under human governance. The system is organized into coordinated layers:
 
 ```
 ┌───────────────────────────────────────────────────────────┐

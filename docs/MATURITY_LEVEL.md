@@ -1,6 +1,6 @@
 # Maturity Levels (Initial Draft)
 
-This guide introduces the first three maturity tiers for Code Overlord, derived from Change Requests `CR001 → CR001.3` and the consolidated requirements in `REQUIREMENTS_1_1.md`. Each level describes the minimum processes, artifacts, and agent involvement expected before advancing to the next tier.
+This guide introduces the first three maturity tiers for Dynaforge.ai, derived from Change Requests `CR001 → CR001.3` and the consolidated requirements in `REQUIREMENTS_1_1.md`. Each level describes the minimum processes, artifacts, and agent involvement expected before advancing to the next tier.
 
 ## Level M0 — POC / Spike Delivery
 - **Purpose:** Ship a thin vertical proof-of-concept that demonstrates core value with minimal ceremony.
