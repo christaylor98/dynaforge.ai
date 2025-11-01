@@ -1,127 +1,81 @@
-Ah — got it. You don’t want the *workflow that Dynaforge.ai will run later*; you want the *workflow for us building Dynaforge.ai itself*.
-So this will describe **how we (human + agent + code) will build, test, and iterate the Dynaforge.ai project** — the development roadmap, not its runtime.
+# Dynaforge Build Workflow — Milestone 1
 
-Here’s how we can structure that:
+## 1. Purpose
+- Provide the single source of truth for how we deliver MS-01 (POC Spike) from request through acceptance.
+- Align human and agent collaboration so every increment is observable, reversible, and reviewable.
+- Anchor delivery on the SpekKit-inspired micro flow defined in FR-29 while fitting the Dynaforge repo layout and audit discipline.
 
----
+## 2. MS-01 Scope & Outcomes
+- Objective: demo the PM → Designer → Implementer → Tester agent loop with human-visible logging, approvals, and packaged demo collateral.
+- Success looks like a human running `make demo` (or equivalent) and seeing a full cycle with audit evidence, status commands, and documentation that explains the loop.
+- Out of scope for this milestone: advanced governance automation, maturity scoring, GitOps merges; track them for later phases but do not block MS-01.
 
-### 🧭 DYNAFORGE_PROJECT_WORKFLOW.md — Development Plan
+## 3. Guiding Principles
+- Work in micro increments that finish the SpekKit flow inside one change workspace (`changes/CH-###`).
+- Capture proof (logs, diffs, test results) as we go; promotion requires evidence, not vibes.
+- Keep the human in the loop for framing and approvals, but let agents execute repeatable tasks.
+- Prefer deterministic behaviour (seeded planners, scripted commands) so replays are possible.
+- Update documentation and traceability as part of the flow, not after the fact.
 
-#### 1. Purpose
+## 4. SpekKit Micro Flow (FR-29)
+Our delivery loop adapts the SpekKit cadence into six deterministic stages. Every change request iterates them top-to-bottom; if a stage fails we fix it before advancing.
 
-Establish a practical, low-friction workflow for building and validating the Dynaforge.ai framework itself — defining phases, testing strategy, review cadence, and how we surface progress and issues.
+| Stage | Purpose | Primary Owner(s) | Key Artifacts | Exit Criteria |
+| --- | --- | --- | --- | --- |
+| **Frame** | Understand the change request, scope the slice, confirm acceptance tests. | Human PM + PM agent | `changes/CH-###/brief.md`, `/status` note | Stakeholder agrees on scope + explicit accept criteria. |
+| **Spec** | Decompose work into deterministic micro-tasks. | PM agent + Designer agent | `changes/CH-###/tasks.md`, `planner_config.json` | Approved task list seeded and checked into repo. |
+| **Execute** | Apply code/doc/test updates task-by-task, logging evidence. | Implementer agent | `artifacts/work/CH-###/run-*/`, diffs, audit logs | All tasks complete, no failing assertions, audit events recorded. |
+| **Validate** | Run automated tests, synthesize QA notes, surface concerns. | Tester agent | `tests/results/CH-###.json`, `QA_REPORT.md`, audit entries | Required tests pass or concern logged; QA sign-off ready. |
+| **Package** | Summarize impact, update docs, prep demo collateral. | PM agent + Human | `changes/CH-###/impact.md`, `docs/PROJECT_OVERVIEW.md`, demo assets | Stakeholder review packet ready, documentation updated. |
+| **Cleanup** | Apply retention policy, close workspace, tag milestone artifacts. | Implementer agent + Governance | `audit/retention.jsonl`, closed `changes/` workspace | Evidence archived, workspace status updated, concern queue clear. |
 
----
+### Flow Expectations
+- Each stage emits events via `AuditLogger`, producing `audit/handoff.jsonl`, `audit/concerns.jsonl`, and run-specific logs.
+- Stage owners may loop locally (e.g., Execute ↔ Validate) but must not promote without re-running Validate and Package.
+- The PM agent orchestrates movement between stages and records stage status in `PROGRESS.md`.
 
-#### 2. Guiding Principles
+## 5. Iteration Rhythm
+- **Kickoff**: Human PM selects highest-priority MS-01 backlog item and opens/refreshes `changes/CH-###` workspace with Frame deliverables.
+- **Daily Flow**: At least one SpekKit cycle completes per day; unfinished stages roll forward with explicit blockers noted in `audit/concerns.jsonl`.
+- **Sync Points**: Human reviews at end of Spec, after Validate, and during Package. Approvals recorded via `/approve CH-###` command.
+- **Demo Fridays**: Package stage outputs weekly demo updates stored under `artifacts/phase1/demo/Week-##/`.
 
-1. **Small, Testable Increments** – build and validate one subsystem at a time.
-2. **Tight Feedback Loops** – each stage must be measurable (unit tests, metrics, or prototype demo).
-3. **Human ≠ Bottleneck** – human checkpoints exist only for architecture validation, safety, and direction shifts.
-4. **Artifacts as Proof** – every milestone outputs a concrete file: spec, code, or QA report.
-5. **Audit Everything** – all actions, merges, and reviews logged and traceable.
+## 6. Role & Responsibility Matrix
+| Role | Key Responsibilities in MS-01 | Hand-off Notes |
+| --- | --- | --- |
+| Human PM | Prioritize backlog, approve Frame/Spec, evaluate Package, decide promotion. | Uses `/status`, `/clarify`, and `/approve` to control flow. |
+| PM Agent | Drive backlog intake, coordinate agents, maintain `PROGRESS.md`. | Receives human approvals, notifies Designer/Implementer. |
+| Designer Agent | Convert requests into structured tasks and design notes. | Must store decisions in `design/DESIGN_SPEC.md` segments. |
+| Implementer Agent | Execute tasks deterministically, generate diffs, call tests. | Logs each task completion with `{task_id, files_touched}`. |
+| Tester Agent | Run declared test commands, update QA artifacts, raise concerns. | Blocks promotion until required evidence recorded. |
+| Governance / Retention | Ensure cleanup stage respects retention policy. | Monitors `audit/retention.jsonl` and concern resolution. |
 
----
+## 7. Evidence & Artifacts
+- `audit/` JSONL files capture handoffs, commands, concerns, retention actions.
+- `artifacts/work/CH-###/run-*/` holds run summaries, deterministic seeds, and task evidence.
+- `changes/CH-###/impact.md` narrates scope, implementation notes, and verification.
+- `tests/results/CH-###.json` (or similar) records automated test outcomes with timestamps.
+- `docs/PROJECT_OVERVIEW.md` and `docs/IMPLEMENTATION_PLAN.md` updated whenever Package stage completes.
 
-#### 3. Phase Breakdown
+## 8. Testing & QA Strategy (MS-01 Focus)
+- **Unit Tests** (`pytest`): cover new utilities and agent helpers touched during Execute.
+- **Integration Harness** (`make demo` / scripted run): must replay PM→Designer→Implementer→Tester chain twice with identical audit output.
+- **Manual Smoke**: Human triggers `/status`, `/clarify`, `/approve`, verifying responses and audit entries.
+- **Regression Snapshot**: Rerun Execute+Validate with the same seed; diffs must match or raise a concern.
 
-| Phase                         | Focus                                           | Deliverables                                  | Review Trigger                            |
-| ----------------------------- | ----------------------------------------------- | --------------------------------------------- | ----------------------------------------- |
-| **P0 – Bootstrapping**        | Repo skeleton, documentation, audit schema      | `docs/project-qa.md`, `logger.py`, Discord mock | Human confirms structure + audit works    |
-| **P1 – Core Agents**          | PM, Designer, Implementer, Tester base classes  | Basic handoff chain, `audit/` records         | Demo run shows handoff + logging          |
-| **P2 – QA Engine**            | Policy reader, test executor, metrics collector | `QA_POLICY.yaml`, `QA_REPORT.md`              | Metrics reproducible, 1st end-to-end pass |
-| **P3 – GitOps Integration**   | Auto-commit, merge logic, audit merge events    | `gitops/` scripts, merge logs                 | Merge succeeds + rollback test passes     |
-| **P4 – Discord Bridge**       | Real notification + command interface           | Live `/status`, `/clarify`                    | Human review of event accuracy            |
-| **P5 – Autonomous Loop Demo** | Combine all agents; continuous QA cycle         | Recorded full loop log + doc sync             | Human review + milestone tag `v0.1`       |
+## 9. Approval & Promotion Gates
+- Execute cannot start without human ✅ on Frame+Spec artifacts.
+- Validate must pass all required tests or document waivers in `QA_REPORT.md` before Package.
+- Package requires human ✅; once approved, PM agent tags milestone progress in `PROGRESS.md` and updates Milestone dashboard (`TRACEABILITY.md` MS-01 row).
+- Cleanup closes the change workspace and lists evidence references in `PROGRESS.md` before the next backlog item starts.
 
----
+## 10. Progress Tracking & Communication
+- `PROGRESS.md` reflects current stage per change request plus aggregated milestone stats (coverage %, reproducibility %, open concerns).
+- Daily digest posted to Discord `#build-status` summarizing completed stages and blockers.
+- Weekly milestone status appended to `docs/STATUS_REPORT.md` referencing MS-01 readiness.
 
-#### 4. Testing Strategy
-
-| Layer                 | Tooling                                    | Validation                                               |
-| --------------------- | ------------------------------------------ | -------------------------------------------------------- |
-| **Unit Tests**        | `pytest`                                   | 90 %+ coverage for core functions                        |
-| **Integration Tests** | Python harness simulating full agent cycle | Must reproduce identical audit logs twice                |
-| **System Tests**      | End-to-end dry-run (`make demo`)           | QA gates all green, Discord mock receives 3+ event types |
-| **Regression**        | Rerun identical seed + data                | Logs and metrics must match                              |
-| **Manual Review**     | Human runs `/status`, `/clarify`           | Confirms visibility + correctness                        |
-
-Every phase adds tests to `tests/` and updates `TEST_PLAN.md` + `TEST_RESULTS.md`.
-
----
-
-#### 5. Review & Approval Points
-
-| Stage                    | Reviewer | Criteria                                  |
-| ------------------------ | -------- | ----------------------------------------- |
-| Architecture Sketch (P0) | Human    | Folder + interface layout accepted        |
-| End of P1                | Human    | Agents run sequentially without errors    |
-| End of P2                | Human    | QA gates correctly accept/reject          |
-| End of P4                | Human    | Discord interaction validated             |
-| Phase Promotion          | Human    | QA Report clean, docs synced, tag created |
-
-All reviews summarized in `PROGRESS.md` with ✅/⚠️ status lines.
-
----
-
-#### 6. Progress Tracking
-
-`PROGRESS.md` (auto-updated by PM script):
-
-```
-## Sprint Summary – Phase 2
-Status: ✅ QA Engine implemented
-Coverage: 86 %
-Reproducibility: 98 %
-Open Concerns: 1 (discord latency)
-Next Step: Integrate GitOps merge
-```
-
-Daily digest pushed to Discord; weekly human note appended manually.
-
----
-
-#### 7. Issue & Concern Escalation
-
-* Agents raise `concern.json` entries → Discord `#build-alerts`.
-* Critical build/test failures auto-pause pipeline.
-* Human responds `/resolve <id>` after fix.
-* PM posts “return to normal” notice and resumes loop.
-
-##### Audit Schema Addendum
-- **Handoff entries** append to `audit/handoff.jsonl` via `AuditLogger.log_handoff()`. Required keys: `record_type="handoff"`, `schema_version`, ISO-8601 `timestamp`, `phase`, `from_agent`, `to_agent`, `summary`. Optional lists `artifacts` and `concerns`, plus free-form `metadata`.
-- **Concern entries** append to `audit/concerns.jsonl` via `AuditLogger.log_concern()`. Required keys: `record_type="concern"`, `schema_version`, ISO-8601 `timestamp`, `phase`, `raised_by`, `severity` (`low|medium|high|critical`), and `message`. Optional `resolution` and structured `metadata`.
-- All audit artifacts follow JSON Lines formatting; each line is a self-contained record signed with schema version `0.1.0`.
-
----
-
-#### 8. Testing Environments
-
-| Environment           | Purpose                               |
-| --------------------- | ------------------------------------- |
-| **Local (Docker)**    | Dev + unit tests                      |
-| **CI (GitHub/Gitea)** | Full integration & QA                 |
-| **Stage (Sandbox)**   | End-to-end demo with Discord + GitOps |
-
----
-
-#### 9. Success Metrics
-
-* 100 % reproducible builds.
-* < 15 min QA cycle time.
-* 0 manual merges during phases P1–P4.
-* Documentation sync lag < 1 commit.
-* One human command (`/promote`) per phase.
-
----
-
-#### 10. Phase 0 Immediate Next Steps
-
-1. Create minimal working repo + folder tree.
-2. Implement logger + `audit.jsonl` writer.
-3. Add Discord mock + `/status`.
-4. Write skeleton agents (no logic yet).
-5. Run first dry-loop test.
-6. Human verifies audit entries and approves Phase 1 start.
-
----
+## 11. Immediate Next Steps
+- Seed `changes/CH-001` (or next ID) with Frame assets aligned to MS-01 objective.
+- Finalize planner seed + `planner_config.json` template to unlock deterministic Spec stage.
+- Implement audit logging for stage transitions (linking to FR-29 acceptance criteria).
+- Dry-run a full SpekKit cycle end-to-end; capture findings in `artifacts/phase1/demo/Week-01/` and adjust flow before human sign-off.

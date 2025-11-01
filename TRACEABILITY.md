@@ -1,6 +1,6 @@
 # Traceability Matrix
 
-_Last updated: 2025-10-29 — maintained by Codex agent._
+_Last updated: 2025-11-01 — maintained by Codex agent._
 
 ## Legend
 - Workstream status: `DONE` (delivered), `IN PROGRESS` (currently active), `PLANNED` (not started).
@@ -30,6 +30,7 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | Phase 1 — Core Agent Loop | WS-103 Human Approval Gates | Ensures the human can approve/deny progression, making the spike truly usable. | CHANGE IMPACTED |
 | Phase 1 — Core Agent Loop | WS-105 Interaction Bridge Expansion | Adds the command coverage needed for a realistic human-agent exchange. | DONE |
 | Phase 1 — Core Agent Loop | WS-108 Demo & Documentation | Packages the walkthrough and narrative that explain how to operate the spike. | IN PROGRESS |
+| Phase 1 — Core Agent Loop | WS-109 Implementer Micro-Loop & Retention | Aligns the Implementer micro-loop and artifact retention with CR002 governance expectations. | CHANGE IMPACTED |
 
 ---
 
@@ -116,6 +117,7 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | WS-106 Status Snapshots & Observability | PLANNED | FR-13 | Pending orchestration hook |
 | WS-107 Rollback & Pause Controls | PLANNED | FR-14 | Scripts not yet implemented |
 | WS-108 Demo & Documentation | IN PROGRESS | FR-02, FR-10 | Documentation refresh pending completion of WS-104–WS-107 |
+| WS-109 Implementer Micro-Loop & Retention | CHANGE IMPACTED | FR-04, FR-27, FR-29 | CR002 realigns micro-loop enforcement and retention; design updates slated in `docs/REQUIREMENTS_1_2.md` |
 
 ### WS-101 Multi-Agent Orchestration
 
@@ -169,19 +171,27 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | FR-02 Documentation currency | PARTIAL | TC-FR01-001 | PASS | Documentation will be refreshed post QA enforcement and status snapshot delivery. |
 | FR-10 Approval capture | PARTIAL | TC-FR10-001 | PASS | Approval markers recorded; final demo sign-off pending completion of remaining workstreams. |
 
+### WS-109 Implementer Micro-Loop & Retention
+
+| Requirement | Requirement Status | Tests | Test Status | Notes |
+| --- | --- | --- | --- | --- |
+| FR-04 Implementation governance micro-loop | PARTIAL | TC-FR04-001, TC-FR04-002 (TODO) | PARTIAL | Implementer loop executes deterministically for core path; CR002 updates captured in `docs/REQUIREMENTS_1_2.md` require planner/executor refinements. |
+| FR-27 Implementer run retention | PLANNED | TC-FR27-001 (TODO) | TODO | Retention policy must auto-purge successful runs after 48 h/2 GB and respect `.retain` markers. |
+| FR-29 SpekKit-inspired micro-task loop | PLANNED | TC-FR29-001 (TODO) | TODO | Planner/executor/cleanup modules to reimplement SpekKit concepts without code reuse. |
+
 ---
 
 ## Phase 2 — Change Governance Loop
 
 | Workstream | Status | Related Requirements | Evidence |
 | --- | --- | --- | --- |
-| WS-201 Requirements Intelligence | PLANNED | FR-02, FR-15, FR-37 | Scope captured in `docs/REQUIREMENTS_1_1.md` |
-| WS-202 Impact Assessment & Evaluator | PLANNED | FR-16, FR-28 | Planned artifacts: `IMPACT_REPORT.md`, Change Evaluator prompts |
-| WS-203 Implementation Management | PLANNED | FR-21, FR-31 | Implementation Manager brief (`IM_PROGRESS.md`) to be authored |
+| WS-201 Requirements Intelligence | PLANNED | FR-02, FR-15, FR-26, FR-37 | Scope captured in `docs/REQUIREMENTS_1_2.md` |
+| WS-202 Impact Assessment & Evaluator | PLANNED | FR-16 | Planned artifacts: `IMPACT_REPORT.md`, impact scoring heuristics |
+| WS-203 Implementation Management | PLANNED | FR-21, FR-25, FR-31 | Implementation Manager brief (`IM_PROGRESS.md`) to be authored |
 | WS-204 Governance & Multi-Gate Approvals | PLANNED | FR-10, FR-22, FR-34 | Governance Officer charter (`GOVERNANCE_REPORT.md`) pending |
-| WS-205 Change Router & Orchestration | PLANNED | FR-01, FR-23, FR-27, FR-29 | Change router design notes (`docs/REQUIREMENTS_1_1.md`) |
-| WS-206 Change Records & Audit Extensions | PLANNED | FR-06, FR-20, FR-25, FR-26 | Audit schema expansion plan (`audit/`) to be drafted |
-| WS-207 Interaction CLI Extensions | PLANNED | FR-24 | `/impact` & `/trace` CLI specs (planned) |
+| WS-205 Change Router & Orchestration | PLANNED | FR-01, FR-23 | Change router design notes (`docs/REQUIREMENTS_1_2.md`) |
+| WS-206 Change Records & Audit Extensions | PLANNED | FR-06, FR-20, FR-26 | Audit schema expansion plan (`audit/`) to be drafted |
+| WS-207 Interaction CLI Extensions | PLANNED | FR-24, FR-28 | `/impact`, `/trace`, `/df.*` CLI specs (planned) |
 
 ### WS-201 Requirements Intelligence
 
@@ -189,6 +199,7 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | --- | --- | --- | --- | --- |
 | FR-02 Status documentation (maturity summaries) | PLANNED | TC-FR02-002 | TODO | Expand docs with per-change + maturity cross-links. |
 | FR-15 Requirements Analyst agent | PLANNED | TC-FR15-001 | TODO | RA agent updates traceability and flags ripple risks. |
+| FR-26 Bidirectional change traceability | PLANNED | TC-FR26-001 | TODO | Ensure FR/WS/TC artifacts link to `CH-###` records with lifecycle states. |
 | FR-37 Requirement elaboration workflow | PLANNED | TC-FR37-001 | TODO | Approved elaborations gate workstream creation. |
 
 ### WS-202 Impact Assessment & Evaluator
@@ -196,13 +207,13 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-16 Impact Assessor agent | PLANNED | TC-FR16-001 | TODO | Quantifies downstream effects and maintains `IMPACT_REPORT.md`. |
-| FR-28 Change Evaluator recommendations | PLANNED | TC-FR28-001 | TODO | ROI/risk scoring feeds governance approvals. |
 
 ### WS-203 Implementation Management
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-21 Implementation Manager agent | PLANNED | TC-FR21-001 | TODO | Decomposes objectives into `WS-*` with evidence tracking. |
+| FR-25 Change workspace management | PLANNED | TC-FR25-001 | TODO | Maintain `changes/CH-###/` bundles with `spec.md`, `plan.md`, `tasks.md`, `impact.md`, `evidence.json`, `status.md`. |
 | FR-31 Partial change approvals | PLANNED | TC-FR31-001 | TODO | Track sub-decisions within `CH-###` records. |
 
 ### WS-204 Governance & Multi-Gate Approvals
@@ -219,8 +230,6 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | --- | --- | --- | --- | --- |
 | FR-01 Project Manager (governance loop orchestration) | PLANNED | TC-FR01-003 | TODO | Trigger RA→IA→IM→QA→TQA→GO loop per change. |
 | FR-23 Automated orchestration triggers | PLANNED | TC-FR23-001 | TODO | Fire orchestration on requirement/doc deltas. |
-| FR-27 Change Router watcher | PLANNED | TC-FR27-001 | TODO | Detect diffs and invoke orchestration services. |
-| FR-29 Vision Validator advisory | PLANNED | TC-FR29-001 | TODO | Advisory alignment scoring feeds change evaluator. |
 
 ### WS-206 Change Records & Audit Extensions
 
@@ -228,14 +237,14 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | --- | --- | --- | --- | --- |
 | FR-06 Structured handoff logging (extended schema) | PLANNED | TC-FR06-002 | TODO | Append change/maturity metadata to audit logs. |
 | FR-20 RACI metadata propagation | PLANNED | TC-FR20-001 | TODO | Embed `raci_role` in audit logs and artifacts. |
-| FR-25 Structured change objects | PLANNED | TC-FR25-001 | TODO | Capture `CH-###` records in `CHANGELOG.md`. |
-| FR-26 Audit endpoints for change objects | PLANNED | TC-FR26-001 | TODO | Extend CLI endpoints (`/impact`, `/change`, `/approve`). |
+| FR-26 Bidirectional change traceability | PLANNED | TC-FR26-001 | TODO | Ensure `CH-###` entries and FR/WS/TC artifacts cross-link with lifecycle state tracking. |
 
 ### WS-207 Interaction CLI Extensions
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-24 `/impact` and `/trace` commands | PLANNED | TC-FR24-001 | TODO | Support local and remote (Discord) contexts. |
+| FR-28 `/df.clarify`, `/df.analyze`, `/df.checklist`, `dynaforge doctor` | PLANNED | TC-FR28-001 | TODO | Emit JSON logs under `artifacts/analyze/` for FR-06 ingestion. |
 
 ---
 
@@ -243,7 +252,7 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 
 | Workstream | Status | Related Requirements | Evidence |
 | --- | --- | --- | --- |
-| WS-301 QA Auditor & Traceability Gaps | PLANNED | FR-17 | Traceability gap workflow scoped in `docs/REQUIREMENTS_1_1.md` |
+| WS-301 QA Auditor & Traceability Gaps | PLANNED | FR-17 | Traceability gap workflow scoped in `docs/REQUIREMENTS_1_2.md` |
 | WS-302 Test Synthesizer & Quality Depth | PLANNED | FR-05, FR-18, FR-19 | QA/Test agent briefs (`tests/`) to be generated |
 | WS-303 QA Policy Engine Enhancements | PLANNED | FR-11 | Policy engine design update pending |
 | WS-304 Maturity Metadata & Guides | PLANNED | FR-32, FR-33 | `PROJECT_METADATA.md`, `PROCESS_MATURITY_GUIDE.md` planned |
@@ -321,11 +330,11 @@ _Last updated: 2025-10-29 — maintained by Codex agent._
 | FR-22 Governance Officer agent | PLANNED | WS-204 | TC-FR22-001 (TODO) |
 | FR-23 Automated orchestration triggers | PLANNED | WS-205 | TC-FR23-001 (TODO) |
 | FR-24 `/impact` and `/trace` commands | PLANNED | WS-207 | TC-FR24-001 (TODO) |
-| FR-25 Structured change objects | PLANNED | WS-206 | TC-FR25-001 (TODO) |
-| FR-26 Audit endpoints for change objects | PLANNED | WS-206 | TC-FR26-001 (TODO) |
-| FR-27 Change Router watcher | PLANNED | WS-205 | TC-FR27-001 (TODO) |
-| FR-28 Change Evaluator recommendations | PLANNED | WS-202 | TC-FR28-001 (TODO) |
-| FR-29 Vision Validator advisory | PLANNED | WS-205 | TC-FR29-001 (TODO) |
+| FR-25 Change workspace management | PLANNED | WS-203 | TC-FR25-001 (TODO), `changes/CH-###/` template plan |
+| FR-26 Bidirectional change traceability | PLANNED | WS-201, WS-206 | TC-FR26-001 (TODO), `TRACEABILITY.md` updates |
+| FR-27 Implementer run retention | PLANNED | WS-109 | TC-FR27-001 (TODO), retention policy spec |
+| FR-28 `/df.*` analysis commands | PLANNED | WS-207 | TC-FR28-001 (TODO), `/df.*` CLI design notes |
+| FR-29 SpekKit-inspired micro-task loop | PLANNED | WS-109 | TC-FR29-001 (TODO), planner/executor design draft |
 | FR-30 Change velocity dashboard | PLANNED | WS-306 | TC-FR30-001 (TODO) |
 | FR-31 Partial change approvals | PLANNED | WS-203 | TC-FR31-001 (TODO) |
 | FR-32 Project metadata source | PLANNED | WS-304 | TC-FR32-001 (TODO) |

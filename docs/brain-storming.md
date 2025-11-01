@@ -1,4 +1,4 @@
-lets start with the agent framework that is going to oversee and build the above ... it needs a classic project manager, designer, implementers, testers ... human in the loop should review the design and be able to prompt designer for clarifications and further updates, and review test plan with abaility to ask for clarifications and upates ... does this make sense?
+lets start with the agent framework that is going to oversee and build the above ... it needs a classic project manager, designer, implementers, testers ... human in the loop should review the design and be able to prompt designer for clarifications and further updates, and review test plan with ability to ask for clarifications and updates ... does this make sense?
 
 Yes — that makes **perfect sense**, and it’s *exactly* the right first step.
 
@@ -996,6 +996,13 @@ Human can also trigger git actions via chat:
 * PM’s automated merges are reproducible and revertible.
 * Discord bot announces all merges/tags within seconds.
 * Audit trail in `audit/git_actions.jsonl` matches actual Git history (`git log --show-notes=audit`).
+
+---
+
+If you’d like, I can now **generate the `gitops/` helper scripts** and a **Codex MCP agents.yaml extension** that:
+
+* maps Git operations to PM and Human review checkpoints, and
+* hooks Discord notifications into those transitions.
 
 ---
 

@@ -1,12 +1,13 @@
 # 🧠 REQUIREMENT ELABORATION GUIDE
 
-_Last updated: 2025-10-30 — maintained by the Requirement Elaboration Agent (RE) and Governance Officer._
+_Last updated: 2025-11-01 — maintained by the Requirement Elaboration Agent (RE) and Governance Officer._
 
 ---
 
 ## 🎯 Purpose
 All Functional Requirements (FR-###) **must** be elaborated before implementation.  
-Elaboration bridges the gap between *intent* and *execution* by producing rich, reviewable context that humans and AI can both understand.
+Elaboration bridges the gap between *intent* and *execution* by producing rich, reviewable context that humans and AI can both understand.  
+Approved elaborations satisfy FR-37 (elaboration-before-implementation) and feed FR-26 traceability by linking each requirement to its active change objects (`CH-###`) and lifecycle state.
 
 ---
 
@@ -30,7 +31,20 @@ Each elaboration lives in its own file under:
 
 ````
 
-The file is version-controlled and linked from the Traceability Matrix.
+The file is version-controlled, referenced from `TRACEABILITY.md`, and recorded in the owning change workspace (`changes/CH-###/status.md`).
+
+Include a lightweight YAML header to align with traceability ingestion:
+
+```
+---
+fr_id: FR-###
+ch_refs:
+  - CH-###
+trace_links:
+  - TRACEABILITY.md#fr-##
+status: Draft
+---
+```
 
 ---
 
@@ -77,6 +91,11 @@ flowchart TD
 Link or embed screenshots, wireframes, or quick sketches:
 `/artifacts/mockups/fr###_ui.png`
 
+## 6.1 Change & Traceability Links
+- `change_refs`: `CH-###` entries that initiated or updated the requirement.  
+- `trace_sections`: headings or anchors in `TRACEABILITY.md` that consume this elaboration.
+- `artifacts`: durable outputs (`docs/requirements.md`, `changes/CH-###/impact.md`, etc.) updated as part of the elaboration.
+
 ## 7. Acceptance Criteria
 
 Concrete, testable statements of success.
@@ -92,6 +111,9 @@ List related FRs, WSs, APIs, or data models.
 ## 9. Risks & Assumptions
 
 Identify uncertainties, external dependencies, and mitigation notes.
+
+## 9.1 Retention Notes
+Document any reasons to retain Implementer run artifacts using the `--retain` marker so FR-27 retention policies and Governance Officer reviews stay aligned.
 
 ## 10. Review Status
 
@@ -122,6 +144,7 @@ flowchart TD
 
 * Implementation Manager **cannot** create workstreams for an FR until its elaboration is *Approved*.
 * Any update to an elaboration automatically triggers a **Change Evaluation** and version bump.
+* Approved elaborations must be linked in `TRACEABILITY.md` under the owning workstream and recorded in the associated `CH-###/status.md` lifecycle history.
 
 ---
 
@@ -141,9 +164,10 @@ flowchart TD
 ## ⚙️ Automation Hooks
 
 * **Detection:** PM agent scans `/docs/requirements` for new FRs → assigns RE agent.
-* **Validation:** GO agent blocks FRs with `review_status != Approved`.
-* **Change Propagation:** Updated elaborations trigger IA + CE agents to reassess impact and ROI.
-* **Testing:** QA agent parses “Inputs / Outputs / Acceptance Criteria” to auto-seed test cases.
+* **Validation:** GO agent blocks FRs with `review_status != Approved`; `/df.checklist` verifies elaboration linkage before approvals.
+* **Change Propagation:** Updated elaborations trigger IA + CE agents to reassess impact, update `changes/CH-###/impact.md`, and refresh trace links.
+* **Testing:** QA agent parses “Inputs / Outputs / Acceptance Criteria” to auto-seed test cases and update `TRACEABILITY.md` metrics.
+* **Audit:** Implementer logs include references to the elaboration file (`fr_id`, `trace_links`) to satisfy FR-06 and FR-27 requirements.
 
 ---
 
