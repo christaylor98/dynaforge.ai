@@ -3,7 +3,7 @@
 _Last updated: 2025-11-01 — maintained by Codex agent._
 
 ## Legend
-- Workstream status: `DONE` (delivered), `IN PROGRESS` (currently active), `PLANNED` (not started).
+- Workstream status: `DONE` (delivered), `IN PROGRESS` (currently active), `PLANNED` (not started), `CHANGE IMPACTED` (previously delivered but a new change requires rework before reuse).
 - Requirement status: `DONE` (implemented with evidence), `PARTIAL` (in progress or partially validated), `IN PROGRESS` (active work), `PLANNED` (not yet implemented).
 - Test status: `PASS` (evidence recorded), `PENDING` (test exists but not yet executed or captured), `TODO` (test not implemented).
 
@@ -32,6 +32,8 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Phase 1 — Core Agent Loop | WS-108 Demo & Documentation | Packages the walkthrough and narrative that explain how to operate the spike. | IN PROGRESS |
 | Phase 1 — Core Agent Loop | WS-109 Implementer Micro-Loop & Retention | Aligns the Implementer micro-loop and artifact retention with CR002 governance expectations. | CHANGE IMPACTED |
 
+> _MS-01 readiness note:_ All statuses below reflect whether each stream or requirement is ready for the refreshed MS-01 milestone run; anything marked `CHANGE IMPACTED` or `PARTIAL` still needs a new execution pass before acceptance.
+
 ---
 
 ## Phase 0 — Foundation
@@ -52,14 +54,14 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-01 Project Manager agent scaffolding | PARTIAL | TC-FR01-001 | PASS | Baseline directories and docs enable PM agent; integration test confirms doc refresh and audit handoff wiring. |
-| FR-02 Status documentation maintained | DONE | TC-FR01-001 | PASS | `docs/PROJECT_OVERVIEW.md` and `docs/PROJECT_DETAIL.md` generation validated via integration test. |
+| FR-02 Status documentation maintained | PARTIAL | TC-FR01-001 | PASS | Docs were current for Phase 0; MS-01 refresh pending updated workflow evidence. |
 
 ### WS-02 Audit Logging Primitives
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-06 Handoff logging | DONE | TC-FR06-001 | PASS | JSONL writer validated; coverage recorded under `artifacts/phase0/trace/coverage_summary.txt`. |
-| FR-09 Command audit trail | DONE | TC-FR06-001 | PASS | Logging helpers leveraged by interaction stub to capture commands. |
+| FR-06 Handoff logging | PARTIAL | TC-FR06-001 | PASS | Logger proven in Phase 0; rerun required to capture refreshed MS-01 workflow evidence. |
+| FR-09 Command audit trail | PARTIAL | TC-FR06-001 | PASS | Helpers work, but audit artifacts need regeneration after milestone reset. |
 
 ### WS-03 Concern API & Schema Docs
 
@@ -79,7 +81,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-01 Project Manager coordination | PARTIAL | TC-FR01-001, TC-FR01-002 | PASS | Phase 0 PM updates docs; orchestration and doc refresh verified via integration coverage. |
-| FR-02 Status documentation maintained | DONE | TC-FR01-001 | PASS | Documents auto-refreshed by `ProjectManager.run`; integration test validates output structure. |
+| FR-02 Status documentation maintained | PARTIAL | TC-FR01-001 | PASS | Automation exists, but docs need a new MS-01 run before claiming completion. |
 | FR-10 Approval capture | PARTIAL | TC-FR10-001 | PASS | Approval markers defined; enforcement completed under Phase 1 WS-103 with passing unit test. |
 
 ### WS-06 QA Policy Parser Stub
@@ -93,14 +95,14 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-01 Orchestrated PM cycle | PARTIAL | TC-FR01-002 | PASS | Demo exercises PM + logging; integration test executes orchestrator and verifies artifact bundle. |
-| FR-06 Handoff logging completeness | DONE | TC-FR06-001 | PASS | Demo run captures handoff artifacts in `artifacts/phase0/demo/`. |
-| FR-09 Command audit trail | DONE | TC-FR09-001 | PASS | Demo ensures command log appended during interaction stub runs. |
+| FR-06 Handoff logging completeness | PARTIAL | TC-FR06-001 | PASS | Demo run validated Phase 0; MS-01 demo package must be rerun to confirm coverage. |
+| FR-09 Command audit trail | PARTIAL | TC-FR09-001 | PASS | Command log exists, but updated demo bundle is pending after the reset. |
 
 ### WS-08 Documentation Updates
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-02 Documentation currency | DONE | TC-FR01-001 | PASS | Overview and detail docs aligned with Phase 0 scope and regenerated in integration test. |
+| FR-02 Documentation currency | PARTIAL | TC-FR01-001 | PASS | Phase 0 alignment proven; needs MS-01 updates before we report DONE again. |
 | FR-10 Approval markers | PARTIAL | TC-FR10-001 | PASS | Approval checklist established; enforcement validated in Phase 1. |
 
 ---
@@ -123,9 +125,9 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-01 Project Manager coordinates agents | DONE | TC-FR01-002 | PASS | Orchestrator sequences PM→Designer→Implementer→Tester with audit handoffs. |
+| FR-01 Project Manager coordinates agents | PARTIAL | TC-FR01-002 | PASS | Orchestrator sequencing validated once; needs MS-01 rerun to reconfirm handoffs. |
 | FR-04 Implementer alignment with design | PARTIAL | TC-FR04-001 | PASS | Implementer hooks scaffolded; full enforcement of branch policy outstanding. |
-| FR-06 Handoff logging (loop) | DONE | TC-FR06-001 | PASS | Run logs in `artifacts/phase1/orchestration/run.json` show full handoff trail. |
+| FR-06 Handoff logging (loop) | PARTIAL | TC-FR06-001 | PASS | Existing run logs cover earlier spike; updated MS-01 orchestration artifacts still outstanding. |
 
 ### WS-102 Concern Lifecycle
 
@@ -137,7 +139,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-10 Approval enforcement | DONE | TC-FR10-001 | PASS | Orchestrator blocks progression without inline approval marker; denial log stored at `artifacts/phase1/approvals/denied.txt`. |
+| FR-10 Approval enforcement | PARTIAL | TC-FR10-001 | PASS | Enforcement logic exists, but MS-01 approval artifacts must be regenerated before we close it. |
 
 ### WS-104 QA Policy Enforcement
 
@@ -314,7 +316,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | FR-06 Handoff logging | PARTIAL | WS-02, WS-04, WS-07, WS-101, WS-206 | TC-FR06-001, TC-FR06-002 (TODO), `artifacts/phase0/demo/` |
 | FR-07 Concern lifecycle | PARTIAL | WS-03, WS-102 | TC-FR07-001, `pipelines/concern_tools.py` |
 | FR-08 Discord bridge commands | PARTIAL | WS-04, WS-105 | TC-FR08-001, TC-FR08-002 (TODO), `artifacts/phase1/commands/` |
-| FR-09 Command audit trail | DONE | WS-02, WS-04, WS-05, WS-105 | TC-FR09-001, `audit/commands.jsonl` |
+| FR-09 Command audit trail | PARTIAL | WS-02, WS-04, WS-05, WS-105 | TC-FR09-001, `audit/commands.jsonl` |
 | FR-10 Approval governance | PARTIAL | WS-05, WS-08, WS-103, WS-108, WS-204 | TC-FR10-001, TC-FR10-002 (TODO), `artifacts/phase1/approvals/denied.txt` |
 | FR-11 QA policy enforcement | PARTIAL | WS-06, WS-104, WS-303 | TC-FR11-001, TC-FR11-002 (TODO), TC-FR11-003 (TODO) |
 | FR-12 GitOps workflow controls | PLANNED | Future phase | TC-FR12-001 (TODO) |
