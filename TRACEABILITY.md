@@ -11,11 +11,11 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 - A milestone is a curated slice of requirements across phases that results in a system a human can exercise end-to-end; it must be testable and usable, even if only a small subset of total scope is complete.
 - Milestones may take the form of spikes/POCs, betas, or full releases. Percent completion of requirements is less important than demonstrating a coherent workflow a real user can trial.
 - Delivery cadence is driven by the human stakeholder: we request the next milestone definition from them and focus the workstreams, requirements, and tests in this matrix around that target until accepted.
-- **Current target milestone — POC Spike:** stand up the minimum set of agents and integrations required to exhibit a working Dynaforge loop, establishing a usable foundation for future increments.
+- **Current target milestone — POC Spike:** stand up the minimum set of agents and integrations required to exhibit a working Codexa loop, establishing a usable foundation for future increments.
 
 ### MS-01 — POC Spike (Minimum Agent Loop)
 - `Identifier`: MS-01
-- `Objective`: Prove the Dynaforge core by wiring the minimum agent chain (PM → Designer → Implementer → Tester) with human-visible logging, approvals, and demo collateral.
+- `Objective`: Prove the Codexa core by wiring the minimum agent chain (PM → Designer → Implementer → Tester) with human-visible logging, approvals, and demo collateral.
 - `Scope guidance`: Focus on workstreams that enable a human to run, observe, and judge the loop. Deferrable items (e.g., maturity scoring, governance automation) stay out of scope until the next milestone request.
 
 | Phase | Workstream | Role in MS-01 | Current Status |
@@ -246,7 +246,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-24 `/impact` and `/trace` commands | PLANNED | TC-FR24-001 | TODO | Support local and remote (Discord) contexts. |
-| FR-28 `/df.clarify`, `/df.analyze`, `/df.checklist`, `dynaforge doctor` | PLANNED | TC-FR28-001 | TODO | Emit JSON logs under `artifacts/analyze/` for FR-06 ingestion. |
+| FR-28 `/df.clarify`, `/df.analyze`, `/df.checklist`, `codexa doctor` | PLANNED | TC-FR28-001 | TODO | Emit JSON logs under `artifacts/analyze/` for FR-06 ingestion. |
 
 ---
 

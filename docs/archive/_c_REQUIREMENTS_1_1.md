@@ -74,7 +74,7 @@ Outstanding items inherited from CR001:
 **Recommendation:** Adopt a **single repo-level `PROJECT_METADATA.md`** containing an array of active projects/phases. This keeps agents aligned while allowing per-phase entries, for example:
 ```yaml
 projects:
-  - name: "dynaforge.ai"
+  - name: "codexa.ai"
     phase: phase-1
     maturity_level: M2
     last_review: 2025-10-30
@@ -82,7 +82,7 @@ projects:
     criteria:
       value_proven: true
       governance_enabled: true
-  - name: "dynaforge.ai"
+  - name: "codexa.ai"
     phase: phase-0
     maturity_level: Archived
 ```

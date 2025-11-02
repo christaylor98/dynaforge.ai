@@ -2,7 +2,7 @@
 
 ```markdown
 ## MS-01 — POC Spike Summary
-- Objective: Prove Dynaforge core loop with human approvals
+- Objective: Prove Codexa core loop with human approvals
 - Current State: In Review (waiting on FR-10 approval)
 - Key Metrics:
   | Metric | Value |

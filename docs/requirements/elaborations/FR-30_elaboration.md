@@ -14,7 +14,7 @@ status: Draft
 Implement a change velocity dashboard that reports weekly and milestone metrics—through CLI and dashboards—covering throughput, cycle time, approval latency, and risk posture.
 
 ## 2. Context & Rationale
-Stakeholders need quantitative insight into Dynaforge’s delivery cadence. By aggregating metrics from change workspaces, approvals, and QA verdicts, FR-30 enables data-driven planning and governance oversight. It complements PM status updates (FR-02) and maturity tracking (FR-36).
+Stakeholders need quantitative insight into Codexa’s delivery cadence. By aggregating metrics from change workspaces, approvals, and QA verdicts, FR-30 enables data-driven planning and governance oversight. It complements PM status updates (FR-02) and maturity tracking (FR-36).
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

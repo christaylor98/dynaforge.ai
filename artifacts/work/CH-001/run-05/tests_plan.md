@@ -8,8 +8,8 @@
 
 ## Environment
 - `PYTHONPATH` includes project root (default when running from repo).
-- `DYNAFORGE_SEED=MS01-P0-2025-11-02`
-- `DYNAFORGE_PHASE=0`
+- `Codexa_SEED=MS01-P0-2025-11-02`
+- `Codexa_PHASE=0`
 
 ## Commands
 | Test Case | Command |

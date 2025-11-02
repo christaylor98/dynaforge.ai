@@ -1,7 +1,7 @@
 # Project Overview
 
 ## Mission
-Build the Dynaforge.ai framework with auditable agent workflows and human governance checkpoints.
+Build the Codexa.ai framework with auditable agent workflows and human governance checkpoints.
 
 ## Current Phase Snapshot
 - Phase: `0 — Foundation (MS-01 refresh)`

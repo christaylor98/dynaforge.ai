@@ -1,4 +1,4 @@
-# ⚒️ DynaForge AI  
+# ⚒️ Codexa AI  
 **Intelligence Forged with Governance**
 
 > *An open vision for the next generation of AI engineering —  
@@ -8,7 +8,7 @@
 
 ## 🌱 Stage: Concept & Early Foundation
 
-**DynaForge AI is at its conception stage.**  
+**Codexa AI is at its conception stage.**  
 We don’t have a finished system yet — and that’s intentional.
 
 We’re laying the groundwork for a **flexible, extensible framework** that can be:
@@ -24,7 +24,7 @@ If you believe AI systems should be both *powerful* and *accountable*, this is t
 ## 🚀 The Vision
 
 Modern AI projects often collapse under ambiguity and drift.  
-**DynaForge AI** is being designed to change that — by giving autonomy a backbone of governance and traceability.
+**Codexa AI** is being designed to change that — by giving autonomy a backbone of governance and traceability.
 
 ### Our Goal
 To create an **open, extensible agentic framework** that:
@@ -145,7 +145,7 @@ Start with `docs/VISION.md` and `docs/PROCESS_MATURITY_GUIDE.md`.
 
 > Autonomy without governance is chaos.  
 > Governance without autonomy is paralysis.  
-> **DynaForge AI exists to forge the balance.**
+> **Codexa AI exists to forge the balance.**
 
 ---
 
@@ -154,7 +154,7 @@ Apache 2.0 — open, transparent, and free to build upon.
 
 ---
 
-**DynaForge AI**  
+**Codexa AI**  
 *An open framework for governed AI engineering.*  
 ⭐ Star the repo. Join the discussion. Share your lessons. Help design the foundation.
 ```

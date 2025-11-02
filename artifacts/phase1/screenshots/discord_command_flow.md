@@ -4,7 +4,7 @@
 @stakeholder
 /status milestone
 
-Dynaforge Bot
+Codexa Bot
 MS-01 — In Review
 - FR-01: orchestration running
 - FR-10: awaiting approval from @stakeholder
@@ -13,7 +13,7 @@ Use /approve CH-001 "note" or /deny CH-001 "note"
 @stakeholder
 /clarify designer "Need sequence diagram for audit branch"
 
-Dynaforge Bot
+Codexa Bot
 Clarification sent to Designer. Tracking as concern C-014.
 ```
 

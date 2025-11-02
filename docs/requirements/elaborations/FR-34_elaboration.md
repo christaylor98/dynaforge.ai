@@ -14,7 +14,7 @@ status: Draft
 Run maturity gate reviews, logging upgrade recommendations and outcomes as `CH-###` entries, ensuring governance artifacts capture decision context and follow-up tasks.
 
 ## 2. Context & Rationale
-Dynaforge progresses through maturity levels when governance, QA, and operational criteria are satisfied. FR-34 codifies the review process: capturing evidence, running governance evaluation, and recording decisions as change objects, preserving auditing and traceability.
+Codexa progresses through maturity levels when governance, QA, and operational criteria are satisfied. FR-34 codifies the review process: capturing evidence, running governance evaluation, and recording decisions as change objects, preserving auditing and traceability.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

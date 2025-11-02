@@ -14,7 +14,7 @@ status: Draft
 Enforce multi-gate approvals (Impact Assessor → Change Evaluator (advisory) → Governance Officer → Project Manager → Human Reviewer) so every `CH-###` pauses for validation, records decision paths, and syncs lifecycle states before progression.
 
 ## 2. Context & Rationale
-Governance is a core selling point of Dynaforge. FR-10 guarantees the staged approval ladder runs in the correct order for each maturity level, with the PM respecting decisions, updating `changes/CH-###/status.md`, and logging them for audit. CR002 introduces Governance Officer participation, advisory Change Evaluator signals, and retention coordination so denials trigger FR-07 concerns and rework loops instead of silent failures.
+Governance is a core selling point of Codexa. FR-10 guarantees the staged approval ladder runs in the correct order for each maturity level, with the PM respecting decisions, updating `changes/CH-###/status.md`, and logging them for audit. CR002 introduces Governance Officer participation, advisory Change Evaluator signals, and retention coordination so denials trigger FR-07 concerns and rework loops instead of silent failures.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

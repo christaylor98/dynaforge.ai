@@ -14,7 +14,7 @@ status: Draft
 Reimplement the Implementer micro-task loop using modular planner, executor, and cleanup components that deliver deterministic sequencing, evidence capture, and automatic cleanup once approvals complete.
 
 ## 2. Context & Rationale
-The original Spec-Kit cadence inspired Dynaforge’s micro-loop; CR002 requires an in-house implementation integrated with change workspaces, retention policy, and audit logging. FR-29 defines the architecture and behaviours that guarantee reproducibility (seeded planner), observability (structured events), and cleanup (retention-aware purges).
+The original Spec-Kit cadence inspired Codexa’s micro-loop; CR002 requires an in-house implementation integrated with change workspaces, retention policy, and audit logging. FR-29 defines the architecture and behaviours that guarantee reproducibility (seeded planner), observability (structured events), and cleanup (retention-aware purges).
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

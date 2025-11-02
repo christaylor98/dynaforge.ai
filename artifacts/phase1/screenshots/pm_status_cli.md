@@ -1,7 +1,7 @@
 # PM `/status` CLI Snapshot
 
 ```text
-$ dynaforge status --milestone MS-01
+$ codexa status --milestone MS-01
 
 MS-01 — POC Spike (Minimum Agent Loop)
 --------------------------------------

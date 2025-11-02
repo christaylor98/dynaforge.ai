@@ -13,7 +13,7 @@ Here’s why it’s powerful:
 
 ---
 
-### 🔧 Implementation Idea for Dynaforge / Overlord Projects
+### 🔧 Implementation Idea for Codexa / Overlord Projects
 
 Let’s introduce a **Storyboard Phase** into the workflow between *Requirements* → *Architecture* → *Implementation*.
 
@@ -95,10 +95,10 @@ Try --offline or check DB credentials.
 
 ---
 
-Would you like me to **draft a standard template for `Storyboard.md`** (with CLI, UI, and report variants) that fits into your Dynaforge workflow?
+Would you like me to **draft a standard template for `Storyboard.md`** (with CLI, UI, and report variants) that fits into your Codexa workflow?
 I can also show how we’d **link it back into the TRACABILITY.md** and review pipeline so it becomes a *living artifact*, not throwaway doco.
 
-Perfect. Here’s a clean, flexible **`Storyboard.md` template** you can drop straight into your Dynaforge/Overlord project.
+Perfect. Here’s a clean, flexible **`Storyboard.md` template** you can drop straight into your Codexa/Overlord project.
 It’s structured so both humans and agents can understand it — visual, traceable, and review-ready.
 
 ---

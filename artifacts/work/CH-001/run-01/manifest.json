@@ -9,8 +9,8 @@
     {
       "cmd": "python3 agents/project_manager.py",
       "env": {
-        "DYNAFORGE_SEED": "MS01-P0-2025-11-02",
-        "DYNAFORGE_PHASE": "0"
+        "Codexa_SEED": "MS01-P0-2025-11-02",
+        "Codexa_PHASE": "0"
       }
     }
   ],

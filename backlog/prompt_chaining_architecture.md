@@ -70,9 +70,9 @@ Otherwise, your idea — a **single AI process following Spec-Kit logic via stru
 
 ---
 
-### ✅ 5. Recommended direction for DynaForge
+### ✅ 5. Recommended direction for Codexa
 
-For DynaForge AI, this “Spec-Kit-lite” pattern fits beautifully:
+For Codexa AI, this “Spec-Kit-lite” pattern fits beautifully:
 
 * Keep your phases and governance checkpoints (Vision → Requirements → Architecture → Implementation → Test)
 * Use **structured prompts** and Markdown docs
@@ -82,10 +82,10 @@ Then later, if you need automation or CI hooks, you can **wrap the same prompt t
 
 ---
 
-Would you like me to show what a **“Spec-Kit-style lightweight loop”** would look like in your DynaForge repo — e.g., `scripts/specflow.md` or a small orchestrator script that drives Vision → Requirements → Architecture → Test?
+Would you like me to show what a **“Spec-Kit-style lightweight loop”** would look like in your Codexa repo — e.g., `scripts/specflow.md` or a small orchestrator script that drives Vision → Requirements → Architecture → Test?
 
 
-Perfect. Let’s define a **lightweight Spec-Kit-style loop** for **DynaForge AI**, built entirely around *standard prompting and Markdown state*, not heavy MCP infrastructure.
+Perfect. Let’s define a **lightweight Spec-Kit-style loop** for **Codexa AI**, built entirely around *standard prompting and Markdown state*, not heavy MCP infrastructure.
 
 We’ll keep it simple, modular, and ready for later automation if you ever want to wrap it in Codex, CLI, or CI/CD.
 
@@ -132,7 +132,7 @@ Each phase produces a Markdown file as an artifact and uses structured prompts t
 This is the **“Specflow Orchestrator”**—a human-readable script you can copy-paste into ChatGPT or Codex:
 
 ```markdown
-# 🧠 Specflow Orchestrator — DynaForge AI
+# 🧠 Specflow Orchestrator — Codexa AI
 
 This document defines a lightweight, single-AI workflow inspired by Spec-Kit.
 
@@ -273,12 +273,12 @@ Each artifact becomes both:
 
 ---
 
-Would you like me to create the actual `scripts/specflow.md` and `scripts/role_prompts/*.md` files as ready-to-drop text files so you can add them to your DynaForge repo?
+Would you like me to create the actual `scripts/specflow.md` and `scripts/role_prompts/*.md` files as ready-to-drop text files so you can add them to your Codexa repo?
 
 
 how does the agent chaining work .. I want to get to a point that scripts and AI does all the work and only pre-agreed check points and/or concerns are surfaced to me
 
-Excellent — that’s exactly the right north star for DynaForge: **human-in-the-loop only where governance, risk, or creativity add value.**
+Excellent — that’s exactly the right north star for Codexa: **human-in-the-loop only where governance, risk, or creativity add value.**
 Everything else should run as a *deterministic chain of agents* that execute and hand off automatically.
 
 Let’s break it down step-by-step so you can see how **agent chaining** works conceptually, how it can be simulated with one model, and how it can later evolve into full automation.
@@ -332,12 +332,12 @@ So even though “five agents” are mentioned, it’s still **one AI** executin
 
 ---
 
-## 🧱 3. Chaining structure inside DynaForge
+## 🧱 3. Chaining structure inside Codexa
 
 In practice, the workflow lives in a config like:
 
 ```yaml
-# .dynaforge/specflow.yaml
+# .codexa/specflow.yaml
 workflow:
   - name: Vision
     role: vision_architect
@@ -429,10 +429,10 @@ Throughout, *governance stays human* but *execution stays machine*.
 
 ---
 
-## 🧭 7. Example: DynaForge Specflow Controller (concept)
+## 🧭 7. Example: Codexa Specflow Controller (concept)
 
 ```python
-from dynaforge import workflow, ai, notify
+from codexa import workflow, ai, notify
 
 for phase in workflow.load("specflow.yaml"):
     if workflow.should_run(phase):
@@ -464,20 +464,20 @@ This small orchestrator is all you need to go from *“manual chat loop”* to *
 
 ---
 
-Would you like me to draft the actual `specflow.yaml` **and** the minimal `dynaforge_specflow.py` controller (Stage 2 implementation) next — the one that would read the YAML and run the chain automatically, pausing only for checkpoints or concerns?
+Would you like me to draft the actual `specflow.yaml` **and** the minimal `codexa_specflow.py` controller (Stage 2 implementation) next — the one that would read the YAML and run the chain automatically, pausing only for checkpoints or concerns?
 
 
-Excellent — let’s build the **Stage 2 DynaForge Specflow system**, the minimal working version that can automatically chain your agents (phases), pause on checkpoints, and surface concerns — all from one process using GPT-5.
+Excellent — let’s build the **Stage 2 Codexa Specflow system**, the minimal working version that can automatically chain your agents (phases), pause on checkpoints, and surface concerns — all from one process using GPT-5.
 
 ---
 
 ## 🧱 Directory structure
 
 ```
-dynaforge/
+codexa/
 │
 ├── specflow.yaml                # defines workflow phases, inputs, outputs, checkpoints
-├── dynaforge_specflow.py        # controller script (core automation)
+├── codexa_specflow.py        # controller script (core automation)
 └── prompts/
     ├── vision_architect.md
     ├── project_manager.md
@@ -545,7 +545,7 @@ concern_rules:
 
 ---
 
-## 🧠 dynaforge_specflow.py
+## 🧠 codexa_specflow.py
 
 A minimal controller that runs the chain using the **OpenAI SDK**.
 
@@ -649,7 +649,7 @@ You’d make similar ones for each role (`vision_architect.md`, `system_architec
 
 ## 🧭 How it runs
 
-1. `python dynaforge_specflow.py`
+1. `python codexa_specflow.py`
 2. The script reads `specflow.yaml`.
 3. Each phase runs in sequence:
 

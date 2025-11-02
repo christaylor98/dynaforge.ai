@@ -7,7 +7,7 @@
 - Status snapshot verification (new tooling).
 
 ## Environment
-- `DYNAFORGE_SEED=MS01-P1-2025-11-03`
+- `Codexa_SEED=MS01-P1-2025-11-03`
 - Ensure `pipelines/qa_enforcer.py`, `pipelines/status_snapshot.py` executable.
 
 ## Commands

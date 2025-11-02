@@ -1,4 +1,4 @@
-# Dynaforge.ai Requirements
+# Codexa.ai Requirements
 
 ## 1. Functional Requirements
 

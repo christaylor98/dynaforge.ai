@@ -127,5 +127,5 @@ It signals credibility and keeps expectations honest.
 
 ---
 
-Would you like me to draft a **`METRICS.md`** file that defines this schema, collection process, and feedback loop so you can drop it into your Dynaforge/Overlord repo?
+Would you like me to draft a **`METRICS.md`** file that defines this schema, collection process, and feedback loop so you can drop it into your Codexa/Overlord repo?
 We can make it the canonical source for how AI timelines are calibrated.
