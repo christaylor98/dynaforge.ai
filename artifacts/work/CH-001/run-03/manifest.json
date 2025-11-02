@@ -1,0 +1,22 @@
+{
+  "change_id": "CH-001",
+  "run_id": "run-03",
+  "stage": "Execute",
+  "task": "T-003",
+  "timestamp": "2025-11-02T14:08:30Z",
+  "seed": "MS01-P0-2025-11-02",
+  "commands": [
+    {
+      "cmd": "make demo PHASE=0 SEED=MS01-P0-2025-11-02",
+      "note": "Captured deterministic Phase 0 demo bundle."
+    }
+  ],
+  "outputs": [
+    "artifacts/phase0/demo/2025-11-02/README.md",
+    "artifacts/phase0/demo/2025-11-02/handoff.jsonl",
+    "artifacts/phase0/demo/2025-11-02/status.json",
+    "artifacts/phase0/demo/2025-11-02/commands.json",
+    "artifacts/phase0/demo/2025-11-02/notes.md"
+  ],
+  "notes": "Bundle documents PM→Designer→Implementer→Tester handoffs for MS-01 Phase 0."
+}

@@ -11,11 +11,11 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 - A milestone is a curated slice of requirements across phases that results in a system a human can exercise end-to-end; it must be testable and usable, even if only a small subset of total scope is complete.
 - Milestones may take the form of spikes/POCs, betas, or full releases. Percent completion of requirements is less important than demonstrating a coherent workflow a real user can trial.
 - Delivery cadence is driven by the human stakeholder: we request the next milestone definition from them and focus the workstreams, requirements, and tests in this matrix around that target until accepted.
-- **Current target milestone — POC Spike:** stand up the minimum set of agents and integrations required to exhibit a working Dynaforge loop, establishing a usable foundation for future increments.
+- **Current target milestone — POC Spike:** stand up the minimum set of agents and integrations required to exhibit a working Codexa loop, establishing a usable foundation for future increments.
 
 ### MS-01 — POC Spike (Minimum Agent Loop)
 - `Identifier`: MS-01
-- `Objective`: Prove the Dynaforge core by wiring the minimum agent chain (PM → Designer → Implementer → Tester) with human-visible logging, approvals, and demo collateral.
+- `Objective`: Prove the Codexa core by wiring the minimum agent chain (PM → Designer → Implementer → Tester) with human-visible logging, approvals, and demo collateral.
 - `Scope guidance`: Focus on workstreams that enable a human to run, observe, and judge the loop. Deferrable items (e.g., maturity scoring, governance automation) stay out of scope until the next milestone request.
 
 | Phase | Workstream | Role in MS-01 | Current Status |
@@ -40,28 +40,28 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Workstream | Status | Related Requirements | Evidence |
 | --- | --- | --- | --- |
-| WS-01 Repository Skeleton | CHANGE IMPACTED | FR-01, FR-02 | Repository structure and docs seeded (`docs/PHASE0_PLAN.md`) |
-| WS-02 Audit Logging Primitives | CHANGE IMPACTED | FR-06, FR-09 | JSONL logger and sample artifacts (`audit/logger.py`, `audit/sample_handoff.jsonl`) |
+| WS-01 Repository Skeleton | DONE | FR-01, FR-02 | Phase 0 regeneration captured (`artifacts/work/CH-001/run-01/manifest.json`, `docs/PROJECT_OVERVIEW.md`) |
+| WS-02 Audit Logging Primitives | DONE | FR-06, FR-09 | CH-001 audit replay (`artifacts/work/CH-001/run-02/manifest.json`, `audit/handoff_ms01_phase0.jsonl`) |
 | WS-03 Concern API & Schema Docs | PARTIAL | FR-07 | Concern helpers exported; schema documented in workflow guide (`docs/WORKFLOW.md`) |
 | WS-04 Interaction Stub | DONE | FR-08, FR-09 | CLI stub with `/status` and `/clarify` wired to logging (`pipelines/interaction_stub.py`) |
-| WS-05 Project Manager Skeleton | CHANGE IMPACTED | FR-01, FR-02 | PM agent updates docs and logs handoffs (`agents/project_manager.py`) |
+| WS-05 Project Manager Skeleton | DONE | FR-01, FR-02 | PM orchestrator rerun (`artifacts/work/CH-001/run-04/manifest.json`, `docs/IMPLEMENTATION_PLAN.md`) |
 | WS-06 QA Policy Parser Stub | PARTIAL | FR-11 | Parser stub plus unit tests (TC-FR11-001, `pipelines/policy_parser.py`) |
-| WS-07 Demo Workflow Target | CHANGE IMPACTED | FR-01, FR-06, FR-09 | `make demo` artifacts (`artifacts/phase0/demo/`) |
-| WS-08 Documentation Updates | CHANGE IMPACTED | FR-02, FR-10 | Docs refreshed with approval markers (`docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`) |
+| WS-07 Demo Workflow Target | DONE | FR-01, FR-06, FR-09 | Deterministic demo package (`artifacts/phase0/demo/2025-11-02/README.md`) |
+| WS-08 Documentation Updates | DONE | FR-02, FR-10 | Documentation aligned to CH-001 (`docs/PROJECT_DETAIL.md`, `docs/VERSION_CONTROL.md`) |
 
 ### WS-01 Repository Skeleton
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-01 Project Manager agent scaffolding | PARTIAL | TC-FR01-001 | PASS | Baseline directories and docs enable PM agent; integration test confirms doc refresh and audit handoff wiring. |
-| FR-02 Status documentation maintained | PARTIAL | TC-FR01-001 | PASS | Docs were current for Phase 0; MS-01 refresh pending updated workflow evidence. |
+| FR-01 Project Manager agent scaffolding | DONE | TC-FR01-001 | PASS | CH-001 run (`artifacts/work/CH-001/run-01/manifest.json`) refreshed docs and logged handoff with new evidence. |
+| FR-02 Status documentation maintained | DONE | TC-FR01-001 | PASS | Documentation updated via CH-001 Package prep (`docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`). |
 
 ### WS-02 Audit Logging Primitives
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-06 Handoff logging | PARTIAL | TC-FR06-001 | PASS | Logger proven in Phase 0; rerun required to capture refreshed MS-01 workflow evidence. |
-| FR-09 Command audit trail | PARTIAL | TC-FR06-001 | PASS | Helpers work, but audit artifacts need regeneration after milestone reset. |
+| FR-06 Handoff logging | DONE | TC-FR06-001 | PASS | CH-001 audit replay produced new entries (`audit/handoff.jsonl`, `audit/handoff_ms01_phase0.jsonl`). |
+| FR-09 Command audit trail | DONE | TC-FR06-001 | PASS | `/status` `/clarify` `/approve` events recorded for CH-001 (`audit/commands.jsonl`). |
 
 ### WS-03 Concern API & Schema Docs
 
@@ -80,9 +80,9 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-01 Project Manager coordination | PARTIAL | TC-FR01-001, TC-FR01-002 | PASS | Phase 0 PM updates docs; orchestration and doc refresh verified via integration coverage. |
-| FR-02 Status documentation maintained | PARTIAL | TC-FR01-001 | PASS | Automation exists, but docs need a new MS-01 run before claiming completion. |
-| FR-10 Approval capture | PARTIAL | TC-FR10-001 | PASS | Approval markers defined; enforcement completed under Phase 1 WS-103 with passing unit test. |
+| FR-01 Project Manager coordination | DONE | TC-FR01-001, TC-FR01-002 | PASS | CH-001 execution confirmed PM orchestration and approvals (`artifacts/work/CH-001/run-04/manifest.json`). |
+| FR-02 Status documentation maintained | DONE | TC-FR01-001 | PASS | Documentation reflects MS-01 refresh with validation evidence (`docs/PROJECT_OVERVIEW.md`). |
+| FR-10 Approval capture | DONE | TC-FR10-001 | PASS | `/approve CH-001` event logged; QA report references approval chain. |
 
 ### WS-06 QA Policy Parser Stub
 
@@ -94,16 +94,16 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-01 Orchestrated PM cycle | PARTIAL | TC-FR01-002 | PASS | Demo exercises PM + logging; integration test executes orchestrator and verifies artifact bundle. |
-| FR-06 Handoff logging completeness | PARTIAL | TC-FR06-001 | PASS | Demo run validated Phase 0; MS-01 demo package must be rerun to confirm coverage. |
-| FR-09 Command audit trail | PARTIAL | TC-FR09-001 | PASS | Command log exists, but updated demo bundle is pending after the reset. |
+| FR-01 Orchestrated PM cycle | DONE | TC-FR01-002 | PASS | Demo bundle (`artifacts/phase0/demo/2025-11-02/`) documents PM→Designer→Implementer→Tester flow. |
+| FR-06 Handoff logging completeness | DONE | TC-FR06-001 | PASS | Handoff logs regenerated with CH-001 metadata (`audit/handoff_ms01_phase0.jsonl`). |
+| FR-09 Command audit trail | DONE | TC-FR09-001 | PASS | Demo commands + audit entries refreshed (`artifacts/phase0/demo/2025-11-02/commands.json`). |
 
 ### WS-08 Documentation Updates
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-02 Documentation currency | PARTIAL | TC-FR01-001 | PASS | Phase 0 alignment proven; needs MS-01 updates before we report DONE again. |
-| FR-10 Approval markers | PARTIAL | TC-FR10-001 | PASS | Approval checklist established; enforcement validated in Phase 1. |
+| FR-02 Documentation currency | DONE | TC-FR01-001 | PASS | `PROJECT_OVERVIEW.md`, `PROJECT_DETAIL.md`, `VERSION_CONTROL.md` updated with CH-001 validation. |
+| FR-10 Approval markers | DONE | TC-FR10-001 | PASS | CH-001 approval flow captured in docs and audit (`audit/commands.jsonl`). |
 
 ---
 
@@ -246,7 +246,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-24 `/impact` and `/trace` commands | PLANNED | TC-FR24-001 | TODO | Support local and remote (Discord) contexts. |
-| FR-28 `/df.clarify`, `/df.analyze`, `/df.checklist`, `dynaforge doctor` | PLANNED | TC-FR28-001 | TODO | Emit JSON logs under `artifacts/analyze/` for FR-06 ingestion. |
+| FR-28 `/df.clarify`, `/df.analyze`, `/df.checklist`, `codexa doctor` | PLANNED | TC-FR28-001 | TODO | Emit JSON logs under `artifacts/analyze/` for FR-06 ingestion. |
 
 ---
 

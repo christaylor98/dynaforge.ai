@@ -34,7 +34,7 @@
 | FR-25 | Maintain structured change workspaces (`changes/CH-###/` with `spec.md`, `plan.md`, `tasks.md`, `impact.md`, `evidence.json`, `status.md`) so every change remains synchronized with downstream artifacts. | Implementation Manager / Governance Officer | Ownership split confirmed; weekly IM↔GO sync validates state. |
 | FR-26 | Enforce bidirectional traceability between FR/WS/TC artifacts and their associated change objects, tracking lifecycle states Draft → Analyzed → In-Progress → Partially Approved → Approved → Merged. | Governance Officer | Implementer updates `status.md`; Governance Officer governs transitions. |
 | FR-27 | Manage ephemeral Implementer workspaces under `artifacts/work/CH-###/run-*`, auto-purging successful runs after 48 h or above 2 GB usage, retaining failures for 30 days, and honoring `--retain` markers. | Implementer Service | `.retain` marker opt-out approved; policy keeps storage lightweight. |
-| FR-28 | Provide `/df.clarify`, `/df.analyze`, `/df.checklist`, and `dynaforge doctor` commands that emit JSON logs under `artifacts/analyze/`, validating traceability coverage and environment health. | QA Lead / Tooling | Command outputs standardized for FR-06 ingestion. |
+| FR-28 | Provide `/df.clarify`, `/df.analyze`, `/df.checklist`, and `codexa doctor` commands that emit JSON logs under `artifacts/analyze/`, validating traceability coverage and environment health. | QA Lead / Tooling | Command outputs standardized for FR-06 ingestion. |
 | FR-29 | Reimplement SpekKit-inspired micro-task decomposition using planner/executor/cleanup modules, guaranteeing deterministic sequencing, evidence capture, and automatic cleanup on completion. | Implementer Service | No direct SpekKit code reuse; interfaces allow future planner upgrades. |
 | FR-30 | Implement change velocity dashboard with weekly/milestone metrics accessible via CLI and dashboards. | PM / Analytics owner | Weekly cadence prioritized. |
 | FR-31 | Support partial change approvals within a single `CH-###` record, tracking sub-decisions in evaluation docs. | Implementation Manager | Avoids branching change IDs. |
@@ -66,8 +66,8 @@
 - Active documents retain their original filenames (e.g., `design_microservices.md`).
 - Once incorporated, prepend `_c_` to mark the document as clipped (e.g., `_c_design_microservices.md`).
 - Tooling integrations:
-  - Add `_c_*` patterns to `.specignore`, `.codexignore`, and `dynaforge.yaml` to exclude clipped docs from active agent sweeps.
-  - Optional `dynaforge clip` helper can automate renaming, append a YAML footer, and log provenance to `TRACEABILITY.md` under “Source Documents”.
+  - Add `_c_*` patterns to `.specignore`, `.codexignore`, and `codexa.yaml` to exclude clipped docs from active agent sweeps.
+  - Optional `codexa clip` helper can automate renaming, append a YAML footer, and log provenance to `TRACEABILITY.md` under “Source Documents”.
 - Optional YAML footer for clipped docs:
   ```yaml
   ---
@@ -104,7 +104,7 @@
 **Decision:** Adopt a **single repo-level `PROJECT_METADATA.md`** containing an array of active projects/phases. Example:
 ```yaml
 projects:
-  - name: "dynaforge.ai"
+  - name: "codexa.ai"
     phase: phase-1
     maturity_level: M2
     last_review: 2025-10-30
@@ -112,7 +112,7 @@ projects:
     criteria:
       value_proven: true
       governance_enabled: true
-  - name: "dynaforge.ai"
+  - name: "codexa.ai"
     phase: phase-0
     maturity_level: Archived
 ```
@@ -120,6 +120,6 @@ Agents read the entry matching the active phase (declared in prompts or task con
 
 ## Next Actions
 1. Update `docs/REQUIREMENTS.md` and related traceability assets to reflect all updates in this document.
-2. Implement `_c_*` ignore patterns and optional `dynaforge clip` helper to operationalize the clipping convention.
+2. Implement `_c_*` ignore patterns and optional `codexa clip` helper to operationalize the clipping convention.
 3. Stand up the normalized audit schema across Implementer, `/df.*` tooling, and Governance Officer pipelines.
 4. Plan rollout for maturity-aware agent prompts, prioritizing Governance Officer, QA Auditor, and Implementer integrations.

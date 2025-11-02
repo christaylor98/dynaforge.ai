@@ -11,7 +11,7 @@ status: Draft
 # 🧩 Requirement Elaboration — FR-28
 
 ## 1. Summary
-Provide `/df.clarify`, `/df.analyze`, `/df.checklist`, and `dynaforge doctor` commands that emit JSON logs under `artifacts/analyze/`, validating traceability coverage, environment health, and readiness before approvals.
+Provide `/df.clarify`, `/df.analyze`, `/df.checklist`, and `codexa doctor` commands that emit JSON logs under `artifacts/analyze/`, validating traceability coverage, environment health, and readiness before approvals.
 
 ## 2. Context & Rationale
 The `/df.*` suite offers automated diagnostics that feed into RA/QA/Governance workflows. CR002 expects these commands to run within orchestration, producing machine-readable outputs that FR-06, FR-07, FR-11, and FR-22 consume. They help detect gaps early (unmapped requirements, failing environments) and certify readiness with `/df.checklist`.
@@ -23,7 +23,7 @@ The `/df.*` suite offers automated diagnostics that feed into RA/QA/Governance w
 | `change_registry` | Markdown (`CHANGELOG.md`) | Input to `/df.analyze` | Tracks change coverage. |
 | `qa_metrics` | JSON (`artifacts/phase3/tqa/coverage.json`) | Feed for `/df.checklist` | Determines QA readiness. |
 | `environment_checks` | Scripts (`scripts/doctor/*`) | `pytest --collect-only` | Validates tooling. |
-| `config` | YAML (`configs/dynaforge_doctor.yaml`) | Which checks to run | Parameter set. |
+| `config` | YAML (`configs/codexa_doctor.yaml`) | Which checks to run | Parameter set. |
 
 ### Edge & Error Inputs
 - Command fails due to missing artifact → produce structured error message, log FR-07 concern, and halt approvals.
@@ -36,7 +36,7 @@ flowchart TD
   A[Execute df.clarify] --> B[Emit traceability summary JSON]
   B --> C[Execute df.analyze to compute coverage drift]
   C --> D[Run df.checklist to verify readiness gates]
-  D --> E[Optionally run dynaforge doctor for environment checks]
+  D --> E[Optionally run codexa doctor for environment checks]
   E --> F[Aggregate outputs, update audit + change workspace]
   F --> G[Return consolidated status to CLI/Discord]
 ```
@@ -47,7 +47,7 @@ flowchart TD
 | JSON | `artifacts/analyze/df.clarify.json` | RA, QA Auditor |
 | JSON | `artifacts/analyze/df.analyze.json` | Governance Officer |
 | JSON | `artifacts/analyze/df.checklist.json` | PM, approvals |
-| JSON | `artifacts/analyze/dynaforge_doctor.json` | Ops/Infrastructure |
+| JSON | `artifacts/analyze/codexa_doctor.json` | Ops/Infrastructure |
 | JSONL | `audit/df_commands.jsonl` | Audit trail |
 
 ## 6. Mockups / UI Views (if applicable)

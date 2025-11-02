@@ -14,7 +14,7 @@ status: Draft
 Enforce bidirectional traceability between functional requirements, workstreams, test cases, and change objects, capturing lifecycle states from Draft through Merged for every `CH-###`.
 
 ## 2. Context & Rationale
-Traceability is the connective tissue of Dynaforge. CR002 mandates that all artifacts (requirements, workstreams, tests, approvals) link to change objects and vice versa. By maintaining consistent metadata, reports, and audit logs, FR-26 provides the Governance Officer and QA agents with confidence that no work proceeds without recorded lineage.
+Traceability is the connective tissue of Codexa. CR002 mandates that all artifacts (requirements, workstreams, tests, approvals) link to change objects and vice versa. By maintaining consistent metadata, reports, and audit logs, FR-26 provides the Governance Officer and QA agents with confidence that no work proceeds without recorded lineage.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

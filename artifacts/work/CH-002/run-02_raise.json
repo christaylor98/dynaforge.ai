@@ -1,0 +1,18 @@
+{
+  "concern_id": "CH2-CONC-001",
+  "message": "Integration demo failure path",
+  "metadata": {
+    "notes": [
+      {
+        "note": "Detected during orchestrator validation",
+        "timestamp": "2025-11-02T04:10:07.825Z"
+      }
+    ]
+  },
+  "phase": "1",
+  "raised_by": "tester",
+  "record_type": "concern",
+  "schema_version": "0.1.0",
+  "severity": "high",
+  "timestamp": "2025-11-02T04:10:07.825Z"
+}

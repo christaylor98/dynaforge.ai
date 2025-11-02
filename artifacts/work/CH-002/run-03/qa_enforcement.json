@@ -1,0 +1,36 @@
+{
+  "change_id": "CH-002",
+  "dry_run": false,
+  "gates": [
+    {
+      "actual": 0.92,
+      "expected": {
+        "id": "coverage",
+        "metric": "coverage",
+        "operator": ">=",
+        "target": 0.8
+      },
+      "id": "coverage",
+      "message": "",
+      "metric": "coverage",
+      "status": "pass"
+    },
+    {
+      "actual": 0.98,
+      "expected": {
+        "id": "reproducibility",
+        "metric": "reproducibility",
+        "operator": ">=",
+        "target": 0.95
+      },
+      "id": "reproducibility",
+      "message": "",
+      "metric": "reproducibility",
+      "status": "pass"
+    }
+  ],
+  "metrics_path": "artifacts/work/CH-002/run-03/qa_metrics.json",
+  "passed": true,
+  "policy_path": "QA_POLICY.yaml",
+  "results_path": "tests/results/CH-002.json"
+}

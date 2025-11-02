@@ -1,6 +1,6 @@
 lets compare what we are doing compared to the spec-kit project .. what can we learn from it ... what gaps do we have that we can learn how to close off.  https://github.com/github/spec-kit
 
-I pulled spec-kit’s README and core workflow so we can compare approaches and extract concrete upgrades for Dynaforge.
+I pulled spec-kit’s README and core workflow so we can compare approaches and extract concrete upgrades for Codexa.
 
 What Spec Kit Offers
 
@@ -9,7 +9,7 @@ Project bootstrap: a repeatable template (.specify/) with memory, templates, and
 Structured clarification and checks: /speckit.clarify, /speckit.analyze, /speckit.checklist for consistency and completeness before build.
 Multi-agent support: designed to run inside numerous AI coding agents; provides per-agent wiring and readiness checks.
 Feature scoping: feature directories and a branch convention (e.g., 001-…) with templates for spec/plan/tasks.
-Where Dynaforge Stands (MS‑01)
+Where Codexa Stands (MS‑01)
 
 Governance-first loop: PM→Designer→Implementer→Tester with approval gating (FR‑10), audit trails (FR‑06), and traceability.
 Requirements elaboration: deep per‑FR elaborations, acceptance criteria, and demo collateral.
@@ -19,32 +19,32 @@ Gaps We Can Close (inspired by spec-kit)
 
 Spec bootstrap + constitution
 Gap: No single “project constitution” or one-shot bootstrap that seeds all working templates.
-Close: Add dynaforge init to scaffold .dynaforge/ (constitution, templates, scripts) and seed feature/change folders.
+Close: Add codexa init to scaffold .codexa/ (constitution, templates, scripts) and seed feature/change folders.
 Structured spec→plan→tasks flow
 Gap: We have elaborations and an implementation plan, but not an explicit “spec → plan → tasks” pipeline with commands.
 Close: Add /df.specify, /df.plan, /df.tasks, /df.implement commands mapped into the interaction stub (FR‑08) and logged (FR‑09).
 Clarification and preflight checks
 Gap: Clarifications exist ad‑hoc; no formal “clarify/analyze/checklist/doctor” stages before implementation.
-Close: Implement /df.clarify, /df.analyze (cross‑artifact consistency, traceability coverage), /df.checklist (requirements hygiene), and dynaforge doctor (tooling/env checks like specify check).
+Close: Implement /df.clarify, /df.analyze (cross‑artifact consistency, traceability coverage), /df.checklist (requirements hygiene), and codexa doctor (tooling/env checks like specify check).
 Feature scoping model
 Gap: We have CH-### change objects planned (FR‑25) but lack a feature/change workspace convention with templates.
 Close: Create changes/CH-###/ with spec.md, plan.md, tasks.md, quickstart.md; tie to traceability and approvals.
 Agent portability
-Gap: Dynaforge commands exist, but we don’t publish turnkey wiring for popular agent CLIs.
+Gap: Codexa commands exist, but we don’t publish turnkey wiring for popular agent CLIs.
 Close: Provide adapters/instructions per agent (Copilot, Cursor, Windsurf, Claude Code, etc.) so /df.* commands are recognized where people work.
 Readiness automation
 Gap: No single “readiness check” for governance loop and docs.
-Close: dynaforge check verifies approvals, QA policy verdicts, audit schema, and doc currency, failing fast with remediation steps.
+Close: codexa check verifies approvals, QA policy verdicts, audit schema, and doc currency, failing fast with remediation steps.
 Quick Wins (1–2 days)
 
-Add a “Constitution” doc (.dynaforge/memory/constitution.md) that codifies principles, gates, and doc standards; link it in PROJECT_OVERVIEW.md.
+Add a “Constitution” doc (.codexa/memory/constitution.md) that codifies principles, gates, and doc standards; link it in PROJECT_OVERVIEW.md.
 Extend interaction stub with /df.clarify and /df.analyze that:
 Parse elaborations and traceability to flag unmapped FR/WS/TC, missing acceptance criteria, or stale evidence.
 Emit actionable concerns (FR‑07) and a gaps table under artifacts/phase1/analyze/.
-Add dynaforge doctor to check: Python/uv, git, configured agent CLI, repo structure, QA policy presence, and audit writeability.
+Add codexa doctor to check: Python/uv, git, configured agent CLI, repo structure, QA policy presence, and audit writeability.
 Medium-Term Moves (next sprint)
 
-dynaforge init scaffolder that creates .dynaforge/templates, seeds a feature/change folder with spec.md/plan.md/tasks.md, and updates traceability.
+codexa init scaffolder that creates .codexa/templates, seeds a feature/change folder with spec.md/plan.md/tasks.md, and updates traceability.
 Implement /df.plan and /df.tasks to generate a deterministic task list from elaborations and link it to workstreams; log as handoffs.
 Add a “consistency auditor” (QA Auditor) that runs with /df.analyze to validate:
 FR↔WS↔TC coverage, acceptance‑criteria testability, doc currency, and approval state; outputs Markdown reports.
@@ -56,11 +56,11 @@ A “feature runner” that can perform scripted sequences for a change (plannin
 Environment variable like DF_FEATURE to scope commands (akin to SPECIFY_FEATURE).
 Why This Helps
 
-Spec-kit’s strengths are project bootstrapping, spec hygiene, and agent ergonomics; Dynaforge’s strengths are governance, auditability, and QA gating. Marrying the two yields a smooth “spec-to-governed-delivery” path with fewer footguns.
+Spec-kit’s strengths are project bootstrapping, spec hygiene, and agent ergonomics; Codexa’s strengths are governance, auditability, and QA gating. Marrying the two yields a smooth “spec-to-governed-delivery” path with fewer footguns.
 If you want, I can draft:
 
-A CLI stub for dynaforge doctor and /df.analyze (no network, read-only safe).
-A .dynaforge/ folder structure proposal with constitution and templates.
+A CLI stub for codexa doctor and /df.analyze (no network, read-only safe).
+A .codexa/ folder structure proposal with constitution and templates.
 An analyzer report format to plug into FR‑11/QA flows.
 
 ok .. what frustrated me with the "spec -> plan -> task" regimentation is that it locked you in, and could only flow one way.  so if you had new ideas, improved ideas, tried major changes ... it was not supported and all this happened outside of speckit, and things quickly got out of sync ... this new system is change centric .. change is baked in, in its DNA, change is welcome and normal ... no one way flows that can't be augmented
@@ -90,7 +90,7 @@ Core Commands (augment, don’t constrain)
 /approve|/deny CH-### [--stage …] (partial approvals allowed)
 /reconcile CH-### (guided sync across spec/plan/tasks/docs/tests)
 /trace CH-### (show FR↔WS↔TC↔Artifacts cross-links)
-dynaforge doctor (env + policy + drift preflight)
+codexa doctor (env + policy + drift preflight)
 Data Model (CH-###)
 
 Keys: id, title, origin (spec/plan/task/code/doc), scope (paths, FR/WS/TC ids), maturity_level, risk_tier, status.
@@ -124,7 +124,7 @@ Proposal
 Embed a micro “spec → plan → tasks → implement” loop inside the Implementer for each CH-### run.
 Treat all breakdown artifacts as ephemeral execution scaffolding; only persist code changes, tests, and a concise evidence summary.
 Bind every Implementer run to a CH-### so propagation, approvals, and QA stay in sync with the change-first model.
-How It Fits Dynaforge
+How It Fits Codexa
 
 Change-centric: /implement CH-### spins up an internal planner that breaks work into bite‑sized tasks and streams execution.
 Governance intact: Approvals (FR‑10), logging (FR‑06), docs refresh (FR‑02), QA policy (FR‑11) apply to the resulting diffs, not to the ephemeral scaffolding.

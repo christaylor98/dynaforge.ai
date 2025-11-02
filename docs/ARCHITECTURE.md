@@ -1,7 +1,7 @@
-# Dynaforge.ai Architecture
+# Codexa.ai Architecture
 
 ## System Overview
-Dynaforge.ai is a multi-agent orchestration layer that manages the full software lifecycle under human governance. The system is organized into coordinated layers:
+Codexa.ai is a multi-agent orchestration layer that manages the full software lifecycle under human governance. The system is organized into coordinated layers:
 
 ```
 ┌───────────────────────────────────────────────────────────┐

@@ -14,7 +14,7 @@ status: Draft
 Maintain an advisory AI RACI matrix and propagate `raci_role` metadata into audit logs, approval records, and change artifacts so accountability remains explicit across the governance flow.
 
 ## 2. Context & Rationale
-Dynaforge relies on clearly documented responsibilities. CR002 expands the agent ecosystem and approval ladder, requiring every action (commands, handoffs, approvals) to identify the responsible role. FR-20 ensures the RACI matrix stays current, feeds automation, and that audit entries carry the metadata needed for compliance reviews.
+Codexa relies on clearly documented responsibilities. CR002 expands the agent ecosystem and approval ladder, requiring every action (commands, handoffs, approvals) to identify the responsible role. FR-20 ensures the RACI matrix stays current, feeds automation, and that audit entries carry the metadata needed for compliance reviews.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

@@ -1,0 +1,16 @@
+{
+  "change_id": "CH-002",
+  "run_id": "run-04",
+  "stage": "Execute",
+  "task": "T-004",
+  "timestamp": "2025-11-02T14:34:30Z",
+  "seed": "MS01-P1-2025-11-03",
+  "commands": [
+    "python3 pipelines/status_snapshot.py changes/CH-002/status.md --output artifacts/phase1/status/snapshot-2025-11-02.json"
+  ],
+  "outputs": [
+    "pipelines/status_snapshot.py",
+    "artifacts/phase1/status/snapshot-2025-11-02.json"
+  ],
+  "notes": "Generated Phase 1 status snapshot JSON from change status table."
+}

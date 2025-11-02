@@ -14,7 +14,7 @@ status: Draft
 Establish a Test Quality Assessor (TQA) capability that calculates risk-tier coverage metrics, required depth versus actual tests, and feeds both QA documentation and policy engines with authoritative data.
 
 ## 2. Context & Rationale
-Dynaforge’s governance relies on demonstrating adequate test depth for each risk tier. The TQA agent ingests test execution results, counts scenario coverage, and generates summaries referenced by FR-05 and FR-11. By providing structured metrics, it ensures QA policy gating decisions are evidence-based and traceability reports stay accurate.
+Codexa’s governance relies on demonstrating adequate test depth for each risk tier. The TQA agent ingests test execution results, counts scenario coverage, and generates summaries referenced by FR-05 and FR-11. By providing structured metrics, it ensures QA policy gating decisions are evidence-based and traceability reports stay accurate.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

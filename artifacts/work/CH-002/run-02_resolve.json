@@ -1,0 +1,29 @@
+{
+  "concern_id": "CH2-CONC-001",
+  "message": "Integration demo failure path",
+  "metadata": {
+    "notes": [
+      {
+        "note": "Detected during orchestrator validation",
+        "timestamp": "2025-11-02T04:10:07.825Z"
+      },
+      {
+        "note": "Mitigation in progress",
+        "timestamp": "2025-11-02T04:10:14.315Z"
+      },
+      {
+        "note": "Validated via rerun",
+        "timestamp": "2025-11-02T04:10:21.090Z"
+      }
+    ],
+    "resolved_timestamp": "2025-11-02T04:10:21.090Z",
+    "updated_timestamp": "2025-11-02T04:10:21.090Z"
+  },
+  "phase": "1",
+  "raised_by": "tester",
+  "record_type": "concern",
+  "resolution": "Integration pass confirmed",
+  "schema_version": "0.1.0",
+  "severity": "medium",
+  "timestamp": "2025-11-02T04:10:07.825Z"
+}

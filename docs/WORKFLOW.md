@@ -1,9 +1,9 @@
-# Dynaforge Build Workflow — Milestone 1
+# Codexa Build Workflow — Milestone 1
 
 ## 1. Purpose
 - Provide the single source of truth for how we deliver MS-01 (POC Spike) from request through acceptance.
 - Align human and agent collaboration so every increment is observable, reversible, and reviewable.
-- Anchor delivery on the SpekKit-inspired micro flow defined in FR-29 while fitting the Dynaforge repo layout and audit discipline.
+- Anchor delivery on the SpekKit-inspired micro flow defined in FR-29 while fitting the Codexa repo layout and audit discipline.
 
 ## 2. MS-01 Scope & Outcomes
 - Objective: demo the PM → Designer → Implementer → Tester agent loop with human-visible logging, approvals, and packaged demo collateral.

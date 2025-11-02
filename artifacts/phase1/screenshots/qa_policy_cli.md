@@ -1,7 +1,7 @@
 # QA Policy CLI Mockup
 
 ```text
-$ dynaforge qa check --change CH-001
+$ codexa qa check --change CH-001
 FR-11 QA Policy Evaluation
 -------------------------
 Risk Tier: Medium

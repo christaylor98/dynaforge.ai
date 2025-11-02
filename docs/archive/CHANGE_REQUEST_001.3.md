@@ -1151,7 +1151,7 @@ Every project lives somewhere along a **maturity curve**:
 ### 1. Add a `project.yaml` or `PROJECT_METADATA.md`
 
 ```yaml
-name: "dynaforge.ai"
+name: "codexa.ai"
 maturity_level: M1
 last_review: 2025-10-30
 criteria:
@@ -1295,7 +1295,7 @@ Each promotion must be logged in `CHANGELOG.md` as a `CH-###` with category `Mat
 ## 🧾 Example: `PROJECT_METADATA.md`
 
 ```yaml
-name: "dynaforge.ai"
+name: "codexa.ai"
 maturity_level: M1
 last_review: 2025-10-30
 criteria:

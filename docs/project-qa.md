@@ -1,4 +1,4 @@
-# 🤖 Dynaforge.ai — Autonomous Agent Framework for Code Development and QA
+# 🤖 Codexa.ai — Autonomous Agent Framework for Code Development and QA
 
 ---
 
@@ -6,7 +6,7 @@
 
 Design and implement an **autonomous, multi-agent framework** that manages the entire lifecycle of software code development — from design and implementation to testing, quality assurance, and controlled integration — under **human-in-the-loop governance**.
 
-This framework, known as **Dynaforge.ai**, focuses exclusively on the **coding system itself**. It is the meta-layer that creates, tests, and improves software modules, not the downstream trading or runtime systems.
+This framework, known as **Codexa.ai**, focuses exclusively on the **coding system itself**. It is the meta-layer that creates, tests, and improves software modules, not the downstream trading or runtime systems.
 
 The system should:
 
@@ -93,7 +93,7 @@ The system should:
 
   * Merge, commit, and test freely inside sandbox branches.
   * Auto-merge to integration branch when QA gates pass.
-* **Escalation:** Any agent can raise a concern → PM → Human. Concerns appear instantly in Discord (`#dynaforge-concerns`) and can be acknowledged or resolved interactively.
+* **Escalation:** Any agent can raise a concern → PM → Human. Concerns appear instantly in Discord (`#codexa-concerns`) and can be acknowledged or resolved interactively.
 
 ---
 

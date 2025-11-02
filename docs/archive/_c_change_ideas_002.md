@@ -3,7 +3,7 @@
 ## Context
 - `CH-001` proposes a change-centric governance model anchored on `CH-###` objects with bidirectional propagation, staged approvals, and lifecycle states.
 - `CH-002` embeds an ephemeral spec-plan-task loop inside the Implementer with transient workspaces, durable outputs, and structured commands.
-- `CH-003` adds Dynaforge doctor and analysis commands to validate traceability and health prior to implementation.
+- `CH-003` adds Codexa doctor and analysis commands to validate traceability and health prior to implementation.
 - `CH-004` applies SpekKit-style decomposition discipline to the Implementer micro-loop with deterministic execution and cleanup.
 - Collectively these changes target the Implementer, governance, and QA pathways to handle change tracking, auditability, and reproducibility.
 
@@ -21,7 +21,7 @@
 | FR-25 (proposed) | Provision dedicated `changes/CH-###/` workspaces with `spec.md`, `plan.md`, `tasks.md`, `impact.md`, `evidence.json`, and `status.md` to keep every change synchronized. | Governance Officer / Implementation Manager | CH-001 Change Workspace Convention |
 | FR-26 (proposed) | Maintain bidirectional traceability that maps each FR/WS/TC to at least one `CH-###` and vice versa, including lifecycle state tracking. | Governance Officer | CH-001 Traceability Clause & Lifecycle |
 | FR-27 (proposed) | Manage ephemeral Implementer workspaces under `artifacts/work/CH-###/run-*`, retaining outputs on failure and purging on success while recording structured audit JSON. | Implementer | CH-002 Ephemeral Workspaces & Durable Outputs |
-| FR-28 (proposed) | Provide `/df.clarify`, `/df.analyze`, `/df.checklist`, and `dynaforge doctor` commands that emit JSON logs for preflight health checks. | QA Lead / Tooling | CH-003 Command Set |
+| FR-28 (proposed) | Provide `/df.clarify`, `/df.analyze`, `/df.checklist`, and `codexa doctor` commands that emit JSON logs for preflight health checks. | QA Lead / Tooling | CH-003 Command Set |
 | FR-29 (proposed) | Enforce Implementer micro-task decomposition with deterministic sequencing, evidence capture, and automatic cleanup once approvals complete. | Implementer | CH-004 Micro-Spec Loop |
 
 ## Traceability, Audit, and Artifact Updates
@@ -45,8 +45,8 @@
 - Active documents retain their original filenames (e.g., `design_microservices.md`).
 - Once content is fully incorporated, prepend `_c_` to mark it clipped (e.g., `_c_design_microservices.md`).
 - Tooling additions:
-  - Add `_c_*` patterns to `.specignore`, `.codexignore`, and `dynaforge.yaml` to keep clipped docs out of active scans.
-  - Optional `dynaforge clip` helper automates renaming, appends a YAML footer, and logs provenance to `TRACEABILITY.md` under “Source Documents”.
+  - Add `_c_*` patterns to `.specignore`, `.codexignore`, and `codexa.yaml` to keep clipped docs out of active scans.
+  - Optional `codexa clip` helper automates renaming, appends a YAML footer, and logs provenance to `TRACEABILITY.md` under “Source Documents”.
 - Optional YAML footer for clipped docs:
   ```yaml
   ---

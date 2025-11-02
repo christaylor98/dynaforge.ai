@@ -14,7 +14,7 @@ status: Draft
 Provide reliable command routing and logging so every human interaction (including `/df.*` commands) is captured with change, maturity, and RACI metadata, driving downstream automation and governance visibility.
 
 ## 2. Context & Rationale
-FR-08 covers command availability; FR-09 ensures those commands trigger the right behaviour and leave an auditable trace. CR002 requires logs to link commands to `CH-###`, record the triggering agent or automation, and expose outputs for `/df.clarify`, `/df.analyze`, `/df.checklist`, and `dynaforge doctor`. Without structured routing/logging the spike would lack traceability, blocking governance reviews and automation.
+FR-08 covers command availability; FR-09 ensures those commands trigger the right behaviour and leave an auditable trace. CR002 requires logs to link commands to `CH-###`, record the triggering agent or automation, and expose outputs for `/df.clarify`, `/df.analyze`, `/df.checklist`, and `codexa doctor`. Without structured routing/logging the spike would lack traceability, blocking governance reviews and automation.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |

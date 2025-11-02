@@ -1,0 +1,10 @@
+{
+  "change_id": "CH-002",
+  "phase": "1",
+  "timestamp": "2025-11-02T14:33:00Z",
+  "seed": "MS01-P1-2025-11-03",
+  "framework": "unittest",
+  "notes": "Initial enforcement pass; full test suite to execute during Validate stage.",
+  "tests": [],
+  "pre_validation_checks": {}
+}
