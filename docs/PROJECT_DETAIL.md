@@ -1,23 +1,22 @@
 # Project Detail
 
 ## Scope & Boundaries
-Phase 1 delivers the core agent execution loop with concern lifecycle management, human approval gates, and QA enforcement scaffolding.
+MS-01 Phase 0 refresh regenerates the repository skeleton, audit primitives, demo collateral, and documentation required for the minimum agent loop (PM → Designer → Implementer → Tester).
 
 ## Deliverables
-- Phase 1 brief (`docs/PHASE1_BRIEF.md`), design spec (`design/DESIGN_SPEC.md`), implementation plan (`docs/IMPLEMENTATION_PLAN.md`), and QA plan (`tests/TEST_PLAN.md`).
-- Concern lifecycle implementation (JSONL ↔ Markdown mirroring, resolution workflow, notifications).
-- Interaction stub commands for lifecycle management (`/ack`, `/resolve`, `/assign`, `/pause`, `/resume`, `/promote`).
-- QA policy enforcement wiring that blocks promotion when thresholds fail.
-- Demo automation via `make phase1-demo` capturing artifacts under `artifacts/phase1/orchestration`.
+- Project overview/detail/version-control documentation refreshed with CH-001 context.
+- Audit logger replay artifacts (`audit/sample_handoff.jsonl`, `audit/handoff_ms01_phase0.jsonl`) tagged with `change_id="CH-001"`.
+- Demo bundle capturing deterministic loop output (`artifacts/phase0/demo/2025-11-02/`).
+- Tests plan scaffolding for TC-FR01-001/002, TC-FR06-001, TC-FR08-001 ahead of validation.
 
 ## Implementation Notes
-- Scenario: Concern Lifecycle Integration.
-- Requirements traced from `REQUIREMENTS.md` with emphasis on FR-06 through FR-11 for concern, command, and QA enforcement flows.
-- Orchestration script `pipelines/phase1_orchestrator.py` generates briefing, design, implementation, and QA collateral.
-- Demo entrypoint: `make phase1-demo` (writes run log to `artifacts/phase1/orchestration/run.json`).
-- Concern lifecycle mirroring available via `pipelines/concern_tools.py sync`; next step is integrating it into automated workflows.
-- Interaction stub covers lifecycle commands (`/ack`, `/resolve`, `/assign`, `/pause`, `/resume`, `/promote`); sample transcripts stored under `artifacts/phase1/commands/`.
-- Upcoming implementation tasks: QA enforcement integration, status snapshots, pause/resume tooling.
+- Scenario: MS-01 Phase 0 Refresh (change `CH-001`).
+- Requirements emphasis: FR-01, FR-02, FR-06, FR-09 per `TRACEABILITY.md`.
+- Primary commands/actions executed:
+  - `python3 agents/project_manager.py` (seed noted in manifest) to regenerate docs and audit handoff.
+  - Template refresh recorded in `artifacts/work/CH-001/run-02/manifest.json` to update audit samples with CH-001 metadata.
+  - `make demo PHASE=0 SEED=MS01-P0-2025-11-02` (recorded in demo README) to capture demo collateral.
+- Evidence stored under `artifacts/work/CH-001/run-*/` with manifests describing commands, seeds, and outputs.
 
 <!-- concerns:start -->
 
@@ -32,17 +31,18 @@ Phase 1 delivers the core agent execution loop with concern lifecycle management
 | ID | Severity | Message | Raised By | Raised At | Resolution | Resolved At |
 | -- | -------- | ------- | --------- | --------- | ---------- | ----------- |
 | 6fe0ebf4e6f74ed1bc740f974a2f55d9 | medium | Sample concern for WS-102 validation. | tester | 2025-10-29T10:57:14.899Z | Patched in latest build. | 2025-10-29T10:58:29.409Z |
+| CH2-CONC-001 | medium | Integration demo failure path | tester | 2025-11-02T04:10:07.825Z | Integration pass confirmed | 2025-11-02T04:10:21.090Z |
 
 <!-- concerns:end -->
 
 ## Review Checklist
-- Validation artifacts attached and verified (`artifacts/phase1/`).
-- Concern log mirrored into Markdown with open/resolved status tracked.
-- Human approvals recorded with timestamp.
-- QA policy enforcement evidence captured (pass/fail).
+- Validation artifacts captured in `artifacts/work/CH-001/run-01` → `run-07` (Tester complete).
+- Concern log mirrors audit JSONL (no entries for this refresh).
+- Human approvals recorded via `/approve CH-001` (Spec); Package approval pending.
+- Demo bundle timestamped and linked in documentation.
 
 ## Appendix
-- Phase 1 orchestration evidence: `artifacts/phase1/orchestration/`
-- Phase 0 audit evidence: `artifacts/phase0/`
+- Phase 0 demo evidence: `artifacts/phase0/demo/2025-11-02/`
+- CH-001 run manifests: `artifacts/work/CH-001/`
 
-_Updated for Phase 1 orchestration at 2025-10-29 10:39:38Z._
+_Updated for MS-01 Phase 0 refresh at 2025-11-02 14:05:00Z (change CH-001)._

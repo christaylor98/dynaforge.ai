@@ -1,0 +1,18 @@
+{
+  "change_id": "CH-001",
+  "run_id": "run-05",
+  "stage": "Execute",
+  "task": "T-005",
+  "timestamp": "2025-11-02T14:08:00Z",
+  "seed": "MS01-P0-2025-11-02",
+  "commands": [
+    {
+      "cmd": "cat <<'EOF' > artifacts/work/CH-001/run-05/tests_plan.md",
+      "note": "Documented validation commands for Tester."
+    }
+  ],
+  "outputs": [
+    "artifacts/work/CH-001/run-05/tests_plan.md"
+  ],
+  "notes": "Tester can execute listed commands without additional configuration."
+}

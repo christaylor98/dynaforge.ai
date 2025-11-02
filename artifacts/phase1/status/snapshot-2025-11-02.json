@@ -1,0 +1,42 @@
+{
+  "change_id": "CH-002",
+  "entries": [
+    {
+      "notes": "Scope reviewed, aligns with MS-01 plan.",
+      "reviewer": "Human PM",
+      "stage": "Frame",
+      "status": "\u2705 Approved"
+    },
+    {
+      "notes": "`/approve CH-002` recorded 2025-11-02.",
+      "reviewer": "Human PM",
+      "stage": "Spec",
+      "status": "\u2705 Approved"
+    },
+    {
+      "notes": "Implementer executing tasks T-001 \u2192 T-005.",
+      "reviewer": "Human PM",
+      "stage": "Execute",
+      "status": "\u23f3 Pending"
+    },
+    {
+      "notes": "QA enforcement + concern demo required.",
+      "reviewer": "Governance / QA",
+      "stage": "Validate",
+      "status": "\u23f3 Pending"
+    },
+    {
+      "notes": "Documentation/demo updates outstanding.",
+      "reviewer": "Human PM",
+      "stage": "Package",
+      "status": "\u23f3 Pending"
+    },
+    {
+      "notes": "Retention + workspace closure to be logged.",
+      "reviewer": "Governance",
+      "stage": "Cleanup",
+      "status": "\u23f3 Pending"
+    }
+  ],
+  "timestamp": "2025-11-02T04:13:20+00:00"
+}

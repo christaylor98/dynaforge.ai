@@ -1,0 +1,23 @@
+{
+  "change_id": "CH-002",
+  "run_id": "run-02",
+  "stage": "Execute",
+  "task": "T-002",
+  "timestamp": "2025-11-02T14:32:00Z",
+  "seed": "MS01-P1-2025-11-03",
+  "commands": [
+    "python3 pipelines/concern_tools.py raise --phase 1 --raised-by tester --severity high --message 'Integration demo failure path' --concern-id CH2-CONC-001 --note 'Detected during orchestrator validation'",
+    "python3 pipelines/concern_tools.py update CH2-CONC-001 --note 'Mitigation in progress' --severity medium",
+    "python3 pipelines/concern_tools.py resolve CH2-CONC-001 --resolution 'Integration pass confirmed' --note 'Validated via rerun'",
+    "python3 pipelines/concern_tools.py sync"
+  ],
+  "outputs": [
+    "audit/concerns.jsonl",
+    "docs/PROJECT_DETAIL.md",
+    "artifacts/work/CH-002/run-02_raise.json",
+    "artifacts/work/CH-002/run-02_update.json",
+    "artifacts/work/CH-002/run-02_resolve.json",
+    "artifacts/work/CH-002/run-02_sync.txt"
+  ],
+  "notes": "Concern lifecycle exercised end-to-end; Markdown synced with resolved concern entry."
+}
