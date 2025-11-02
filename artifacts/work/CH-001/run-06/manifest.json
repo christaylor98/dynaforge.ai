@@ -1,0 +1,26 @@
+{
+  "change_id": "CH-001",
+  "run_id": "run-06",
+  "stage": "Validate",
+  "timestamp": "2025-11-02T14:12:30Z",
+  "seed": "MS01-P0-2025-11-02",
+  "commands": [
+    "sha256sum artifacts/phase0/demo/2025-11-02/handoff.jsonl > artifacts/work/CH-001/run-05/demo_checksum.txt",
+    "python3 - <<'PY' > artifacts/work/CH-001/run-05/audit_validation.json  # see file for script body",
+    "python3 - <<'PY' > artifacts/work/CH-001/run-05/doc_reference_check.txt  # see file for script body",
+    "python3 - <<'PY' > artifacts/work/CH-001/run-05/command_log_check.txt  # see file for script body",
+    "python3 -m unittest tests.test_agents_workflow.ProjectManagerIntegrationTest.test_run_writes_documents_and_audit_handoff",
+    "python3 -m unittest tests.test_agents_workflow.Phase1OrchestratorIntegrationTest.test_orchestrate_writes_summary_and_expected_artifacts",
+    "python3 -m unittest tests.test_logger",
+    "python3 -m unittest tests.test_interaction_stub"
+  ],
+  "outputs": [
+    "artifacts/work/CH-001/run-05/demo_checksum.txt",
+    "artifacts/work/CH-001/run-05/audit_validation.json",
+    "artifacts/work/CH-001/run-05/doc_reference_check.txt",
+    "artifacts/work/CH-001/run-05/command_log_check.txt",
+    "tests/results/CH-001.json",
+    "docs/QA_REPORT.md"
+  ],
+  "notes": "Executed QA checklist and unit tests via python3 -m unittest (pytest unavailable)."
+}

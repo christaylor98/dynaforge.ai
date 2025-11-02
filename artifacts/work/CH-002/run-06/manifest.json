@@ -1,0 +1,15 @@
+{
+  "change_id": "CH-002",
+  "run_id": "run-06",
+  "stage": "Validate",
+  "task": "T-006 (prep)",
+  "timestamp": "2025-11-02T14:35:30Z",
+  "seed": "MS01-P1-2025-11-03",
+  "commands": [
+    "cat artifacts/work/CH-002/run-06/tests_plan.md"
+  ],
+  "outputs": [
+    "artifacts/work/CH-002/run-06/tests_plan.md"
+  ],
+  "notes": "Tester plan drafted; execution pending approval to begin Validate stage."
+}

@@ -1,0 +1,23 @@
+{
+  "change_id": "CH-001",
+  "run_id": "run-02",
+  "stage": "Execute",
+  "task": "T-002",
+  "timestamp": "2025-11-02T14:07:00Z",
+  "seed": "MS01-P0-2025-11-02",
+  "commands": [
+    {
+      "cmd": "cat <<'EOF' > audit/sample_handoff.jsonl",
+      "note": "Refreshed sample handoff entry with CH-001 metadata."
+    },
+    {
+      "cmd": "cat <<'EOF' > audit/handoff_ms01_phase0.jsonl",
+      "note": "Recorded multi-stage audit replay for MS-01 Phase 0."
+    }
+  ],
+  "outputs": [
+    "audit/sample_handoff.jsonl",
+    "audit/handoff_ms01_phase0.jsonl"
+  ],
+  "notes": "Replay demonstrates Phase 0 handoffs tagged with change_id=CH-001."
+}

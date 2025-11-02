@@ -4,22 +4,22 @@
 Build the Dynaforge.ai framework with auditable agent workflows and human governance checkpoints.
 
 ## Current Phase Snapshot
-- Phase: `1 — Core Agent Loop`
-- Status: Phase 1 orchestration skeleton generated (`make phase1-demo`).
-- Primary Contacts: Project Manager Agent
+- Phase: `0 — Foundation (MS-01 refresh)`
+- Status: Phase 0 foundation regenerated with deterministic evidence captured under CH-001.
+- Primary Contacts: Project Manager Agent, Human PM
 
 ## Highlights
-- Phase 1 brief, design, implementation, and QA plans auto-generated for concern lifecycle integration.
-- Orchestration loop ensures PM → Designer → Implementer → Tester handoffs are logged with artifacts.
-- Concern lifecycle tooling (`pipelines/concern_tools.py`) available for raising, updating, resolving, and syncing concerns into documentation.
-- Upcoming work targets concern mirroring, expanded interaction commands, and QA policy enforcement.
+- Repository skeleton documentation updated to reflect CH-001 foundations and refreshed artifact paths.
+- Audit logger replay recorded new handoff entries with `change_id="CH-001"` across the PM → Designer → Implementer → Tester chain.
+- Demo bundle (`artifacts/phase0/demo/2025-11-02/`) captured the minimum loop using seed `MS01-P0-2025-11-02`.
+- Human-facing docs (`PROJECT_DETAIL.md`, `IMPLEMENTATION_PLAN.md`, `VERSION_CONTROL.md`) synchronized with regenerated evidence.
 
 ## Next Steps
-- Integrate concern sync tooling into automated workflows and produce validation evidence.
-- Expand interaction stub with lifecycle commands and deterministic responses.
-- Wire QA policy enforcement thresholds to block promotions when concerns remain.
+- Human PM reviews CH-001 Package artifacts (`TRACEABILITY.md`, `docs/PHASE0_DEMO_OVERVIEW.md`, `docs/QA_REPORT.md`).
+- Upon approval, Governance logs retention and closes workspace (`audit/retention.jsonl`, `changes/CH-001/status.md`).
+- Kick off next milestone planning leveraging validated Phase 0 foundation.
 
 ## Approvals
-- `✅ Approved by Human 2025-10-29`
+- `✅ Approved by Human 2025-11-02 (CH-001 Spec)`
 
-_Updated for Phase 1 orchestration at 2025-10-29 10:39:38Z._
+_Updated for MS-01 Phase 0 refresh at 2025-11-02 14:05:00Z (change CH-001)._

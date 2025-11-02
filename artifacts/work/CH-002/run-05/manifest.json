@@ -1,0 +1,16 @@
+{
+  "change_id": "CH-002",
+  "run_id": "run-05",
+  "stage": "Execute",
+  "task": "T-005",
+  "timestamp": "2025-11-02T14:34:45Z",
+  "seed": "MS01-P1-2025-11-03",
+  "commands": [
+    "python3 pipelines/retention_plan.py CH-002 --runs-path artifacts/work --output artifacts/work/CH-002/run-05/retention_plan.json"
+  ],
+  "outputs": [
+    "artifacts/work/CH-002/run-05/retention_plan.json",
+    "audit/retention.jsonl"
+  ],
+  "notes": "Computed retention plan for CH-002 runs and appended entry to retention log."
+}

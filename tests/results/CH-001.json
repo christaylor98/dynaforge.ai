@@ -1,0 +1,40 @@
+{
+  "change_id": "CH-001",
+  "phase": "0",
+  "timestamp": "2025-11-02T00:10:38Z",
+  "seed": "MS01-P0-2025-11-02",
+  "framework": "unittest",
+  "notes": "Executed via python3 -m unittest because pytest is unavailable in environment.",
+  "tests": [
+    {
+      "case_id": "TC-FR01-001",
+      "command": "python3 -m unittest tests.test_agents_workflow.ProjectManagerIntegrationTest.test_run_writes_documents_and_audit_handoff",
+      "status": "PASS",
+      "duration_s": 0.001
+    },
+    {
+      "case_id": "TC-FR01-002",
+      "command": "python3 -m unittest tests.test_agents_workflow.Phase1OrchestratorIntegrationTest.test_orchestrate_writes_summary_and_expected_artifacts",
+      "status": "PASS",
+      "duration_s": 0.002
+    },
+    {
+      "case_id": "TC-FR06-001",
+      "command": "python3 -m unittest tests.test_logger",
+      "status": "PASS",
+      "duration_s": 0.001
+    },
+    {
+      "case_id": "TC-FR08-001",
+      "command": "python3 -m unittest tests.test_interaction_stub",
+      "status": "PASS",
+      "duration_s": 0.001
+    }
+  ],
+  "pre_validation_checks": {
+    "demo_checksum": "artifacts/work/CH-001/run-05/demo_checksum.txt",
+    "audit_validation": "artifacts/work/CH-001/run-05/audit_validation.json",
+    "doc_reference_check": "artifacts/work/CH-001/run-05/doc_reference_check.txt",
+    "command_log_check": "artifacts/work/CH-001/run-05/command_log_check.txt"
+  }
+}

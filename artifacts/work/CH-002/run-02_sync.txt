@@ -1,0 +1,16 @@
+<!-- concerns:start -->
+
+### Concern Summary
+
+#### Open Concerns
+
+- None.
+
+#### Resolved Concerns
+
+| ID | Severity | Message | Raised By | Raised At | Resolution | Resolved At |
+| -- | -------- | ------- | --------- | --------- | ---------- | ----------- |
+| 6fe0ebf4e6f74ed1bc740f974a2f55d9 | medium | Sample concern for WS-102 validation. | tester | 2025-10-29T10:57:14.899Z | Patched in latest build. | 2025-10-29T10:58:29.409Z |
+| CH2-CONC-001 | medium | Integration demo failure path | tester | 2025-11-02T04:10:07.825Z | Integration pass confirmed | 2025-11-02T04:10:21.090Z |
+
+<!-- concerns:end -->
