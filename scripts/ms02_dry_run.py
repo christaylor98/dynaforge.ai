@@ -42,7 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Discovery mode used during the dry run.")
     parser.add_argument("--coverage", type=float, default=0.68,
                         help="Understanding coverage percentage (0-1 range).")
-    parser.add_argument("--followups", default="issue-12",
+    parser.add_argument("--followups", default="",
                         help="Comma-separated list of outstanding follow-up IDs.")
     parser.add_argument("--iteration", type=int, default=1,
                         help="Iteration number to record in the log.")

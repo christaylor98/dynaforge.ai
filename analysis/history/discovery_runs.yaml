@@ -1,0 +1,223 @@
+- record:
+    generated_at: '2025-11-03T21:29:37+00:00'
+    artifacts:
+      system_manifest: 6f50770262f8e4dd5a86375ca1949ba13d2cd9568672acc21a8e30d7d9e7a86b
+      change_zones: c75cb1948ffc48c752f26f2698d442c865c7971ccc3c69ed9337b71c6427b0c6
+      intent_map: f989513d3396abaf82753a515a95c4ea2a02d7071f0409808c0d7c5836f3e65b
+    zones:
+      docs: 97128500925027962a8d8d128ce1ae4a2e3d20d68c61a1cf01126346d64d7165
+      tests: c0bc8f4d0968942885a9ad5eb51a8ccf87103db2c2d36565eea2929c59de5793
+      pipelines: e4da4e19035d8e8fc0625681f107e87751700953ceadd85172587f54c9022f2c
+      audit: 1089018c11d1e9c3b4bad82bd7cdddd469ab6839adf1f6f845618fd304f62cb3
+      codexa: 89a70c39e5edcfa61b551b8728682a4435fd2bb99353ceb625082f100d2c5347
+      backlog: 97c572fac7d52a807c51572f8ebbd08b7f6fcd263cc2616e4dfcc7e79876dcff
+      agents: c85494a9eaec22e36ed83bbd85dd32b4efc20043a585d552fe0503b80ea783b5
+      changes: ea0701a59847c8c3cf92ad0d2b1630dab11e265121d50b14988eae12b172ee48
+      root: d7ff4116556caa31b1f63282adc8cc465b497f3bff8e2d95bfcf38e7a49a3411
+      .codex: 4d5f76dec9463422879dca65d7dd7cdc0b0958e583e3e4ec2892f6f9179583d1
+      analysis: 8e8c71e7ce1b1d13cf13102dd8625740c4da46b8f3ad4c918f690fd2296a16ab
+      design: 1deb35590e5b9590ef0633348b5853bfc0429f15166630134e7ad6790eb66f17
+      scripts: f74c001062ec71827a54e3d91bff9cf8af12ee682937f766da1b8c7436e3c925
+      .vscode: 58c2c7bce431f1e070f1c7c21fa4218636606125a8a58e2434c37a74058040cc
+    coverage_percent: 76.6
+    followups_open: []
+  blast_radius:
+    level: system
+    changed_artifacts:
+    - change_zones
+    - intent_map
+    - system_manifest
+    changed_zones:
+    - .codex
+    - .vscode
+    - agents
+    - analysis
+    - audit
+    - backlog
+    - changes
+    - codexa
+    - design
+    - docs
+    - pipelines
+    - root
+    - scripts
+    - tests
+    removed_zones: []
+    coverage_delta: 76.6
+    followups_open: []
+    recommended_agents:
+    - discovery_analyzer
+    - requirements_intelligence
+    - system_model_builder
+    - project_manager
+    notes:
+    - No previous run recorded; defaulting to full system recomputation.
+- record:
+    generated_at: '2025-11-03T21:29:49+00:00'
+    artifacts:
+      system_manifest: e0d0902143aa6c77990f99cc54945251ba5881f352dfce6bcfd86a1fcb8b80d5
+      change_zones: 24ad32bebb7250864e186b0c9c9677c1d7d85f716b6e97d7ee4a713c7ef28c51
+      intent_map: 9a73cd5c16a24eac62f4fdf5b6f488cb5020a2b3e3a1015b592778f7324acb16
+    zones:
+      docs: 97128500925027962a8d8d128ce1ae4a2e3d20d68c61a1cf01126346d64d7165
+      tests: c0bc8f4d0968942885a9ad5eb51a8ccf87103db2c2d36565eea2929c59de5793
+      pipelines: e4da4e19035d8e8fc0625681f107e87751700953ceadd85172587f54c9022f2c
+      audit: 7eafe1eed6e5670916c849540792aa4ebce684f53563be14e27c0aae0f0b3eab
+      codexa: 89a70c39e5edcfa61b551b8728682a4435fd2bb99353ceb625082f100d2c5347
+      backlog: 97c572fac7d52a807c51572f8ebbd08b7f6fcd263cc2616e4dfcc7e79876dcff
+      agents: c85494a9eaec22e36ed83bbd85dd32b4efc20043a585d552fe0503b80ea783b5
+      changes: ea0701a59847c8c3cf92ad0d2b1630dab11e265121d50b14988eae12b172ee48
+      root: d7ff4116556caa31b1f63282adc8cc465b497f3bff8e2d95bfcf38e7a49a3411
+      analysis: 2bc41f37202a11b48b3716af8f2cb1939f26afb0fae4ef44a59e04f8aacf3a6d
+      .codex: 4d5f76dec9463422879dca65d7dd7cdc0b0958e583e3e4ec2892f6f9179583d1
+      design: 1deb35590e5b9590ef0633348b5853bfc0429f15166630134e7ad6790eb66f17
+      scripts: f74c001062ec71827a54e3d91bff9cf8af12ee682937f766da1b8c7436e3c925
+      .vscode: 58c2c7bce431f1e070f1c7c21fa4218636606125a8a58e2434c37a74058040cc
+    coverage_percent: 76.7
+    followups_open: []
+  blast_radius:
+    level: local
+    changed_artifacts:
+    - change_zones
+    - intent_map
+    - system_manifest
+    changed_zones:
+    - analysis
+    - audit
+    removed_zones: []
+    coverage_delta: 0.1
+    followups_open: []
+    recommended_agents:
+    - discovery_analyzer
+    notes:
+    - 'Artifact digests changed for: change_zones, intent_map, system_manifest.'
+    - 'Zones impacted: analysis, audit.'
+    - Coverage increased by 0.10%.
+- record:
+    generated_at: '2025-11-03T21:30:29+00:00'
+    artifacts:
+      system_manifest: 13312b1a5d9be43895780796fb97a769ea81b1d305f75a74333acc2735fdfdba
+      change_zones: 4980b4f44d923909ff2a2d3b0a7612248120df3799fc0c77671ef9f3803728bc
+      intent_map: 4b08863218590b957ec9ddf9fb0b580b21fe4578bd3f9e5f1b25302b58e7120e
+    zones:
+      docs: 97128500925027962a8d8d128ce1ae4a2e3d20d68c61a1cf01126346d64d7165
+      tests: c0bc8f4d0968942885a9ad5eb51a8ccf87103db2c2d36565eea2929c59de5793
+      pipelines: e4da4e19035d8e8fc0625681f107e87751700953ceadd85172587f54c9022f2c
+      audit: e3cd5997a67357b9615ecfcab8554958c01a48f52f54e420ff0457acb47b499e
+      codexa: 89a70c39e5edcfa61b551b8728682a4435fd2bb99353ceb625082f100d2c5347
+      backlog: 97c572fac7d52a807c51572f8ebbd08b7f6fcd263cc2616e4dfcc7e79876dcff
+      agents: c85494a9eaec22e36ed83bbd85dd32b4efc20043a585d552fe0503b80ea783b5
+      changes: ea0701a59847c8c3cf92ad0d2b1630dab11e265121d50b14988eae12b172ee48
+      root: d7ff4116556caa31b1f63282adc8cc465b497f3bff8e2d95bfcf38e7a49a3411
+      analysis: c21d16fabe7dbf795b9e82d2017c4751fc45dcf87fa6fed6719bbc2cc742a0b3
+      .codex: 4d5f76dec9463422879dca65d7dd7cdc0b0958e583e3e4ec2892f6f9179583d1
+      design: 1deb35590e5b9590ef0633348b5853bfc0429f15166630134e7ad6790eb66f17
+      scripts: f74c001062ec71827a54e3d91bff9cf8af12ee682937f766da1b8c7436e3c925
+      .vscode: 58c2c7bce431f1e070f1c7c21fa4218636606125a8a58e2434c37a74058040cc
+    coverage_percent: 76.7
+    followups_open: []
+  blast_radius:
+    level: local
+    changed_artifacts:
+    - change_zones
+    - intent_map
+    - system_manifest
+    changed_zones:
+    - analysis
+    - audit
+    removed_zones: []
+    coverage_delta: 0.0
+    followups_open: []
+    recommended_agents:
+    - discovery_analyzer
+    notes:
+    - 'Artifact digests changed for: change_zones, intent_map, system_manifest.'
+    - 'Zones impacted: analysis, audit.'
+- record:
+    generated_at: '2025-11-03T21:33:58+00:00'
+    artifacts:
+      system_manifest: 11f919d1ce2896b7a093b11a1114ca69cc8593d2a39cc747b18b6da8720962ec
+      change_zones: 00f1304b3d3da77430175224ca11d66c78d7a774a1381fa00e8c5d3e0cc9c651
+      intent_map: eaf14335e3700a95410f5beaad957d4dfbc55c8fcf3a839827005b0bd6dd8db2
+    zones:
+      docs: 5096e77399f8b18c4dccff49a303f74bc030ddc03f62df96f04f7d02f5f3a27c
+      tests: c0bc8f4d0968942885a9ad5eb51a8ccf87103db2c2d36565eea2929c59de5793
+      pipelines: e4da4e19035d8e8fc0625681f107e87751700953ceadd85172587f54c9022f2c
+      audit: 48f84dc19f848c9dd3bbe754a391d0fb7cfeb302e128e829a2969b4e8fb4e67d
+      codexa: 89a70c39e5edcfa61b551b8728682a4435fd2bb99353ceb625082f100d2c5347
+      backlog: 97c572fac7d52a807c51572f8ebbd08b7f6fcd263cc2616e4dfcc7e79876dcff
+      agents: c85494a9eaec22e36ed83bbd85dd32b4efc20043a585d552fe0503b80ea783b5
+      changes: ea0701a59847c8c3cf92ad0d2b1630dab11e265121d50b14988eae12b172ee48
+      root: 366cbe2f0b4d212dd72c39649ca84179913fb3a60b2722095ea7a807fae33cb0
+      analysis: 2cd5823dc1958c927b66cd2f65634f382a8a995d0fcdfbae35d901a7093c5343
+      .codex: 4d5f76dec9463422879dca65d7dd7cdc0b0958e583e3e4ec2892f6f9179583d1
+      design: 1deb35590e5b9590ef0633348b5853bfc0429f15166630134e7ad6790eb66f17
+      scripts: d654ffbb5cbcddbd3c9170aa38c5833227b9497afad389f0abf3a713d84db1b0
+      .vscode: 58c2c7bce431f1e070f1c7c21fa4218636606125a8a58e2434c37a74058040cc
+    coverage_percent: 76.7
+    followups_open: []
+  blast_radius:
+    level: subsystem
+    changed_artifacts:
+    - change_zones
+    - intent_map
+    - system_manifest
+    changed_zones:
+    - analysis
+    - audit
+    - docs
+    - root
+    - scripts
+    removed_zones: []
+    coverage_delta: 0.0
+    followups_open: []
+    recommended_agents:
+    - discovery_analyzer
+    - requirements_intelligence
+    - system_model_builder
+    notes:
+    - 'Artifact digests changed for: change_zones, intent_map, system_manifest.'
+    - 'Zones impacted: analysis, audit, docs, root, scripts.'
+- record:
+    generated_at: '2025-11-03T21:34:31+00:00'
+    artifacts:
+      system_manifest: 9ead103e71701d6ec0151a55578c384ed7d9ee20aaa70b8b184cbb1ce44acac3
+      change_zones: 2c2d73ce9e993ba80b5920c684947ec543fc2381b67f676e4bc48a7dbe6e9f0e
+      intent_map: 2ec281291d0dfa05082d0fff02b215816564fce20c548822b5a2cac6fc36d04e
+    zones:
+      docs: 5096e77399f8b18c4dccff49a303f74bc030ddc03f62df96f04f7d02f5f3a27c
+      tests: c0bc8f4d0968942885a9ad5eb51a8ccf87103db2c2d36565eea2929c59de5793
+      pipelines: e4da4e19035d8e8fc0625681f107e87751700953ceadd85172587f54c9022f2c
+      audit: 054b6e72855ff0b9a49d2c84ea4b7dcce5a680e13a20112f07b5c5b72e796659
+      codexa: 89a70c39e5edcfa61b551b8728682a4435fd2bb99353ceb625082f100d2c5347
+      backlog: 97c572fac7d52a807c51572f8ebbd08b7f6fcd263cc2616e4dfcc7e79876dcff
+      agents: c85494a9eaec22e36ed83bbd85dd32b4efc20043a585d552fe0503b80ea783b5
+      changes: ea0701a59847c8c3cf92ad0d2b1630dab11e265121d50b14988eae12b172ee48
+      root: 366cbe2f0b4d212dd72c39649ca84179913fb3a60b2722095ea7a807fae33cb0
+      analysis: 45232d45313183da0e855016d78c42be91dc4bc75f6b76facf06ebde34940aab
+      .codex: 4d5f76dec9463422879dca65d7dd7cdc0b0958e583e3e4ec2892f6f9179583d1
+      design: 1deb35590e5b9590ef0633348b5853bfc0429f15166630134e7ad6790eb66f17
+      scripts: 5ac329e6fa2dc197e25eb1568f16b0079cc76f0efcca1a0fe869ab87192d40fb
+      .vscode: 58c2c7bce431f1e070f1c7c21fa4218636606125a8a58e2434c37a74058040cc
+    coverage_percent: 76.7
+    followups_open: []
+  blast_radius:
+    level: subsystem
+    changed_artifacts:
+    - change_zones
+    - intent_map
+    - system_manifest
+    changed_zones:
+    - analysis
+    - audit
+    - scripts
+    removed_zones: []
+    coverage_delta: 0.0
+    followups_open: []
+    recommended_agents:
+    - discovery_analyzer
+    - requirements_intelligence
+    - system_model_builder
+    notes:
+    - 'Artifact digests changed for: change_zones, intent_map, system_manifest.'
+    - 'Zones impacted: analysis, audit, scripts.'

@@ -1,0 +1,46 @@
+# MS-02 discovery configuration (Phase 0 baseline).
+# Update alongside the automated discovery pipeline as capabilities expand.
+metadata:
+  version: 0.1.0
+  description: "Config contract for `codexa discover` during MS-02 Phase 0."
+  owners:
+    accountable: human.pm
+    responsible: discovery_analyzer
+    consulted:
+      - project_manager_agent
+      - governance_officer
+    informed:
+      - implementer_agent
+      - tester_agent
+
+run:
+  mode: full            # Options: full, quick, code-only
+  focus: []             # Optional list of glob patterns to limit scanning surface.
+  skip_paths:
+    - ".git/"
+    - "artifacts/"
+    - "analysis/system_model/"
+  languages:
+    include: []         # e.g., ["python", "markdown"]
+    exclude: []         # e.g., ["vendor"]
+  concurrency:
+    workers: 4
+    batch_size: 200
+  telemetry:
+    enable_progress: true
+    progress_interval_seconds: 5
+
+outputs:
+  manifest_path: analysis/system_manifest.yaml
+  change_zones_path: analysis/change_zones.md
+  intent_map_path: analysis/intent_map.md
+  system_model_refresh: true
+
+audit:
+  write_handoff: true       # Persist `audit/handoffs/handoff_discovery.jsonl`.
+  log_followups: true       # Append follow-ups to `docs/status/iteration_log.md`.
+
+notes:
+  - "Phase 0 uses dry-run outputs; replace placeholders once discovery agent is implemented."
+  - "Ensure `analysis/` artifacts are committed after each accepted run."
+  - "Open follow-ups (issue-*) must be reconciled before proceeding to seed planning."

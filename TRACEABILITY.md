@@ -132,9 +132,9 @@ _Last updated: 2025-11-04 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-38 Discovery pipeline artifacts | PLANNED | TC-FR38-001 | TODO | Discovery CLI will emit `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md` per CR003. |
+| FR-38 Discovery pipeline artifacts | IN PROGRESS | TC-FR38-001 | TODO | Production `codexa discover` CLI generates manifests/metrics, computes blast radius, and logs history; semantic analyzers (tree-sitter) still outstanding. |
 | FR-39 System Model Graph (YAML projections) | PLANNED | TC-FR39-001 | TODO | Design YAML schema for model graph; ensure repo-tracked projections remain canonical. |
-| FR-41 Understanding coverage metrics | PLANNED | TC-FR41-001 | TODO | Define coverage/readiness calculations and store alongside discovery manifests. |
+| FR-41 Understanding coverage metrics | IN PROGRESS | TC-FR41-001 | TODO | Coverage metrics and blast-radius history emitted by `codexa discover`; readiness scoring to expand post analyzer integration. |
 
 ---
 

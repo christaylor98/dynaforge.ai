@@ -1,0 +1,1 @@
+135:| FR-38 Discovery pipeline artifacts | PLANNED | TC-FR38-001 | TODO | Phase 0 scaffolds committed (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, `docs/discovery/config.yaml`, `docs/discovery/system_manifest_schema.md`); automation pending discovery CLI. |

@@ -12,8 +12,8 @@
 | Metric | Value | Source |
 | --- | --- | --- |
 | Understanding Coverage | 68.0% | `analysis/metrics/understanding_coverage.yaml` |
-| Discovery Freshness | 2025-11-03T20:11:46+00:00 | `analysis/system_manifest.yaml` metadata |
-| Outstanding Follow-ups | issue-12 | `docs/status/iteration_log.md` |
+| Discovery Freshness | 2025-11-03T20:42:17+00:00 | `analysis/system_manifest.yaml` metadata |
+| Outstanding Follow-ups | None | `docs/status/iteration_log.md` |
 
 ## Decisions
 - Pending human confirmation to publish governance report (dry-run sample).

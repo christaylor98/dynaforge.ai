@@ -1,0 +1,127 @@
+metadata:
+  generated_at: '2025-11-03T21:34:31+00:00'
+  generator: codexa discover
+  commit_sha: f5b6203b02c9ee8c19e66ba3bb34ab571a1c39f9
+inputs:
+  config: docs/discovery/config.yaml
+  manifest: analysis/system_manifest.yaml
+  change_zones: analysis/change_zones.md
+  intent_map: analysis/intent_map.md
+  followups_open: []
+coverage:
+  total_files: 189
+  structured_files: 145
+  other_files: 44
+  coverage_percent: 76.7
+  language_count: 5
+zones:
+- zone: docs
+  files: 80
+  bytes: 636783
+  languages:
+    markdown: 79
+    yaml: 1
+  summary: Documentation & governance records
+- zone: tests
+  files: 18
+  bytes: 80323
+  languages:
+    other: 8
+    python: 6
+    markdown: 2
+  summary: Test harness and integration suites
+- zone: pipelines
+  files: 17
+  bytes: 85384
+  languages:
+    python: 9
+    other: 8
+  summary: Automation utilities and CLI adjacencies
+- zone: audit
+  files: 16
+  bytes: 76293
+  languages:
+    other: 14
+    python: 2
+  summary: Audit evidence & logs
+- zone: codexa
+  files: 10
+  bytes: 33092
+  languages:
+    python: 5
+    other: 5
+  summary: Codexa assets
+- zone: backlog
+  files: 9
+  bytes: 172948
+  languages:
+    markdown: 9
+  summary: Research & comparison notes
+- zone: agents
+  files: 9
+  bytes: 54527
+  languages:
+    other: 5
+    python: 4
+  summary: Core agent orchestration and prompts
+- zone: changes
+  files: 8
+  bytes: 20424
+  languages:
+    markdown: 8
+  summary: Change packages & specs
+- zone: root
+  files: 6
+  bytes: 38646
+  languages:
+    markdown: 2
+    other: 2
+    json: 1
+  summary: Repository root assets
+- zone: analysis
+  files: 5
+  bytes: 22057
+  languages:
+    yaml: 3
+    markdown: 2
+  summary: Discovery analysis artifacts
+- zone: .codex
+  files: 5
+  bytes: 6902
+  languages:
+    markdown: 3
+    yaml: 2
+  summary: Codex CLI configuration
+- zone: design
+  files: 3
+  bytes: 19319
+  languages:
+    markdown: 2
+    other: 1
+  summary: Product and storyboard design assets
+- zone: scripts
+  files: 2
+  bytes: 56591
+  languages:
+    python: 1
+    other: 1
+  summary: Operational scripts & bootstrappers
+- zone: .vscode
+  files: 1
+  bytes: 69
+  languages:
+    json: 1
+  summary: Workspace settings
+artifacts:
+  system_manifest:
+    path: analysis/system_manifest.yaml
+    sha256: 9ead103e71701d6ec0151a55578c384ed7d9ee20aaa70b8b184cbb1ce44acac3
+  change_zones:
+    path: analysis/change_zones.md
+    sha256: 2c2d73ce9e993ba80b5920c684947ec543fc2381b67f676e4bc48a7dbe6e9f0e
+  intent_map:
+    path: analysis/intent_map.md
+    sha256: 2ec281291d0dfa05082d0fff02b215816564fce20c548822b5a2cac6fc36d04e
+  metrics:
+    path: analysis/metrics/understanding_coverage.yaml
+    sha256: null
