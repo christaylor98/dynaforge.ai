@@ -11,10 +11,10 @@ status: Draft
 # 🧩 Requirement Elaboration — FR-30
 
 ## 1. Summary
-Implement a change velocity dashboard that reports weekly and milestone metrics—through CLI and dashboards—covering throughput, cycle time, approval latency, and risk posture.
+Implement a change velocity dashboard that reports weekly and milestone metrics—through CLI and dashboards—covering throughput, cycle time, approval latency, risk posture, and context from discovery coverage/readiness so velocity is interpreted alongside system understanding.
 
 ## 2. Context & Rationale
-Stakeholders need quantitative insight into Codexa’s delivery cadence. By aggregating metrics from change workspaces, approvals, and QA verdicts, FR-30 enables data-driven planning and governance oversight. It complements PM status updates (FR-02) and maturity tracking (FR-36).
+Stakeholders need quantitative insight into Codexa’s delivery cadence. By aggregating metrics from change workspaces, approvals, QA verdicts, and discovery coverage/readiness (FR-41), FR-30 enables data-driven planning and governance oversight. It complements PM status updates (FR-02), discovery dashboards (FR-38–FR-39), and maturity tracking (FR-36).
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |
@@ -23,6 +23,8 @@ Stakeholders need quantitative insight into Codexa’s delivery cadence. By aggr
 | `approval_events` | JSONL (`artifacts/phase1/approvals/events.jsonl`) | Stage decisions | For latency metrics. |
 | `implementer_runs` | JSON (`artifacts/work/retention_index.json`) | Start/end times | Cycle time measurement. |
 | `qa_verdicts` | JSON (`artifacts/phase3/qa/verdicts/*.json`) | PASS/BLOCK | QA gating stats. |
+| `understanding_metrics` | YAML (`analysis/metrics/understanding_coverage.yaml`) | `coverage: 0.72` | Pairs velocity with readiness signal. |
+| `system_model_graph` | YAML (`analysis/system_model/components.yaml`) | Node count | Used for normalizing throughput by system scope. |
 | `config` | YAML (`configs/velocity_dashboard.yaml`) | metric definitions | Allows custom thresholds. |
 
 ### Edge & Error Inputs
@@ -34,7 +36,8 @@ Stakeholders need quantitative insight into Codexa’s delivery cadence. By aggr
 ```mermaid
 flowchart TD
   A[Ingest change & approval history] --> B[Compute metrics (cycle time, throughput, latency)]
-  B --> C[Calculate trend lines and risk posture]
+  B --> C[Blend discovery coverage + maturity context]
+  C --> D[Calculate trend lines and risk posture]
   C --> D[Render CLI table + generate dashboard artifacts]
   D --> E[Publish summary to docs/metrics and change workspace]
   E --> F[Notify PM/GO with highlights]
@@ -43,28 +46,29 @@ flowchart TD
 ## 5. Outputs
 | Format | Example | Consumer |
 |--------|---------|----------|
-| JSON | `artifacts/metrics/velocity_weekly.json` | PM, Governance |
+| JSON | `artifacts/metrics/velocity_weekly.json` (with coverage + readiness annotations) | PM, Governance |
 | Markdown | `docs/metrics/CHANGE_VELOCITY.md` | Stakeholders |
-| CLI | `/status velocity` report | Humans via CLI/Discord |
+| CLI | `/status velocity` report (includes discovery/maturity context) | Humans via CLI/Discord |
 | Charts | `artifacts/metrics/velocity_trend.png` (optional) | Presentations |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/metrics/screenshots/velocity_cli.md` — CLI output.
-- `artifacts/metrics/screenshots/velocity_chart.md` — Graphical trend.
+- `artifacts/mockups/FR-30/velocity_cli.md` — CLI output.
+- `artifacts/mockups/FR-30/velocity_chart.md` — Graphical trend.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus aggregated `CH-###` history.
 - `trace_sections`: `TRACEABILITY.md#ws-306-maturity-metrics--snapshots`, `TRACEABILITY.md#fr-30-change-velocity-dashboard`.
-- `artifacts`: `CHANGELOG.md`, `docs/metrics/CHANGE_VELOCITY.md`, `artifacts/metrics/velocity_weekly.json`.
+- `artifacts`: `CHANGELOG.md`, `docs/metrics/CHANGE_VELOCITY.md`, `artifacts/metrics/velocity_weekly.json`, `analysis/metrics/understanding_coverage.yaml`.
 
 ## 7. Acceptance Criteria
-* [ ] Dashboard exposes at least cycle time, throughput (changes/week), approval latency, QA block rate, and retention counts.
-* [ ] `/status velocity` summarises current milestone progress vs target.
-* [ ] Metrics integrate with maturity snapshots (FR-36) and PM status docs (FR-02) within one orchestration cycle.
+* [ ] Dashboard exposes at least cycle time, throughput (changes/week), approval latency, QA block rate, retention counts, and discovery coverage context for the evaluated window.
+* [ ] `/status velocity` summarises current milestone progress vs target and lists latest discovery coverage + readiness grade for affected zones.
+* [ ] Metrics integrate with maturity snapshots (FR-36), discovery metrics (FR-41), and PM status docs (FR-02) within one orchestration cycle.
 * [ ] Historical data preserved (rolling 12 weeks) for trend analysis.
 
 ## 8. Dependencies
 - FR-25 change workspaces, FR-10 approval logs, FR-11 QA verdicts.
+- FR-38 discovery pipeline, FR-39 System Model Graph, FR-41 understanding metrics.
 - FR-36 maturity metrics for integrated reporting.
 - WS-306 Maturity Metrics & Snapshots.
 

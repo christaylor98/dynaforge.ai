@@ -49,8 +49,8 @@ flowchart TD
 | JSONL | `audit/approvals.jsonl` enriched entries | Audit |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/partial_approval_table.md` — Layout of sub-decisions.
-- `artifacts/phase3/screenshots/partial_status_cli.md` — CLI summary.
+- `artifacts/mockups/FR-31/partial_approval_table.md` — Layout of sub-decisions.
+- `artifacts/mockups/FR-31/partial_status_cli.md` — CLI summary.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus active change.

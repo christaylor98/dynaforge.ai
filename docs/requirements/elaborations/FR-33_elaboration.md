@@ -48,8 +48,8 @@ flowchart TD
 | JSON | `artifacts/metrics/maturity_guide_index.json` | Automation |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/maturity_guide_section.md`
-- `artifacts/phase3/screenshots/maturity_matrix.md`
+- `artifacts/mockups/FR-33/maturity_guide_section.md`
+- `artifacts/mockups/FR-33/maturity_matrix.md`
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus maturity change `CH-###`.

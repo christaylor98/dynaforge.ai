@@ -50,8 +50,8 @@ flowchart TD
 | Markdown | `CHANGELOG.md` entry referencing workspace | Stakeholders |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/change_workspace_structure.md` — Directory layout.
-- `artifacts/phase2/screenshots/change_status_timeline.md` — Example timeline.
+- `artifacts/mockups/FR-25/change_workspace_structure.md` — Directory layout.
+- `artifacts/mockups/FR-25/change_status_timeline.md` — Example timeline.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` managed.

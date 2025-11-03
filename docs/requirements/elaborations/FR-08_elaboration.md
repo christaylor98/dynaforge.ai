@@ -51,8 +51,8 @@ flowchart TD
 | Markdown | `changes/CH-###/status.md` appended with command history | PM, Governance Officer
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/discord_command_flow.md` — Discord thread example.
-- `artifacts/phase1/screenshots/cli_command_flow.md` — CLI session transcript showing `/df.checklist`.
+- `artifacts/mockups/FR-08/discord_command_flow.md` — Discord thread example.
+- `artifacts/mockups/FR-08/cli_command_flow.md` — CLI session transcript showing `/df.checklist`.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, additional `CH-###` per command session.

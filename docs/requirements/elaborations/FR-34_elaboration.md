@@ -52,8 +52,8 @@ flowchart TD
 | JSON | `artifacts/metrics/maturity_reviews.json` | Analytics |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/maturity_review_checklist.md`
-- `artifacts/phase3/screenshots/maturity_decision_cli.md`
+- `artifacts/mockups/FR-34/maturity_review_checklist.md`
+- `artifacts/mockups/FR-34/maturity_decision_cli.md`
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus dedicated maturity review `CH-###`.

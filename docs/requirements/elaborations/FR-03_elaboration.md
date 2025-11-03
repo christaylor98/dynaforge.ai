@@ -51,8 +51,8 @@ flowchart TD
 | Markdown | `changes/CH-###/impact.md` updated with design deltas and dependencies | Governance Officer, Impact Assessor |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/mockups/designer_flow.md` — Sequence diagram for MS-01 data path.
-- `artifacts/phase1/mockups/designer_tables.md` — Example scenario coverage table referencing `CH-###`.
+- `artifacts/mockups/FR-03/designer_flow.md` — Sequence diagram for MS-01 data path.
+- `artifacts/mockups/FR-03/designer_tables.md` — Example scenario coverage table referencing `CH-###`.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, additional `CH-###` triggered by new design requirements.

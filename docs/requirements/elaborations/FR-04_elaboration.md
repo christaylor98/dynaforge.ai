@@ -56,8 +56,8 @@ flowchart TD
 | JSON | `artifacts/work/CH-###/run-*/summary.json` containing task outcomes and retention flags | Governance, QA
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/implementer_diff.md` — Example of structured diff summary including `ch_id`.
-- `artifacts/phase1/screenshots/implementer_retention.md` — Snapshot showing `.retain` marker explanation.
+- `artifacts/mockups/FR-04/implementer_diff.md` — Example of structured diff summary including `ch_id`.
+- `artifacts/mockups/FR-04/implementer_retention.md` — Snapshot showing `.retain` marker explanation.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002` baseline, plus specific `CH-###` per implementation task.

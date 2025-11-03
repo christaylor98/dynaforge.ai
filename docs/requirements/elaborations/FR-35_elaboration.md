@@ -48,8 +48,8 @@ flowchart TD
 | Markdown | `changes/CH-###/status.md` prompt update note | Governance Officer |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/prompt_diff.md` — Diff of maturity-aware prompt changes.
-- `artifacts/phase3/screenshots/prompt_registry.md` — Version list.
+- `artifacts/mockups/FR-35/prompt_diff.md` — Diff of maturity-aware prompt changes.
+- `artifacts/mockups/FR-35/prompt_registry.md` — Version list.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus change objects adjusting prompts.

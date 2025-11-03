@@ -51,8 +51,8 @@ flowchart TD
 | JSON | `artifacts/phase2/governance/checklist.json` | Automation hooks |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/go_report_card.md` — Example report.
-- `artifacts/phase2/screenshots/go_status_cli.md` — CLI approval notification.
+- `artifacts/mockups/FR-22/go_report_card.md` — Example report.
+- `artifacts/mockups/FR-22/go_status_cli.md` — CLI approval notification.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` reviewed.

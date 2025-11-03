@@ -50,8 +50,8 @@ flowchart TD
 | JSONL | `audit/implementation_manager.jsonl` | Audit |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/im_task_table.md` — Sample task layout.
-- `artifacts/phase2/screenshots/im_progress_board.md` — Progress report view.
+- `artifacts/mockups/FR-21/im_task_table.md` — Sample task layout.
+- `artifacts/mockups/FR-21/im_progress_board.md` — Progress report view.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` under execution.

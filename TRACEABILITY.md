@@ -1,6 +1,6 @@
 # Traceability Matrix
 
-_Last updated: 2025-11-01 — maintained by Codex agent._
+_Last updated: 2025-11-04 — maintained by Codex agent._
 
 ## Legend
 - Workstream status: `DONE` (delivered), `IN PROGRESS` (currently active), `PLANNED` (not started), `CHANGE IMPACTED` (previously delivered but a new change requires rework before reuse).
@@ -36,6 +36,23 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 ---
 
+### MS-02 — Discovery MVP
+- `Identifier`: MS-02
+- `Objective`: Deliver a runnable discovery pipeline that produces repo-tracked manifests, System Model Graph projections, understanding metrics, and seeded change journeys.
+- `Scope guidance`: Prioritize quick/deep discovery modes, YAML projections as canonical artifacts, understanding coverage instrumentation, and the first `codexa seed` workflow. Advanced visualization and runtime probes remain out of scope for this milestone.
+
+| Phase | Workstream | Role in MS-02 | Current Status |
+| --- | --- | --- | --- |
+| Phase 0 — Foundation | WS-09 Discovery Foundations | Implement discovery CLI flow and System Model Graph projections. | PLANNED |
+| Phase 1 — Core Agent Loop | WS-110 Change Seed Generator | Generate mission-scoped seeds tied to discovery outputs. | PLANNED |
+| Phase 2 — Change Governance Loop | WS-201 Requirements Intelligence | Integrate discovery manifests into RA traceability updates. | PLANNED |
+| Phase 2 — Change Governance Loop | WS-202 Impact Assessment & Evaluator | Incorporate readiness heatmaps into impact scoring. | PLANNED |
+| Phase 3 — QA & Maturity Automation | WS-306 Maturity Metrics & Snapshots | Surface understanding coverage within status/CLI dashboards. | PLANNED |
+
+> _MS-02 readiness note:_ This milestone is considered demo-ready once discovery commands emit manifests for a representative repo, coverage metrics appear in `/status`, and `codexa seed` provisions a seed folder linked back to discovery artifacts. Requirement elaboration drafts for FR-38 through FR-41 must be approved before implementation workstreams progress.
+
+---
+
 ## Phase 0 — Foundation
 
 | Workstream | Status | Related Requirements | Evidence |
@@ -48,6 +65,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | WS-06 QA Policy Parser Stub | PARTIAL | FR-11 | Parser stub plus unit tests (TC-FR11-001, `pipelines/policy_parser.py`) |
 | WS-07 Demo Workflow Target | DONE | FR-01, FR-06, FR-09 | Deterministic demo package (`artifacts/phase0/demo/2025-11-02/README.md`) |
 | WS-08 Documentation Updates | DONE | FR-02, FR-10 | Documentation aligned to CH-001 (`docs/PROJECT_DETAIL.md`, `docs/VERSION_CONTROL.md`) |
+| WS-09 Discovery Foundations | PLANNED | FR-38, FR-39, FR-41 | Discovery CLI + System Model Graph plan (`docs/archive/CHANGE_REQUEST_003_discovery.md`) |
 
 ### WS-01 Repository Skeleton
 
@@ -105,6 +123,14 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | FR-02 Documentation currency | DONE | TC-FR01-001 | PASS | `PROJECT_OVERVIEW.md`, `PROJECT_DETAIL.md`, `VERSION_CONTROL.md` updated with CH-001 validation. |
 | FR-10 Approval markers | DONE | TC-FR10-001 | PASS | CH-001 approval flow captured in docs and audit (`audit/commands.jsonl`). |
 
+### WS-09 Discovery Foundations
+
+| Requirement | Requirement Status | Tests | Test Status | Notes |
+| --- | --- | --- | --- | --- |
+| FR-38 Discovery pipeline artifacts | PLANNED | TC-FR38-001 | TODO | Discovery CLI will emit `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md` per CR003. |
+| FR-39 System Model Graph (YAML projections) | PLANNED | TC-FR39-001 | TODO | Design YAML schema for model graph; ensure repo-tracked projections remain canonical. |
+| FR-41 Understanding coverage metrics | PLANNED | TC-FR41-001 | TODO | Define coverage/readiness calculations and store alongside discovery manifests. |
+
 ---
 
 ## Phase 1 — Core Agent Loop
@@ -119,7 +145,8 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | WS-106 Status Snapshots & Observability | PLANNED | FR-13 | Pending orchestration hook |
 | WS-107 Rollback & Pause Controls | PLANNED | FR-14 | Scripts not yet implemented |
 | WS-108 Demo & Documentation | IN PROGRESS | FR-02, FR-10 | Documentation refresh pending completion of WS-104–WS-107 |
-| WS-109 Implementer Micro-Loop & Retention | CHANGE IMPACTED | FR-04, FR-27, FR-29 | CR002 realigns micro-loop enforcement and retention; design updates slated in `docs/REQUIREMENTS_1_2.md` |
+| WS-109 Implementer Micro-Loop & Retention | CHANGE IMPACTED | FR-04, FR-27, FR-29 | CR002 realigns micro-loop enforcement and retention; design updates slated in `docs/REQUIREMENTS_1_3.md` |
+| WS-110 Change Seed Generator | PLANNED | FR-40 | Change seed CLI + template design (`docs/archive/CHANGE_REQUEST_003_discovery.md`) |
 
 ### WS-101 Multi-Agent Orchestration
 
@@ -177,9 +204,15 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-04 Implementation governance micro-loop | PARTIAL | TC-FR04-001, TC-FR04-002 (TODO) | PARTIAL | Implementer loop executes deterministically for core path; CR002 updates captured in `docs/REQUIREMENTS_1_2.md` require planner/executor refinements. |
+| FR-04 Implementation governance micro-loop | PARTIAL | TC-FR04-001, TC-FR04-002 (TODO) | PARTIAL | Implementer loop executes deterministically for core path; CR002 updates captured in `docs/REQUIREMENTS_1_3.md` require planner/executor refinements. |
 | FR-27 Implementer run retention | PLANNED | TC-FR27-001 (TODO) | TODO | Retention policy must auto-purge successful runs after 48 h/2 GB and respect `.retain` markers. |
 | FR-29 SpekKit-inspired micro-task loop | PLANNED | TC-FR29-001 (TODO) | TODO | Planner/executor/cleanup modules to reimplement SpekKit concepts without code reuse. |
+
+### WS-110 Change Seed Generator
+
+| Requirement | Requirement Status | Tests | Test Status | Notes |
+| --- | --- | --- | --- | --- |
+| FR-40 Change seeds with manifests/tests | PLANNED | TC-FR40-001 | TODO | `codexa seed <zone> <mission>` will emit focused context, manifests, and baseline tests tied to discovery artifacts. |
 
 ---
 
@@ -187,11 +220,11 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Workstream | Status | Related Requirements | Evidence |
 | --- | --- | --- | --- |
-| WS-201 Requirements Intelligence | PLANNED | FR-02, FR-15, FR-26, FR-37 | Scope captured in `docs/REQUIREMENTS_1_2.md` |
+| WS-201 Requirements Intelligence | PLANNED | FR-02, FR-15, FR-26, FR-37 | Scope captured in `docs/REQUIREMENTS_1_3.md` |
 | WS-202 Impact Assessment & Evaluator | PLANNED | FR-16 | Planned artifacts: `IMPACT_REPORT.md`, impact scoring heuristics |
 | WS-203 Implementation Management | PLANNED | FR-21, FR-25, FR-31 | Implementation Manager brief (`IM_PROGRESS.md`) to be authored |
 | WS-204 Governance & Multi-Gate Approvals | PLANNED | FR-10, FR-22, FR-34 | Governance Officer charter (`GOVERNANCE_REPORT.md`) pending |
-| WS-205 Change Router & Orchestration | PLANNED | FR-01, FR-23 | Change router design notes (`docs/REQUIREMENTS_1_2.md`) |
+| WS-205 Change Router & Orchestration | PLANNED | FR-01, FR-23 | Change router design notes (`docs/REQUIREMENTS_1_3.md`) |
 | WS-206 Change Records & Audit Extensions | PLANNED | FR-06, FR-20, FR-26 | Audit schema expansion plan (`audit/`) to be drafted |
 | WS-207 Interaction CLI Extensions | PLANNED | FR-24, FR-28 | `/impact`, `/trace`, `/df.*` CLI specs (planned) |
 
@@ -200,7 +233,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
 | FR-02 Status documentation (maturity summaries) | PLANNED | TC-FR02-002 | TODO | Expand docs with per-change + maturity cross-links. |
-| FR-15 Requirements Analyst agent | PLANNED | TC-FR15-001 | TODO | RA agent updates traceability and flags ripple risks. |
+| FR-15 Requirements Analyst agent | PLANNED | TC-FR15-001 | TODO | RA agent consumes discovery manifests/System Model Graph to update traceability and flag ripple risks. |
 | FR-26 Bidirectional change traceability | PLANNED | TC-FR26-001 | TODO | Ensure FR/WS/TC artifacts link to `CH-###` records with lifecycle states. |
 | FR-37 Requirement elaboration workflow | PLANNED | TC-FR37-001 | TODO | Approved elaborations gate workstream creation. |
 
@@ -208,7 +241,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-16 Impact Assessor agent | PLANNED | TC-FR16-001 | TODO | Quantifies downstream effects and maintains `IMPACT_REPORT.md`. |
+| FR-16 Impact Assessor agent | PLANNED | TC-FR16-001 | TODO | Quantifies downstream effects using discovery readiness metrics and maintains `IMPACT_REPORT.md`. |
 
 ### WS-203 Implementation Management
 
@@ -237,7 +270,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-06 Structured handoff logging (extended schema) | PLANNED | TC-FR06-002 | TODO | Append change/maturity metadata to audit logs. |
+| FR-06 Structured handoff logging (extended schema) | PLANNED | TC-FR06-002 | TODO | Append change, maturity, and discovery metadata to audit logs. |
 | FR-20 RACI metadata propagation | PLANNED | TC-FR20-001 | TODO | Embed `raci_role` in audit logs and artifacts. |
 | FR-26 Bidirectional change traceability | PLANNED | TC-FR26-001 | TODO | Ensure `CH-###` entries and FR/WS/TC artifacts cross-link with lifecycle state tracking. |
 
@@ -254,12 +287,12 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 
 | Workstream | Status | Related Requirements | Evidence |
 | --- | --- | --- | --- |
-| WS-301 QA Auditor & Traceability Gaps | PLANNED | FR-17 | Traceability gap workflow scoped in `docs/REQUIREMENTS_1_2.md` |
+| WS-301 QA Auditor & Traceability Gaps | PLANNED | FR-17 | Traceability gap workflow scoped in `docs/REQUIREMENTS_1_3.md` |
 | WS-302 Test Synthesizer & Quality Depth | PLANNED | FR-05, FR-18, FR-19 | QA/Test agent briefs (`tests/`) to be generated |
 | WS-303 QA Policy Engine Enhancements | PLANNED | FR-11 | Policy engine design update pending |
 | WS-304 Maturity Metadata & Guides | PLANNED | FR-32, FR-33 | `PROJECT_METADATA.md`, `PROCESS_MATURITY_GUIDE.md` planned |
 | WS-305 Maturity-Aware Agent Prompts | PLANNED | FR-35 | Prompt adaptation backlog item |
-| WS-306 Maturity Metrics & Snapshots | PLANNED | FR-13, FR-30, FR-36 | Metrics dashboard plan upcoming |
+| WS-306 Maturity Metrics & Snapshots | PLANNED | FR-13, FR-30, FR-36, FR-41 | Metrics dashboard plan upcoming |
 
 ### WS-301 QA Auditor & Traceability Gaps
 
@@ -301,6 +334,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | FR-13 Status snapshots (metrics expansion) | PLANNED | TC-FR13-002 | TODO | Surface change density, lag, drift, stability ratio. |
 | FR-30 Change velocity dashboard | PLANNED | TC-FR30-001 | TODO | Weekly/milestone metrics accessible via CLI/dashboards. |
 | FR-36 Maturity metrics tracking | PLANNED | TC-FR36-001 | TODO | Track time-in-level, upgrade count, active criteria. |
+| FR-41 Understanding coverage & readiness metrics | PLANNED | TC-FR41-001 | TODO | Report % coverage of mapped components and readiness heatmaps sourced from discovery artifacts. |
 
 ---
 
@@ -313,7 +347,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | FR-03 Designer agent deliverables | PARTIAL | WS-101 | TC-FR03-001, `design/DESIGN_SPEC.md` |
 | FR-04 Implementer branch + artifact discipline | PARTIAL | WS-101 | TC-FR04-001, `docs/IMPLEMENTATION_PLAN.md` |
 | FR-05 Tester-owned QA artifacts | PARTIAL | WS-104, WS-302 | TC-FR05-001, TC-FR05-002 (TODO), `tests/TEST_PLAN.md` |
-| FR-06 Handoff logging | PARTIAL | WS-02, WS-04, WS-07, WS-101, WS-206 | TC-FR06-001, TC-FR06-002 (TODO), `artifacts/phase0/demo/` |
+| FR-06 Handoff logging | PARTIAL | WS-02, WS-04, WS-07, WS-101, WS-206 | TC-FR06-001, TC-FR06-002 (TODO), `artifacts/phase0/demo/` with discovery metadata pending |
 | FR-07 Concern lifecycle | PARTIAL | WS-03, WS-102 | TC-FR07-001, `pipelines/concern_tools.py` |
 | FR-08 Discord bridge commands | PARTIAL | WS-04, WS-105 | TC-FR08-001, TC-FR08-002 (TODO), `artifacts/phase1/commands/` |
 | FR-09 Command audit trail | PARTIAL | WS-02, WS-04, WS-05, WS-105 | TC-FR09-001, `audit/commands.jsonl` |
@@ -345,3 +379,7 @@ _Last updated: 2025-11-01 — maintained by Codex agent._
 | FR-35 Maturity-aware agent prompts | PLANNED | WS-305 | TC-FR35-001 (TODO) |
 | FR-36 Maturity metrics tracking | PLANNED | WS-306 | TC-FR36-001 (TODO) |
 | FR-37 Requirement elaboration workflow | PLANNED | WS-201 | TC-FR37-001 (TODO) |
+| FR-38 Discovery pipeline artifacts | PLANNED | WS-09 | TC-FR38-001 (TODO), discovery CLI spec (`docs/archive/CHANGE_REQUEST_003_discovery.md`), elaboration draft (`docs/requirements/elaborations/FR-38_elaboration.md`) |
+| FR-39 System Model Graph (YAML projections) | PLANNED | WS-09 | TC-FR39-001 (TODO), schema draft in `analysis/` plan, elaboration draft (`docs/requirements/elaborations/FR-39_elaboration.md`) |
+| FR-40 Change seeds with manifests/tests | PLANNED | WS-110 | TC-FR40-001 (TODO), `codexa seed` template proposal, elaboration draft (`docs/requirements/elaborations/FR-40_elaboration.md`) |
+| FR-41 Understanding coverage & readiness metrics | PLANNED | WS-09, WS-306 | TC-FR41-001 (TODO), metrics surfaced via CLI status, elaboration draft (`docs/requirements/elaborations/FR-41_elaboration.md`) |

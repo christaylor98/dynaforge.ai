@@ -11,7 +11,7 @@ status: Draft
 # 🧩 Requirement Elaboration — FR-26
 
 ## 1. Summary
-Enforce bidirectional traceability between functional requirements, workstreams, test cases, and change objects, capturing lifecycle states from Draft through Merged for every `CH-###`.
+Enforce bidirectional traceability between functional requirements, workstreams, test cases, discovery artifacts, and change objects, capturing lifecycle states from Draft through Merged for every `CH-###`.
 
 ## 2. Context & Rationale
 Traceability is the connective tissue of Codexa. CR002 mandates that all artifacts (requirements, workstreams, tests, approvals) link to change objects and vice versa. By maintaining consistent metadata, reports, and audit logs, FR-26 provides the Governance Officer and QA agents with confidence that no work proceeds without recorded lineage.
@@ -24,6 +24,8 @@ Traceability is the connective tissue of Codexa. CR002 mandates that all artifac
 | `test_catalog` | Markdown (`tests/TEST_PLAN.md`) | Test entries with FR IDs | Test linkage. |
 | `workspace_status` | Markdown (`changes/CH-###/status.md`) | lifecycle state | Change state. |
 | `elaboration_headers` | YAML (elaboration files) | `fr_id: FR-26` | Additional metadata. |
+| `discovery_manifests` | YAML/MD (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) | Manifest entries | Trace discovery understanding to FRs/WSs/TCs. |
+| `system_model_graph` | YAML (`analysis/system_model/*.yaml`) | Node relationships | Provides canonical mapping for automated linkage.
 
 ### Edge & Error Inputs
 - Missing linkage detected via `/df.clarify` → traceability update flagged, FR-07 concern raised.
@@ -33,7 +35,7 @@ Traceability is the connective tissue of Codexa. CR002 mandates that all artifac
 ## 4. Process Flow
 ```mermaid
 flowchart TD
-  A[Aggregate mappings from requirements/tests/workspaces] --> B[Validate completeness & uniqueness]
+  A[Aggregate mappings from requirements/tests/workspaces/discovery graph] --> B[Validate completeness & uniqueness]
   B --> C[Reconcile lifecycle states across artifacts]
   C --> D[Update TRACEABILITY.md tables + CHANGELOG back-links]
   D --> E[Publish traceability diff + notify QA/Governance]
@@ -43,14 +45,14 @@ flowchart TD
 ## 5. Outputs
 | Format | Example | Consumer |
 |--------|---------|----------|
-| Markdown | `TRACEABILITY.md` updated tables with `ch_id` column | PM, QA |
+| Markdown | `TRACEABILITY.md` updated tables with `ch_id` column and discovery manifest hashes | PM, QA |
 | Markdown | `CHANGELOG.md` entries cross-linking FR/WS/TC | Stakeholders |
 | JSON | `artifacts/phase2/traceability/index.json` | Automation |
 | JSONL | `audit/traceability.jsonl` | Audit trail |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/traceability_matrix_view.md`
-- `artifacts/phase2/screenshots/change_to_fr_mapping.md`
+- `artifacts/mockups/FR-26/traceability_matrix_view.md`
+- `artifacts/mockups/FR-26/change_to_fr_mapping.md`
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` tracked.
@@ -58,13 +60,13 @@ flowchart TD
 - `artifacts`: `TRACEABILITY.md`, `CHANGELOG.md`, `changes/CH-###/status.md`.
 
 ## 7. Acceptance Criteria
-* [ ] Each FR row lists associated `CH-###`, workstreams, tests, lifecycle state, and last-updated timestamp.
-* [ ] Each change entry references impacted FR/WS/TC, current lifecycle state, and approval status.
+* [ ] Each FR row lists associated `CH-###`, workstreams, tests, discovery manifests/hashes, lifecycle state, and last-updated timestamp.
+* [ ] Each change entry references impacted FR/WS/TC, discovery manifest snapshot, current lifecycle state, and approval status.
 * [ ] Traceability jobs fail if any artifact lacks reciprocal link; failure raises FR-07 concern.
-* [ ] `/df.analyze` passes only when traceability dataset is consistent and no duplicates remain.
+* [ ] `/df.analyze` passes only when traceability dataset is consistent, no duplicates remain, and discovery manifest history aligns with linked FRs.
 
 ## 8. Dependencies
-- FR-15 RA outputs, FR-16 impact, FR-17 QA audit, FR-25 workspace management.
+- FR-15 RA outputs, FR-16 impact, FR-17 QA audit, FR-25 workspace management, FR-38 discovery pipeline, FR-39 System Model Graph, FR-41 understanding metrics.
 - FR-28 `/df.*` analysis commands.
 - WS-206 Change Records & Audit Extensions.
 

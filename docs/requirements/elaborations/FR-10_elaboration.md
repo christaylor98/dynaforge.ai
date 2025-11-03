@@ -58,9 +58,9 @@ flowchart TD
 | Text | CLI/Discord confirmation message with correlation ID and next required gate | Human reviewer
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/approval_flow_cli.md` — CLI approval sequence showing staged gating.
-- `artifacts/phase1/screenshots/approval_badge.md` — Doc badge showing pending/approved with gate list.
-- `artifacts/phase1/screenshots/approval_timeline.md` — Visualization of gate order per maturity.
+- `artifacts/mockups/FR-10/approval_flow_cli.md` — CLI approval sequence showing staged gating.
+- `artifacts/mockups/FR-10/approval_badge.md` — Doc badge showing pending/approved with gate list.
+- `artifacts/mockups/FR-10/approval_timeline.md` — Visualization of gate order per maturity.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, subsequent `CH-###` entries representing approvals.

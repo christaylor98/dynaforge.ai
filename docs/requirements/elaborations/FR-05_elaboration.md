@@ -50,8 +50,8 @@ flowchart TD
 | JSONL | `audit/qa_docs.jsonl` entry describing update hash | Audit reviewers |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/test_plan_depth_table.md` — Example depth chart.
-- `artifacts/phase1/screenshots/tqa_gap_callout.md` — Highlight of unmet metrics.
+- `artifacts/mockups/FR-05/test_plan_depth_table.md` — Example depth chart.
+- `artifacts/mockups/FR-05/tqa_gap_callout.md` — Highlight of unmet metrics.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus active `CH-###` entries updated in QA sections.

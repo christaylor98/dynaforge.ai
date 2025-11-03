@@ -53,8 +53,8 @@ flowchart TD
 | Markdown | `docs/IMPLEMENTATION_PLAN.md` progress updates | PM, QA |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/micro_task_flow.md` — Visual of planner/executor pipeline.
-- `artifacts/phase1/screenshots/run_summary_cli.md` — CLI excerpt from run summary.
+- `artifacts/mockups/FR-29/micro_task_flow.md` — Visual of planner/executor pipeline.
+- `artifacts/mockups/FR-29/run_summary_cli.md` — CLI excerpt from run summary.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` executed.

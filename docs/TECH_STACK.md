@@ -14,6 +14,7 @@
 - **Analytics:** DuckDB + Parquet
 - **Messaging:** NATS
 - **Service Orchestration:** systemd timers + rsync-based ingestion
+- **Static Analysis / Discovery Toolkit:** tree-sitter parsers, tokei, radon, pygount
 
 ## Infrastructure
 - **OS:** Debian 12
@@ -26,6 +27,8 @@
 - **Model:** GPT-5
 - **IDE Assistants:** Cursor, Windsurf, Copilot
 - **Testing Agents:** Spekkit-like pipelines
+- **Discovery CLI:** `codexa discover`, `codexa summarize`, `codexa suggest-change-zones`, `codexa seed`
+- **Knowledge Store:** Repo-tracked YAML projections (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) with optional local SQLite cache
 
 ## Governance
 - **Version Control:** Git (branch-per-experiment worktrees)

@@ -50,8 +50,8 @@ flowchart TD
 | JSONL | `audit/test_synthesizer.jsonl` | Audit trail |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/test_synth_diff.md` — Example generated test diff.
-- `artifacts/phase3/screenshots/test_template_preview.md` — Template snippet for review.
+- `artifacts/mockups/FR-18/test_synth_diff.md` — Example generated test diff.
+- `artifacts/mockups/FR-18/test_template_preview.md` — Template snippet for review.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus active `CH-###` requiring tests.

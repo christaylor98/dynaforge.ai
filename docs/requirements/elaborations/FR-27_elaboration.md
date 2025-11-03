@@ -51,8 +51,8 @@ flowchart TD
 | Markdown | `changes/CH-###/status.md` retention section | Stakeholders |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/retention_dashboard.md` — Storage overview.
-- `artifacts/phase1/screenshots/retention_status_cli.md` — CLI summary.
+- `artifacts/mockups/FR-27/retention_dashboard.md` — Storage overview.
+- `artifacts/mockups/FR-27/retention_status_cli.md` — CLI summary.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` with runs.

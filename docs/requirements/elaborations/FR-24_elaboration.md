@@ -48,8 +48,8 @@ flowchart TD
 | Cache | `artifacts/interaction/cache.json` | Performance optimization |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/impact_command.md` — CLI output.
-- `artifacts/phase2/screenshots/trace_command_discord.md` — Discord embed.
+- `artifacts/mockups/FR-24/impact_command.md` — CLI output.
+- `artifacts/mockups/FR-24/trace_command_discord.md` — Discord embed.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus the `CH-###` referenced during commands.

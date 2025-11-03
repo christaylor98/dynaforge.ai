@@ -54,8 +54,8 @@ flowchart TD
 | Log | `artifacts/phase1/orchestration/run.log` (with run_id, seed) | Observability + FR-27 retention audits |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/pm_status_cli.md` — CLI snapshot showing `/status ch-017` with change lifecycle.
-- `artifacts/phase1/screenshots/pm_approval_wait.md` — Visual showing paused loop awaiting Governance Officer sign-off.
+- `artifacts/mockups/FR-01/pm_status_cli.md` — CLI snapshot showing `/status ch-017` with change lifecycle.
+- `artifacts/mockups/FR-01/pm_approval_wait.md` — Visual showing paused loop awaiting Governance Officer sign-off.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002` (adopts change-centric governance), future `CH-###` entries per feature.

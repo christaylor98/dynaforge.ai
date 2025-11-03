@@ -50,8 +50,8 @@ flowchart TD
 | JSONL | `audit/qa_auditor.jsonl` events | Audit log |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/qa_audit_unmapped.md` — Example gap table.
-- `artifacts/phase3/screenshots/qa_audit_dashboard.md` — Visualization for presentations.
+- `artifacts/mockups/FR-17/qa_audit_unmapped.md` — Example gap table.
+- `artifacts/mockups/FR-17/qa_audit_dashboard.md` — Visualization for presentations.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus specific `CH-###` referenced in gap reports.

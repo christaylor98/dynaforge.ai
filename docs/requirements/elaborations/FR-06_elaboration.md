@@ -51,8 +51,8 @@ flowchart TD
 | JSONL | `audit/errors.log` for failed events with remediation guidance | PM / Governance Officer
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/handoff_audit_table.md` — Table used during demos.
-- `artifacts/phase1/screenshots/handoff_retention.md` — Example entry showing retention flag.
+- `artifacts/mockups/FR-06/handoff_audit_table.md` — Table used during demos.
+- `artifacts/mockups/FR-06/handoff_retention.md` — Example entry showing retention flag.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus individual `CH-###` tied to logged events.

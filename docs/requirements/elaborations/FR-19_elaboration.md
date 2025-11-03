@@ -49,8 +49,8 @@ flowchart TD
 | JSONL | `audit/tqa.jsonl` metric events | Audit |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/tqa_dashboard.md` — Depth visualization.
-- `artifacts/phase3/screenshots/tqa_gap_card.md` — Example gap entry.
+- `artifacts/mockups/FR-19/tqa_dashboard.md` — Depth visualization.
+- `artifacts/mockups/FR-19/tqa_gap_card.md` — Example gap entry.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus `CH-###` being evaluated.

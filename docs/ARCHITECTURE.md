@@ -21,6 +21,11 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 └───────────────▲──────────────┘     └──────────▲───────────┘
                 │                               │
 ┌───────────────┴────────────────────────────────┴───────────┐
+│            Discovery & Understanding Layer                  │
+│  (Discovery CLI, System Model Graph YAML, change seeds)     │
+└───────────────▲────────────────────────────────┬───────────┘
+                │                                │
+┌───────────────┴────────────────────────────────┴───────────┐
 │                 Audit & Artifact Persistence                │
 │  (Markdown docs, JSONL handoffs, git branches, reports)     │
 └────────────────────────────────────────────────────────────┘
@@ -33,6 +38,9 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 - **Designer**: Produces architecture and module specifications, handles `/clarify Designer ...` requests, and updates design artifacts.
 - **Implementer(s)**: Generate source code per approved designs and emit handoff metadata for every change.
 - **Tester**: Owns QA plans, executes tests, writes results, and raises concerns when coverage or reproducibility fall below thresholds.
+- **Discovery Analyzer**: Executes `codexa discover`/`summarize`/`suggest-change-zones`, produces structural, behavioral, and intent manifests, and refreshes the System Model Graph projections.
+- **Seed Planner**: Generates `codexa seed <zone> <mission>` packages containing focused context, manifests, and baseline tests that bootstrap change journeys.
+- **Analytics Lead**: Maintains understanding coverage and change readiness metrics surfaced through status dashboards and CLI.
 - **Optional Specialists**: Future roles (Optimizer, Observer, etc.) integrate via the same handoff and audit patterns.
 
 ### 2. Audit & Handoff Bus
@@ -44,6 +52,7 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 - Persistent Markdown documents tracked in Git: `REQUIREMENTS.md`, `docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`, design specs, and test reports.
 - Test outputs (`QA_REPORT.md`, `tests/TEST_RESULTS_DETAIL.md`) and generated metrics stored under `artifacts/` when large.
 - Human approvals appended inline (e.g., `✅ Approved by Human 2025-10-29`) to maintain full audit history.
+- Discovery artifacts (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) and System Model Graph YAML projections are tracked alongside change records for replayability.
 
 ### 4. Policy & QA Engine
 - Reads `QA_POLICY.yaml` / `.project_policies.yaml` to determine merge and promotion thresholds (coverage %, drift %, gating rules).
@@ -65,6 +74,7 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 - Periodically publishes `status.json` snapshots for `/status` command responses.
 - Generates daily dashboards or Markdown digests summarizing open concerns, QA metrics, and phase progress.
 - Tracks SLA compliance (e.g., alert acknowledgment times).
+- Surfaces understanding coverage %, discovery freshness timestamps, and change readiness heatmaps sourced from the System Model Graph.
 
 ### 8. Human Interaction Flow
 1. Human invokes a command through the Python CLI or messaging client; future adapters can reuse the same API surface.
@@ -73,14 +83,21 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 4. Response is written back to the audit store and surfaced through the interface adapter (CLI stdout, messaging acknowledgment, or other registered adapters).
 5. Any resulting changes (plan updates, approvals, pauses) propagate through documentation, Git, and observability layers, ensuring closed-loop governance.
 
+### 9. Discovery & Understanding Layer
+- **Discovery CLI:** `codexa discover --depth {quick|deep}`, `codexa summarize`, and `codexa suggest-change-zones` scan repositories, generate structural metrics, and identify change zones.
+- **System Model Graph:** Versioned YAML projections represent functions, modules, intents, tests, and risks. Agents may hydrate the graph into a local cache, but the repo-tracked projections remain canonical.
+- **Change Seeds:** `codexa seed <zone> <mission>` packages combine focused code slices, manifests, and baseline tests to launch new change journeys with traceability hooks back to discovery artifacts.
+- **Understanding Metrics:** Coverage and readiness scores are calculated from discovery outputs and stored alongside manifests so `/status` and dashboards communicate depth of comprehension before change execution.
+
 ## Process Flow
-1. **Initiation**: PM ingests a goal, updates `REQUIREMENTS.md`, and issues tasks to Designer and other agents (tracked in `docs/PROJECT_DETAIL.md`).
+0. **Discovery**: Discovery Analyzer runs quick or deep discovery to generate manifests, refresh the System Model Graph, update understanding metrics, and verify change zones before workstream decomposition.
+1. **Initiation**: PM ingests a goal, updates `REQUIREMENTS.md`, and issues tasks to Designer and other agents (tracked in `docs/PROJECT_DETAIL.md`), referencing discovery outputs.
 2. **Design**: Designer drafts `design/ARCHITECTURE.md` and `design/DESIGN_SPEC.md`; human must approve high-impact changes.
-3. **Implementation**: Implementer branches from `phaseX/` namespace, commits code, and logs handoff records that reference updated files.
+3. **Implementation**: Implementer branches from `phaseX/` namespace, commits code, and logs handoff records that reference updated files and discovery manifests.
 4. **Testing**: Tester executes planned suites, records results, and updates QA metrics. Failures trigger `log_concern()` entries and surface via CLI or messaging alerts.
-5. **Governance Review**: Human reviews project plan, high-impact variations, and test results through the interaction adapters (CLI outputs or messaging summaries); approvals recorded in docs.
+5. **Governance Review**: Human reviews project plan, high-impact variations, understanding coverage, and test results through the interaction adapters (CLI outputs or messaging summaries); approvals recorded in docs.
 6. **Promotion**: PM agent validates policy gates, merges into `develop`, and requests human `/promote` for tagging releases.
-7. **Feedback Loop**: Concerns and QA metrics feed into policy adjustments and roadmap updates captured in Markdown and audit logs.
+7. **Feedback Loop**: Concerns, QA metrics, and updated discovery manifests feed into policy adjustments and roadmap updates captured in Markdown and audit logs.
 
 ## Data Contracts
 - **Handoff Record**: `{ from, to, purpose, inputs[], outputs[], impact, summary, status, timestamp }`

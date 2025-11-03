@@ -51,8 +51,8 @@ flowchart TD
 | JSONL | `audit/df_commands.jsonl` | Audit trail |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/df_checklist_cli.md` — CLI output.
-- `artifacts/phase2/screenshots/df_analyze_dashboard.md` — Visualization of metrics.
+- `artifacts/mockups/FR-28/df_checklist_cli.md` — CLI output.
+- `artifacts/mockups/FR-28/df_analyze_dashboard.md` — Visualization of metrics.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus whichever `CH-###` the diagnostics cover.

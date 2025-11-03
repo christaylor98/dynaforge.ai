@@ -54,8 +54,8 @@ flowchart TD
 | Markdown | `TRACEABILITY.md` “Unmapped Elements” entries annotated with concern IDs | QA Auditor |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/concern_tracker.md` — Visualization of open vs resolved concerns.
-- `artifacts/phase1/screenshots/status_blockers_callout.md` — Example `/status` output listing blockers.
+- `artifacts/mockups/FR-07/concern_tracker.md` — Visualization of open vs resolved concerns.
+- `artifacts/mockups/FR-07/status_blockers_callout.md` — Example `/status` output listing blockers.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus individual `CH-###` where concerns originate.

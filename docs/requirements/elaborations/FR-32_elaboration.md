@@ -48,8 +48,8 @@ flowchart TD
 | JSONL | `audit/maturity_metadata.jsonl` | Audit trail |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase3/screenshots/maturity_metadata_view.md`
-- `artifacts/phase3/screenshots/maturity_cli_status.md`
+- `artifacts/mockups/FR-32/maturity_metadata_view.md`
+- `artifacts/mockups/FR-32/maturity_cli_status.md`
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus maturity change `CH-###`.

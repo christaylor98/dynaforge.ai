@@ -58,9 +58,9 @@ flowchart TD
 | Markdown | `changes/CH-###/status.md` appended with QA verdict summary | Governance Officer
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/qa_policy_cli.md` — CLI view of pass/block verdict.
-- `artifacts/phase1/screenshots/qa_gap_report.md` — Table of unmet criteria for demo.
-- `artifacts/phase1/screenshots/qa_retention_notice.md` — Example where QA blocks due to retained run.
+- `artifacts/mockups/FR-11/qa_policy_cli.md` — CLI view of pass/block verdict.
+- `artifacts/mockups/FR-11/qa_gap_report.md` — Table of unmet criteria for demo.
+- `artifacts/mockups/FR-11/qa_retention_notice.md` — Example where QA blocks due to retained run.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, individual `CH-###` governed by QA verdict.

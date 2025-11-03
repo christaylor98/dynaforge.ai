@@ -52,8 +52,8 @@ flowchart TD
 | Logs | `artifacts/phase2/router/run-*.log` | Observability |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/change_router_dashboard.md` — Queue visualization.
-- `artifacts/phase2/screenshots/router_cli_status.md` — CLI summary.
+- `artifacts/mockups/FR-23/change_router_dashboard.md` — Queue visualization.
+- `artifacts/mockups/FR-23/router_cli_status.md` — CLI summary.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus each `CH-###` triggered.

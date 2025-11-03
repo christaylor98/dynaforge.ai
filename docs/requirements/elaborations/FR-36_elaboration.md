@@ -11,10 +11,10 @@ status: Draft
 # 🧩 Requirement Elaboration — FR-36
 
 ## 1. Summary
-Track maturity metrics—time-in-level, upgrade count, active criteria—and surface them in `PROJECT_OVERVIEW.md` and CLI `/status`, providing transparency into governance progress.
+Track maturity metrics—time-in-level, upgrade count, active criteria—and surface them in `PROJECT_OVERVIEW.md` and CLI `/status`, alongside discovery coverage/readiness context, providing transparency into governance progress.
 
 ## 2. Context & Rationale
-Alongside change velocity (FR-30), stakeholders need to know how the project moves through maturity levels. FR-36 aggregates metadata, review outcomes, and criteria completion to produce dashboards and status snippets that inform planning and compliance.
+Alongside change velocity (FR-30) and discovery metrics (FR-41), stakeholders need to know how the project moves through maturity levels. FR-36 aggregates metadata, review outcomes, criteria completion, and understanding coverage snapshots to produce dashboards and status snippets that inform planning and compliance.
 
 ## 3. Inputs
 | Name | Type / Format | Example | Notes |
@@ -23,6 +23,7 @@ Alongside change velocity (FR-30), stakeholders need to know how the project mov
 | `maturity_reviews` | JSON (`artifacts/metrics/maturity_reviews.json`) | review history | For counts. |
 | `criteria_status` | YAML (`configs/maturity_criteria.yaml`) | satisfies criteria | Evaluated per level. |
 | `change_history` | Markdown (`CHANGELOG.md`) | maturity change entries | Tracks transitions. |
+| `understanding_metrics` | YAML (`analysis/metrics/understanding_coverage.yaml`) | `coverage: 0.72` | Adds comprehension signal to maturity context. |
 | `status_docs` | Markdown (`docs/PROJECT_OVERVIEW.md`) | Output target | Updated with metrics. |
 
 ### Edge & Error Inputs
@@ -34,22 +35,23 @@ Alongside change velocity (FR-30), stakeholders need to know how the project mov
 ```mermaid
 flowchart TD
   A[Collect metadata + review history] --> B[Compute metrics (time-in-level, upgrades, criteria completion)]
-  B --> C[Update overview docs + CLI cache]
-  C --> D[Publish metrics JSON for dashboards]
-  D --> E[Notify stakeholders via /status maturity]
+  B --> C[Blend discovery coverage + velocity context]
+  C --> D[Update overview docs + CLI cache]
+  D --> E[Publish metrics JSON for dashboards]
+  E --> F[Notify stakeholders via /status maturity]
 ```
 
 ## 5. Outputs
 | Format | Example | Consumer |
 |--------|---------|----------|
-| JSON | `artifacts/metrics/maturity_overview.json` | Dashboards |
+| JSON | `artifacts/metrics/maturity_overview.json` (includes discovery coverage + readiness snapshot) | Dashboards |
 | Markdown | `docs/PROJECT_OVERVIEW.md` maturity section | Stakeholders |
-| CLI | `/status maturity` output | Humans |
+| CLI | `/status maturity` output (with latest discovery coverage + readiness heatmap) | Humans |
 | JSONL | `audit/maturity_metrics.jsonl` | Audit |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/metrics/screenshots/maturity_cli.md`
-- `artifacts/metrics/screenshots/maturity_overview_card.md`
+- `artifacts/mockups/FR-36/maturity_cli.md`
+- `artifacts/mockups/FR-36/maturity_overview_card.md`
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus relevant maturity changes.
@@ -57,13 +59,13 @@ flowchart TD
 - `artifacts`: `PROJECT_METADATA.md`, `docs/PROJECT_OVERVIEW.md`, `artifacts/metrics/maturity_overview.json`.
 
 ## 7. Acceptance Criteria
-* [ ] Metrics include `current_level`, `days_in_level`, `upgrades_this_year`, `criteria_met`, `criteria_pending`.
-* [ ] `/status maturity` and status docs refresh automatically after each maturity review or metadata update.
-* [ ] Metrics integrate with change velocity (FR-30) to provide combined view when requested.
+* [ ] Metrics include `current_level`, `days_in_level`, `upgrades_this_year`, `criteria_met`, `criteria_pending`, and latest discovery coverage/readiness for the active milestone scope.
+* [ ] `/status maturity` and status docs refresh automatically after each maturity review, metadata update, or discovery metrics refresh.
+* [ ] Metrics integrate with change velocity (FR-30) and understanding coverage (FR-41) to provide combined view when requested.
 * [ ] Fail-safe: if data incomplete, command returns actionable warning and logs concern.
 
 ## 8. Dependencies
-- FR-32 metadata, FR-33 guide, FR-34 reviews, FR-30 velocity.
+- FR-32 metadata, FR-33 guide, FR-34 reviews, FR-30 velocity, FR-41 understanding metrics.
 - WS-306 Maturity Metrics & Snapshots.
 
 ## 9. Risks & Assumptions

@@ -50,8 +50,8 @@ flowchart TD
 | JSON | `artifacts/phase2/raci/validation.json` | Automation hooks |
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase2/screenshots/raci_dashboard.md` — Role coverage overview.
-- `artifacts/phase2/screenshots/approval_raci_callout.md` — Example of enriched approval entry.
+- `artifacts/mockups/FR-20/raci_dashboard.md` — Role coverage overview.
+- `artifacts/mockups/FR-20/approval_raci_callout.md` — Example of enriched approval entry.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus `CH-###` containing role changes or approvals.

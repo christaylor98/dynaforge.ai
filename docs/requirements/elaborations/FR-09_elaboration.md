@@ -53,8 +53,8 @@ flowchart TD
 | Markdown | `changes/CH-###/status.md` updated with command history | Governance Officer
 
 ## 6. Mockups / UI Views (if applicable)
-- `artifacts/phase1/screenshots/command_audit_dashboard.md` — Quick-look view of command volume.
-- `artifacts/phase1/screenshots/command_failure_flow.md` — Illustration of fallback handling with correlation ID.
+- `artifacts/mockups/FR-09/command_audit_dashboard.md` — Quick-look view of command volume.
+- `artifacts/mockups/FR-09/command_failure_flow.md` — Illustration of fallback handling with correlation ID.
 
 ## 6.1 Change & Traceability Links
 - `change_refs`: `CH-002`, plus individual `CH-###` for command logs.
