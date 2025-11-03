@@ -48,6 +48,7 @@ Provides readiness snapshot:
 - `discovery_artifacts.artifact_hashes`: hashes for supporting artifacts (excluding the manifest itself).
 - `language_inventory`: detected languages with root paths.
 - `toolchain`: language runtime versions and planned analysis tools.
+- `analysis.repository_insights`: per-file structural summary (language, functions, classes, complexity).
 
 ### 2.4 `architecture`
 Layer summary (`name`, `responsibilities`, `components`). Serves as the bridge into `components`.

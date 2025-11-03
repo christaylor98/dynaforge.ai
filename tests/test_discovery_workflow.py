@@ -24,6 +24,11 @@ class DiscoveryWorkflowTest(unittest.TestCase):
         return db.ScanResult(
             language_counts=Counter({"python": 3, "json": 1}),
             zone_stats=zone_stats,
+            file_index=[
+                {"path": "analysis/module.py", "zone": "analysis", "language": "python", "bytes": 60},
+                {"path": "analysis/util.py", "zone": "analysis", "language": "python", "bytes": 60},
+                {"path": "audit/log.json", "zone": "audit", "language": "json", "bytes": 30},
+            ],
             total_files=4,
             total_bytes=150,
         )
@@ -71,6 +76,7 @@ class DiscoveryWorkflowTest(unittest.TestCase):
             entry = history_entries[0]
             self.assertEqual(entry["blast_radius"]["level"], "system")
             self.assertEqual(result["blast_radius"]["level"], "system")
+            self.assertEqual(len(result["insights"]), 3)
 
     @mock.patch("codexa.cli.discovery_bootstrap.run_discovery")
     def test_cli_text_output(self, mock_run_discovery: mock.MagicMock) -> None:
@@ -84,6 +90,7 @@ class DiscoveryWorkflowTest(unittest.TestCase):
                 "recommended_agents": ["discovery_analyzer"],
             },
             "coverage": {"coverage_percent": 80.0},
+            "insights": [],
         }
 
         buf = io.StringIO()
@@ -108,6 +115,7 @@ class DiscoveryWorkflowTest(unittest.TestCase):
                 "recommended_agents": ["discovery_analyzer", "requirements_intelligence"],
             },
             "coverage": {"coverage_percent": 70.5},
+            "insights": [],
         }
 
         mock_run_discovery.return_value = payload
@@ -128,6 +136,7 @@ class DiscoveryWorkflowTest(unittest.TestCase):
             "paths": {"manifest": "analysis/system_manifest.yaml", "change_zones": "analysis/change_zones.md", "intent_map": "analysis/intent_map.md", "metrics": "analysis/metrics.yaml"},
             "blast_radius": {"level": "none", "changed_zones": [], "removed_zones": [], "notes": [], "recommended_agents": []},
             "coverage": {"coverage_percent": 75.0},
+            "insights": [],
         }
 
         buf = io.StringIO()

@@ -221,3 +221,52 @@
     notes:
     - 'Artifact digests changed for: change_zones, intent_map, system_manifest.'
     - 'Zones impacted: analysis, audit, scripts.'
+- record:
+    generated_at: '2025-11-03T22:10:39+00:00'
+    artifacts:
+      system_manifest: 70592c86bd760c2ec5a9e71d4b081706840c7b8a7a5b068e17ddee556e09dd4e
+      change_zones: aa8bd472011a174da000fe2cab6b3899203598d136b55a2ef935ce0019b4f3e5
+      intent_map: 3bf67638bd8c8b0c139e10507e8114f572bd4919a45c07cd719cce5626ecaf21
+    zones:
+      docs: 8bb1680137475de36e0950f497700562bdf08b3f223e6ebeb187a712e6958de3
+      tests: 0013fccdc9cfcaad5fb3e85677b5d22f4a7aae16be8bc5d647c106d641efdc48
+      pipelines: e4da4e19035d8e8fc0625681f107e87751700953ceadd85172587f54c9022f2c
+      audit: 3472bcc5c876b38707af400e7342df1a9c467f0403135c4efee51d1fc56b25dd
+      codexa: 2a3236e36fb71bde85e12a33dfe91623801066ae1dac46bfa93e2ef18aa6d627
+      backlog: b32693c7fb828e894afab283700cbedce39741db53746acada2e7884c4b80745
+      agents: bfd0f95b504f74cafc166eb39f5096628aa6db13425ceca9498fba446538b68e
+      changes: ea0701a59847c8c3cf92ad0d2b1630dab11e265121d50b14988eae12b172ee48
+      root: 366cbe2f0b4d212dd72c39649ca84179913fb3a60b2722095ea7a807fae33cb0
+      analysis: e389d93a90c3d5f0257d28dac2f26961e7437aa21ea02b846646fd754d9fda99
+      .codex: 4d5f76dec9463422879dca65d7dd7cdc0b0958e583e3e4ec2892f6f9179583d1
+      design: 1deb35590e5b9590ef0633348b5853bfc0429f15166630134e7ad6790eb66f17
+      scripts: 57d29805e6d52a9df8bf17e30b05ec83d80cf22b287d447f34183f2f76864793
+      .vscode: 58c2c7bce431f1e070f1c7c21fa4218636606125a8a58e2434c37a74058040cc
+    coverage_percent: 75.9
+    followups_open: []
+  blast_radius:
+    level: subsystem
+    changed_artifacts:
+    - change_zones
+    - intent_map
+    - system_manifest
+    changed_zones:
+    - agents
+    - analysis
+    - audit
+    - backlog
+    - codexa
+    - docs
+    - scripts
+    - tests
+    removed_zones: []
+    coverage_delta: -0.8
+    followups_open: []
+    recommended_agents:
+    - discovery_analyzer
+    - requirements_intelligence
+    - system_model_builder
+    notes:
+    - 'Artifact digests changed for: change_zones, intent_map, system_manifest.'
+    - 'Zones impacted: agents, analysis, audit, backlog, codexa, docs, scripts, tests.'
+    - Coverage decreased by 0.80%.

@@ -66,7 +66,7 @@ class BlastRadiusPlannerTest(unittest.TestCase):
         result = planner.plan(current, previous)
 
         self.assertEqual(result.level, "local")
-        self.assertEqual(result.recommended_agents, ["discovery_analyzer"])
+        self.assertEqual(result.recommended_agents, BlastRadiusPlanner.AGENT_MATRIX["local"])
         self.assertIn("analysis", result.changed_zones)
         self.assertIn("coverage increased", " ".join(result.notes).lower())
 

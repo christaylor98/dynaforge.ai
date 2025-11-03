@@ -10,7 +10,7 @@ Build the Codexa.ai framework with auditable agent workflows and human governanc
 
 ## Highlights
 - `docs/discovery/config.yaml` now committed as the contract for MS-02 discovery runs; iteration history lands in `docs/status/iteration_log.md`.
-- `codexa discover` consumes the config, auto-generates `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, `analysis/metrics/understanding_coverage.yaml`, and records blast-radius history for follow-up planning.
+- `codexa discover` consumes the config, auto-generates `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, `analysis/metrics/understanding_coverage.yaml`, computes repository insights (functions/classes/complexity), and records blast-radius history for follow-up planning.
 - Loop planning prompt captures execution scope in `loop-plan.json`, feeding `codexa seed --from loop-plan` to create scoped bundles.
 - Conversational review gates synthesise human feedback into `changes/CH-###/seed/REVIEW.md`, blocking progress until design/test approvals (or waivers) are recorded.
 - Governance summaries (`artifacts/ms02/storyboard/summary.md` + `gaps.md`) publish after approval to reflect change readiness and outstanding actions.

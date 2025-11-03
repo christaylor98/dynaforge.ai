@@ -28,7 +28,12 @@ import hashlib
 
 import yaml
 
-from codexa.discovery import BlastRadiusPlanner, BlastRadiusResult, DiscoveryRunRecord
+from codexa.discovery import (
+    BlastRadiusPlanner,
+    BlastRadiusResult,
+    DiscoveryRunRecord,
+    build_repository_insights,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -90,6 +95,7 @@ ZONE_SUMMARY_OVERRIDES = {
 class ScanResult:
     language_counts: Counter
     zone_stats: dict[str, dict[str, object]]
+    file_index: list[dict[str, object]]
     total_files: int
     total_bytes: int
 
@@ -147,6 +153,7 @@ def scan_repository(config: Mapping[str, object]) -> ScanResult:
             "languages": Counter(),
         }
     )
+    file_index: list[dict[str, object]] = []
 
     for dirpath, dirnames, filenames in os.walk(ROOT):
         rel_dir = Path(dirpath).resolve().relative_to(ROOT)
@@ -186,12 +193,21 @@ def scan_repository(config: Mapping[str, object]) -> ScanResult:
             zone_stats[zone]["file_count"] += 1
             zone_stats[zone]["bytes"] += size
             zone_stats[zone]["languages"][language] += 1
+            file_index.append(
+                {
+                    "path": str(rel_file).replace("\\", "/"),
+                    "zone": zone,
+                    "language": language,
+                    "bytes": size,
+                }
+            )
 
     total_files = sum(language_counts.values())
     total_bytes = sum(int(data["bytes"]) for data in zone_stats.values())
     return ScanResult(
         language_counts=language_counts,
         zone_stats=zone_stats,
+        file_index=file_index,
         total_files=total_files,
         total_bytes=total_bytes,
     )
@@ -429,6 +445,7 @@ def build_metrics_data(
     timestamp: str,
     followups: list[str],
     artifact_hashes: Mapping[str, str],
+    insights: list[dict[str, object]],
 ) -> dict:
     ordered_zones = sorted(
         scan.zone_stats.items(),
@@ -447,6 +464,9 @@ def build_metrics_data(
             }
         )
 
+    python_files = sum(1 for insight in insights if insight.get("language") == "python")
+    total_complexity = sum(int(insight.get("complexity", 0)) for insight in insights)
+
     return {
         "metadata": {
             "generated_at": timestamp,
@@ -462,6 +482,11 @@ def build_metrics_data(
         },
         "coverage": coverage,
         "zones": zone_entries,
+        "insights_summary": {
+            "files_indexed": len(insights),
+            "python_files": python_files,
+            "total_complexity": total_complexity,
+        },
         "artifacts": {
             "system_manifest": {
                 "path": str(MANIFEST_PATH.relative_to(ROOT)),
@@ -582,6 +607,7 @@ def build_manifest(
     coverage: Mapping[str, object],
     artifact_hashes: Mapping[str, str | None],
     loop_scope: Mapping[str, object] | None,
+    insights: list[dict[str, object]],
 ) -> dict:
     storyboard_coverage, freshness = read_storyboard_metrics()
     language_inventory = build_language_inventory(scan)
@@ -819,6 +845,9 @@ def build_manifest(
                 ],
             },
         ],
+        "analysis": {
+            "repository_insights": insights,
+        },
         "artifacts": {
             "audit_trail": {
                 "command_log": "audit/commands.jsonl",
@@ -962,6 +991,7 @@ def run_discovery(
     scan = scan_repository(config)
     timestamp = now_iso()
     coverage = compute_coverage(scan)
+    insights = build_repository_insights(scan.file_index)
     mode = config.get("run", {}).get("mode", "full")
 
     change_zones_content = render_change_zones(scan, timestamp, followups)
@@ -983,6 +1013,7 @@ def run_discovery(
         coverage=coverage,
         artifact_hashes=artifact_hashes,
         loop_scope=loop_scope,
+        insights=insights,
     )
     manifest_content = render_manifest_yaml(manifest)
     manifest_hash = sha256_text(manifest_content)
@@ -994,6 +1025,7 @@ def run_discovery(
         timestamp,
         followups,
         artifact_hashes,
+        insights,
     )
     metrics_content = yaml.safe_dump(metrics_data, sort_keys=False)
     metrics_hash = sha256_text(metrics_content)
@@ -1034,6 +1066,7 @@ def run_discovery(
         "artifact_hashes": artifact_hashes,
         "blast_radius": radius_result.to_dict(),
         "record": record.to_dict(),
+        "insights": insights,
     }
 
 

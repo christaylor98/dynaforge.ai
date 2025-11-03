@@ -20,7 +20,7 @@ Establish the minimum-but-complete discovery foundation for Milestone MS-02. Thi
 | WS-D2 | Manifest Schema & Repository Contracts | Define manifest schema docs, seed `analysis/system_manifest.yaml`, add trace hooks to `TRACEABILITY.md`. | Discovery Analyzer + Governance Officer | WS-D1 | Schema doc + manifest diff reviewed; trace links updated. |
 | WS-D3 | Iteration Log & Follow-up Loop | Harden `docs/status/iteration_log.md`, ensure follow-ups sync to `artifacts/ms02/storyboard/gaps.md`, add guidelines for humans. | Project Manager | WS-D2 | Iteration log template validated; reconciliation script instructions captured. |
 | WS-D4 | Governance & Traceability Alignment | Update `TRACEABILITY.md`, `docs/PROJECT_OVERVIEW.md`, and `AGENTS_RACI.md` to reference discovery artifacts and responsibilities. | Governance Officer | WS-D2 | Traceability diff showing FR-38/41 evidence paths. |
-| WS-D5 | Demo & Dry-Run Refresh | Extend `scripts/ms02_dry_run.py` to use new config + schema, wire the production `codexa discover` CLI (backed by `scripts/discovery_bootstrap.py`) for automated manifest generation, capture audit handoff for discovery stage, publish walkthrough README. | Implementer + Tester | WS-D1–WS-D4 | Demo replay documented; audit entry recorded. |
+| WS-D5 | Demo & Dry-Run Refresh | Extend `scripts/ms02_dry_run.py` to use new config + schema, wire the production `codexa discover` CLI (backed by `scripts/discovery_bootstrap.py`) for automated manifest generation (including repository insights + blast radius), capture audit handoff for discovery stage, publish walkthrough README. | Implementer + Tester | WS-D1–WS-D4 | Demo replay documented; audit entry recorded. |
 
 ## 3. Validation Plan
 

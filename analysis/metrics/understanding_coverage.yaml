@@ -1,7 +1,7 @@
 metadata:
-  generated_at: '2025-11-03T21:34:31+00:00'
+  generated_at: '2025-11-03T22:13:13+00:00'
   generator: codexa discover
-  commit_sha: f5b6203b02c9ee8c19e66ba3bb34ab571a1c39f9
+  commit_sha: 1473e4e1f70680dd10c80b0dc3e08e44f1c2c69f
 inputs:
   config: docs/discovery/config.yaml
   manifest: analysis/system_manifest.yaml
@@ -9,25 +9,25 @@ inputs:
   intent_map: analysis/intent_map.md
   followups_open: []
 coverage:
-  total_files: 189
-  structured_files: 145
-  other_files: 44
-  coverage_percent: 76.7
+  total_files: 197
+  structured_files: 149
+  other_files: 48
+  coverage_percent: 75.6
   language_count: 5
 zones:
 - zone: docs
   files: 80
-  bytes: 636783
+  bytes: 636962
   languages:
     markdown: 79
     yaml: 1
   summary: Documentation & governance records
 - zone: tests
-  files: 18
-  bytes: 80323
+  files: 24
+  bytes: 112228
   languages:
-    other: 8
-    python: 6
+    other: 11
+    python: 9
     markdown: 2
   summary: Test harness and integration suites
 - zone: pipelines
@@ -39,27 +39,27 @@ zones:
   summary: Automation utilities and CLI adjacencies
 - zone: audit
   files: 16
-  bytes: 76293
+  bytes: 80211
   languages:
     other: 14
     python: 2
   summary: Audit evidence & logs
 - zone: codexa
-  files: 10
-  bytes: 33092
+  files: 12
+  bytes: 42017
   languages:
-    python: 5
-    other: 5
+    python: 6
+    other: 6
   summary: Codexa assets
 - zone: backlog
   files: 9
-  bytes: 172948
+  bytes: 172978
   languages:
     markdown: 9
   summary: Research & comparison notes
 - zone: agents
   files: 9
-  bytes: 54527
+  bytes: 54524
   languages:
     other: 5
     python: 4
@@ -80,7 +80,7 @@ zones:
   summary: Repository root assets
 - zone: analysis
   files: 5
-  bytes: 22057
+  bytes: 56957
   languages:
     yaml: 3
     markdown: 2
@@ -101,7 +101,7 @@ zones:
   summary: Product and storyboard design assets
 - zone: scripts
   files: 2
-  bytes: 56591
+  bytes: 58025
   languages:
     python: 1
     other: 1
@@ -112,16 +112,20 @@ zones:
   languages:
     json: 1
   summary: Workspace settings
+insights_summary:
+  files_indexed: 197
+  python_files: 31
+  total_complexity: 1018
 artifacts:
   system_manifest:
     path: analysis/system_manifest.yaml
-    sha256: 9ead103e71701d6ec0151a55578c384ed7d9ee20aaa70b8b184cbb1ce44acac3
+    sha256: 4c5817d0fe0f298b2fa448d2fe557fb584103355cb0b8a1ff37803420d681eac
   change_zones:
     path: analysis/change_zones.md
-    sha256: 2c2d73ce9e993ba80b5920c684947ec543fc2381b67f676e4bc48a7dbe6e9f0e
+    sha256: 91b6b07c603a175c0ece0ee9210a4cb16a242383a0565144f49e5507d8b43cff
   intent_map:
     path: analysis/intent_map.md
-    sha256: 2ec281291d0dfa05082d0fff02b215816564fce20c548822b5a2cac6fc36d04e
+    sha256: 4f07266f8be18d8fc331eccb75db433c32edfeaf5473a31c725a81ad2925c1db
   metrics:
     path: analysis/metrics/understanding_coverage.yaml
     sha256: null
