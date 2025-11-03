@@ -1,0 +1,27 @@
+{
+  "scope": {
+    "type": "change",
+    "id": "CH-010",
+    "description": "Modernise billing pipeline"
+  },
+  "source": {
+    "requested_by": "human.pm",
+    "prompt": "Let's run CH-010 next.",
+    "captured_at": "2025-11-03T20:11:46+00:00"
+  },
+  "artifacts": {
+    "requirements": [
+      "REQ-0101",
+      "REQ-0102"
+    ],
+    "discovery_manifests": [
+      "analysis/system_manifest.yaml",
+      "analysis/change_zones.md",
+      "analysis/intent_map.md"
+    ]
+  },
+  "notes": [
+    "Seed Planner will generate bundle via `codexa seed --from loop-plan`.",
+    "Update before execution to reflect actual scope/handoff context."
+  ]
+}

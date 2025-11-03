@@ -1,22 +1,27 @@
 # Project Detail
 
 ## Scope & Boundaries
-MS-01 Phase 0 refresh regenerates the repository skeleton, audit primitives, demo collateral, and documentation required for the minimum agent loop (PM → Designer → Implementer → Tester).
+MS-02 focuses on the discovery-first workflow: context intake → discovery run → iteration follow-ups → requirement curation → loop planning → seed packaging → conversational approvals → governance publication → MS-01 execution rail handoff.
 
 ## Deliverables
-- Project overview/detail/version-control documentation refreshed with CH-001 context.
-- Audit logger replay artifacts (`audit/sample_handoff.jsonl`, `audit/handoff_ms01_phase0.jsonl`) tagged with `change_id="CH-001"`.
-- Demo bundle capturing deterministic loop output (`artifacts/phase0/demo/2025-11-02/`).
-- Tests plan scaffolding for TC-FR01-001/002, TC-FR06-001, TC-FR08-001 ahead of validation.
+- Discovery configuration + telemetry (`docs/discovery/config.yaml`, `docs/status/iteration_log.md`) with follow-up tracking.
+- Loop plan artifacts (`loop-plan.json`) capturing human-selected execution scope (requirement/change/phase/milestone).
+- Seed bundles generated via `codexa seed --from loop-plan` with review digests in `changes/CH-###/seed/REVIEW.md`.
+- Governance summaries (`artifacts/ms02/storyboard/summary.md`, `gaps.md`) demonstrating prompt-first approvals and readiness reporting.
+- Updated documentation & traceability (`TRACEABILITY.md`, `docs/ARCHITECTURE.md`, `docs/TECH_STACK.md`, `docs/AGENTS_RACI.md`, `docs/REQUIREMENTS_1_3.md`) reflecting the storyboard.
 
 ## Implementation Notes
-- Scenario: MS-01 Phase 0 Refresh (change `CH-001`).
-- Requirements emphasis: FR-01, FR-02, FR-06, FR-09 per `TRACEABILITY.md`.
-- Primary commands/actions executed:
-  - `python3 agents/project_manager.py` (seed noted in manifest) to regenerate docs and audit handoff.
-  - Template refresh recorded in `artifacts/work/CH-001/run-02/manifest.json` to update audit samples with CH-001 metadata.
-  - `make demo PHASE=0 SEED=MS01-P0-2025-11-02` (recorded in demo README) to capture demo collateral.
-- Evidence stored under `artifacts/work/CH-001/run-*/` with manifests describing commands, seeds, and outputs.
+- Scenario: MS-02 Discovery MVP (changes `CH-010+`).
+- Requirements emphasis: FR-38 (discovery pipeline), FR-39 (System Model Graph projections), FR-40 (loop plan → seed packaging), FR-41 (understanding metrics).
+- Primary actions executed / expected:
+  - `codexa discover --config docs/discovery/config.yaml` (full mode by default; quick mode on request).
+  - Conversational follow-up handling (`accept follow-up issue-12`, etc.) updating `docs/status/iteration_log.md`.
+  - `codexa loop plan --change CH-010` (or requirement/phase/milestone) capturing scope.
+  - `codexa seed --from loop-plan --tests pytest` producing scoped bundle under `changes/CH-010/seed/`.
+  - AI-driven review conversation culminating in `codexa approve scope --from loop-plan` or logged waivers.
+  - Governance summary prompt (“Ready to publish?”) producing `summary.md` + `gaps.md` ahead of `codexa loop start --from loop-plan`.
+  - `python3 scripts/ms02_dry_run.py` to regenerate sample artifacts for demos or onboarding.
+- Evidence points: discovery manifests (`analysis/`), System Model Graph projections (`analysis/system_model/`), iteration log entries, loop-plan JSON revisions, review digest history, governance summaries, and updated traceability references.
 
 <!-- concerns:start -->
 
@@ -24,7 +29,7 @@ MS-01 Phase 0 refresh regenerates the repository skeleton, audit primitives, dem
 
 #### Open Concerns
 
-- None.
+- None at this time.
 
 #### Resolved Concerns
 
@@ -36,13 +41,15 @@ MS-01 Phase 0 refresh regenerates the repository skeleton, audit primitives, dem
 <!-- concerns:end -->
 
 ## Review Checklist
-- Validation artifacts captured in `artifacts/work/CH-001/run-01` → `run-07` (Tester complete).
-- Concern log mirrors audit JSONL (no entries for this refresh).
-- Human approvals recorded via `/approve CH-001` (Spec); Package approval pending.
-- Demo bundle timestamped and linked in documentation.
+- Discovery telemetry logged (`docs/status/iteration_log.md`, `analysis/system_manifest.yaml` metadata).
+- Loop plan captured and stored (`loop-plan.json`).
+- Seed bundle and review digest ready (`changes/CH-010/seed/…`, `REVIEW.md`).
+- Governance summary published (or pending with `gaps.md`).
+- Approvals/waivers recorded in traceability and audit logs.
 
 ## Appendix
-- Phase 0 demo evidence: `artifacts/phase0/demo/2025-11-02/`
-- CH-001 run manifests: `artifacts/work/CH-001/`
+- Storyboard: `design/MS-02_storyboard.md`
+- Iteration log: `docs/status/iteration_log.md`
+- Governance summary: `artifacts/ms02/storyboard/summary.md`
 
-_Updated for MS-01 Phase 0 refresh at 2025-11-02 14:05:00Z (change CH-001)._
+_Updated for MS-02 discovery milestone alignment at 2025-11-04 15:30:00Z._

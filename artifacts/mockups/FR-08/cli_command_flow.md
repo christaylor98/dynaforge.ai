@@ -1,16 +1,21 @@
 # CLI Command Flow Mockup
 
 ```text
-$ codexa /status milestone
-MS-01: In Review
-Pending approvals: CH-001 (FR-10)
-Next agent: Tester (blocked)
+$ codexa status --section discovery
+discovery: complete (mode=full)
+followups: issue-12 (needs approval)
+coverage: 68%
 
-$ codexa /ack CH-001 "Received designer spec"
-ACK logged. Implementer notified.
+$ codexa prompt "approve design for CH-010"
+AI: Confirming — design for CH-010 approved.
 
-$ codexa /resolve concern C-012
-Concern C-012 marked resolved. QA will verify in next cycle.
+$ codexa prompt "assign gap-03 to impact assessor"
+AI: Recorded. gap-03 owner → IA.
+
+$ codexa prompt "publish governance report"
+AI: Gaps remain (gap-02). Publish anyway?
+Human: "schedule follow-up tomorrow"
+AI: Follow-up logged. Governance report deferred.
 ```
 
-> Shows parity between CLI interactions and Discord stub.
+> Updated to illustrate the prompt-first interaction model with optional CLI aliasing.

@@ -4,22 +4,23 @@
 Build the Codexa.ai framework with auditable agent workflows and human governance checkpoints.
 
 ## Current Phase Snapshot
-- Phase: `0 — Foundation (MS-01 refresh)`
-- Status: Phase 0 foundation regenerated with deterministic evidence captured under CH-001.
+- Phase: `MS-02 — Discovery MVP`
+- Status: Discovery-first workflow in progress (context intake → discovery → loop planning → governance summary).
 - Primary Contacts: Project Manager Agent, Human PM
 
 ## Highlights
-- Repository skeleton documentation updated to reflect CH-001 foundations and refreshed artifact paths.
-- Audit logger replay recorded new handoff entries with `change_id="CH-001"` across the PM → Designer → Implementer → Tester chain.
-- Demo bundle (`artifacts/phase0/demo/2025-11-02/`) captured the minimum loop using seed `MS01-P0-2025-11-02`.
-- Human-facing docs (`PROJECT_DETAIL.md`, `IMPLEMENTATION_PLAN.md`, `VERSION_CONTROL.md`) synchronized with regenerated evidence.
+- `docs/discovery/config.yaml` drives full-mode discovery runs with streaming telemetry; iteration history lands in `docs/status/iteration_log.md`.
+- Loop planning prompt captures execution scope in `loop-plan.json`, feeding `codexa seed --from loop-plan` to create scoped bundles.
+- Conversational review gates synthesise human feedback into `changes/CH-###/seed/REVIEW.md`, blocking progress until design/test approvals (or waivers) are recorded.
+- Governance summaries (`artifacts/ms02/storyboard/summary.md` + `gaps.md`) publish after approval to reflect change readiness and outstanding actions.
 
 ## Next Steps
-- Human PM reviews CH-001 Package artifacts (`TRACEABILITY.md`, `docs/PHASE0_DEMO_OVERVIEW.md`, `docs/QA_REPORT.md`).
-- Upon approval, Governance logs retention and closes workspace (`audit/retention.jsonl`, `changes/CH-001/status.md`).
-- Kick off next milestone planning leveraging validated Phase 0 foundation.
+- Finish wiring conversational follow-up handling (FR-38/FR-39 iteration loop) and seed packaging (FR-40) to ready MS-02 demo collateral.
+- Populate traceability evidence for updated workstreams (WS-09, WS-110, WS-201, WS-202, WS-306) as they produce artifacts.
+- Prepare MS-02 walkthrough using `design/MS-02_storyboard.md` so humans can rehearse the discovery-to-execution flow end-to-end.
+- Use `python3 scripts/ms02_dry_run.py` to refresh sample artifacts for demos or onboarding sessions.
 
 ## Approvals
-- `✅ Approved by Human 2025-11-02 (CH-001 Spec)`
+- `⏳ Pending — MS-02 discovery loop readiness`
 
-_Updated for MS-01 Phase 0 refresh at 2025-11-02 14:05:00Z (change CH-001)._
+_Updated for MS-02 discovery milestone alignment at 2025-11-04 15:30:00Z._

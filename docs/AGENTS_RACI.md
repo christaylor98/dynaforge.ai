@@ -6,14 +6,15 @@ This document consolidates the accountability model for the Codexa.ai agent ecos
 ## Agent Roster
 | Agent | Core Focus | Primary Artifacts / Signals |
 | --- | --- | --- |
-| Project Manager (PM) | Orchestrates RA→IA→IM→QA→TQA→GO loop, maintains requirements/status docs, drives change objects and metrics, applies maturity rules. | `REQUIREMENTS.md`, `PROJECT_OVERVIEW.md`, `PROJECT_DETAIL.md`, `CHANGELOG.md`, dashboards |
+| Project Manager (PM) | Orchestrates RA→IA→IM→QA→TQA→GO loop, maintains requirements/status docs, drives change objects and metrics, applies maturity rules, and runs the MS-02 loop-planning conversation that feeds execution scope into `loop-plan.json`. | `REQUIREMENTS.md`, `PROJECT_OVERVIEW.md`, `PROJECT_DETAIL.md`, `CHANGELOG.md`, dashboards, `loop-plan.json` |
 | Implementation Manager (IM) | Decomposes objectives into `WS-*`, tracks execution evidence, coordinates implementation throughput. | `IM_PROGRESS.md`, workstream tables |
 | Governance Officer (GO) | Oversees QA/TQA outputs, maturity gate reviews, compliance evidence, and approval workflows. | `GOVERNANCE_REPORT.md`, audit JSONL, maturity review notes |
 | Requirements Analyst (RA) | Detects requirement deltas, refreshes traceability, generates impact summaries. | Traceability matrix, requirement notes |
 | Impact Assessor (IA) | Quantifies downstream effects, maintains `IMPACT_REPORT.md`, flags ripple risks. | `IMPACT_REPORT.md`, WS/FR annotations |
 | Requirement Elaboration Agent (RE) | Drafts and updates FR elaboration files, coordinates with reviewers, ensures acceptance criteria/examples captured. | `docs/requirements/elaborations/FR-###_elaboration.md` |
-| Discovery Analyzer (DA) | Runs discovery CLI flows, generates structural/intent manifests, refreshes System Model Graph projections. | `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, System Model Graph YAML |
-| Seed Planner (SP) | Produces `codexa seed <zone> <mission>` packages with context slices, manifests, and baseline tests. | `changes/CH-###/seed/`, discovery manifests |
+| Discovery Analyzer (DA) | Runs discovery flows, generates structural/intent manifests, refreshes System Model Graph projections, and records iteration follow-ups. | `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, System Model Graph YAML, `docs/status/iteration_log.md` |
+| Seed Planner (SP) | Consumes `loop-plan.json` and produces scoped seed bundles (`codexa seed --from loop-plan`) with context slices, manifests, and baseline tests. | `changes/CH-###/seed/`, discovery manifests |
+| Interaction Bridge (IB) | Normalises natural-language prompts (approvals, follow-ups, loop planning) into agent directives while preserving CLI aliases for deterministic playback. | `/audit/commands.jsonl`, conversation transcripts |
 | Analytics Lead (AN) | Tracks understanding coverage and change readiness metrics, updates `/status` dashboards. | Status snapshots, metrics exports, discovery telemetry |
 | Designer | Produces and updates system architecture and interface specifications. | `design/ARCHITECTURE.md`, `design/DESIGN_SPEC.md` |
 | Implementer | Delivers code artifacts aligned to design and workstream scope, with structured handoffs. | Code branches, handoff records |
@@ -38,9 +39,11 @@ This document consolidates the accountability model for the Codexa.ai agent ecos
 ## Discovery & Understanding
 | Activity | R | A | C | I |
 | --- | --- | --- | --- | --- |
+| Context ingestion & classification | DA | PM | RA, IM | GO, QA, Designer |
 | Discovery pipeline execution & manifest publication | DA | PM | RA, IM, IA, AN | GO, QA, Designer, Implementer |
 | System Model Graph YAML maintenance | DA | PM | RA, IA, AN | GO, QA, IM |
-| Change seed generation (`codexa seed`) | SP | IM | PM, DA, Designer, Implementer | GO, QA, IA |
+| Loop planning conversation (`codexa loop plan` prompt) | PM | HR | IM, DA, SP | GO, QA, IA |
+| Seed generation (`codexa seed --from loop-plan`) | SP | IM | PM, DA, Designer, Implementer | GO, QA, IA |
 | Understanding coverage & readiness reporting | AN | PM | GO, QA, RA, IA | HR, all agents |
 
 ## Change & Impact Management
@@ -52,6 +55,7 @@ This document consolidates the accountability model for the Codexa.ai agent ecos
 | Vision alignment check | VV | PM | CE, Designer | GO, HR |
 | Partial approval handling inside change record | PM | GO | IM, IA, CE | HR |
 | Elaboration update → change trigger | RE | GO | PM, IA, CE | IM, QA, TQA |
+| Conversational follow-up management (iteration log) | PM | GO | DA, AN | HR, QA |
 
 ## Delivery Execution
 | Activity | R | A | C | I |
@@ -75,6 +79,7 @@ This document consolidates the accountability model for the Codexa.ai agent ecos
 | Activity | R | A | C | I |
 | --- | --- | --- | --- | --- |
 | Status & metrics snapshot publication | PM | PM | GO, IM, QA, TQA, AN | HR, all agents |
+| Governance summary prompt & publication | PM | GO | IA, QA, TQA, CE | HR, IM |
 | Compliance & audit evidence bundle | GO | PM | QA, PM, CE | HR |
 | Promotion / release readiness submission | GO | PM | QA, TQA, CE, VV | HR, IM |
 | Final promotion / phase approval | HR | HR | PM, GO | All agents |

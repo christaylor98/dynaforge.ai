@@ -1,8 +1,8 @@
 # Tech Stack Overview
 
 ## Interfaces
-- **Primary Interface:** Python CLI for operator-facing workflows
-- **Messaging Client:** Python client wiring directly into the discord bot framework
+- **Conversational Bridge:** Prompt-first interface (CLI + chat adapters) translating natural language into agent directives
+- **CLI Aliases:** Deterministic commands (e.g., `codexa discover`, `codexa loop plan`) for playback and scripting
 
 ## Backend
 - **Language:** Python 3.12
@@ -12,7 +12,7 @@
 - **Caching:** Redis
 - **Database:** PostgreSQL 11 (primary)
 - **Analytics:** DuckDB + Parquet
-- **Messaging:** NATS
+- **Messaging:** Lightweight websocket layer (optional) riding on the interaction bridge
 - **Service Orchestration:** systemd timers + rsync-based ingestion
 - **Static Analysis / Discovery Toolkit:** tree-sitter parsers, tokei, radon, pygount
 
@@ -27,8 +27,9 @@
 - **Model:** GPT-5
 - **IDE Assistants:** Cursor, Windsurf, Copilot
 - **Testing Agents:** Spekkit-like pipelines
-- **Discovery CLI:** `codexa discover`, `codexa summarize`, `codexa suggest-change-zones`, `codexa seed`
-- **Knowledge Store:** Repo-tracked YAML projections (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) with optional local SQLite cache
+- **Discovery Loop:** `codexa discover --config docs/discovery/config.yaml` with iteration telemetry and conversational follow-up handling
+- **Loop Planning & Seeds:** `codexa loop plan`, `codexa seed --from loop-plan`, prompt-first approvals (`approve design for CH-010`, `publish governance report`) with optional CLI aliases
+- **Knowledge Store:** Repo-tracked YAML projections (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, `analysis/system_model/`) plus iteration logs and review digests
 
 ## Governance
 - **Version Control:** Git (branch-per-experiment worktrees)

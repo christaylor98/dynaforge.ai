@@ -34,13 +34,14 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 ## Core Components
 
 ### 1. Agents
-- **Project Manager (PM)**: Orchestrates work, maintains requirements and plan documents, enforces policy gates, and coordinates human reviews.
-- **Designer**: Produces architecture and module specifications, handles `/clarify Designer ...` requests, and updates design artifacts.
+- **Project Manager (PM)**: Orchestrates work, maintains requirements and plan documents, enforces policy gates, and coordinates human reviews. In MS-02 the PM also conducts the loop-planning conversation (“What should we execute next?”) that bridges discovery outputs into execution.
+- **Designer**: Produces architecture and module specifications, responds to clarification prompts, and updates design artifacts.
 - **Implementer(s)**: Generate source code per approved designs and emit handoff metadata for every change.
 - **Tester**: Owns QA plans, executes tests, writes results, and raises concerns when coverage or reproducibility fall below thresholds.
-- **Discovery Analyzer**: Executes `codexa discover`/`summarize`/`suggest-change-zones`, produces structural, behavioral, and intent manifests, and refreshes the System Model Graph projections.
-- **Seed Planner**: Generates `codexa seed <zone> <mission>` packages containing focused context, manifests, and baseline tests that bootstrap change journeys.
-- **Analytics Lead**: Maintains understanding coverage and change readiness metrics surfaced through status dashboards and CLI.
+- **Discovery Analyzer**: Executes `codexa discover` flows, produces structural/behavioural/intent manifests, and refreshes the System Model Graph projections with iteration metadata.
+- **Seed Planner**: Consumes the PM’s loop plan (requirement/change/phase/milestone scope) and materialises the seed bundle (`codexa seed --from loop-plan`) with context slices, manifests, and baseline tests.
+- **Analytics Lead**: Maintains understanding coverage and change readiness metrics surfaced through `/status` and conversational prompts.
+- **Interaction Bridge**: Normalises natural-language human prompts (approvals, follow-ups, loop planning) into agent directives while keeping CLI aliases available for deterministic playback.
 - **Optional Specialists**: Future roles (Optimizer, Observer, etc.) integrate via the same handoff and audit patterns.
 
 ### 2. Audit & Handoff Bus
@@ -52,18 +53,19 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 - Persistent Markdown documents tracked in Git: `REQUIREMENTS.md`, `docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`, design specs, and test reports.
 - Test outputs (`QA_REPORT.md`, `tests/TEST_RESULTS_DETAIL.md`) and generated metrics stored under `artifacts/` when large.
 - Human approvals appended inline (e.g., `✅ Approved by Human 2025-10-29`) to maintain full audit history.
-- Discovery artifacts (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) and System Model Graph YAML projections are tracked alongside change records for replayability.
+- Discovery artifacts (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) and System Model Graph YAML projections remain the canonical understanding snapshot.
+- MS-02 introduces iterative artifacts: `docs/status/iteration_log.md` (discovery follow-up history), `changes/CH-###/seed/REVIEW.md` (living review digest synthesised from human feedback), and governance roll-ups (`artifacts/ms02/storyboard/summary.md`, `gaps.md`) that record every decision point.
 
 ### 4. Policy & QA Engine
 - Reads `QA_POLICY.yaml` / `.project_policies.yaml` to determine merge and promotion thresholds (coverage %, drift %, gating rules).
 - Controls automatic merges to integration branches when criteria are met.
 - Produces summary evaluations for the human reviewer before promotions.
 
-### 5. Interface Bridge
-- Python CLI serves as the primary operator surface, exposing deterministic commands (e.g., `df status`, `df approve`) that write events to the audit store.
-- Messaging client integrates with NATS to stream asynchronous notifications, approvals, and command acknowledgements without requiring an interactive shell.
-- Both adapters share the same command schema, ensuring human responses propagate into Markdown and audit artifacts.
-- Abstracts the interface layer so additional adapters (for example, a future web console) can reuse the schema without changing downstream agents.
+### 5. Interaction Bridge
+- Conversational prompts are the default interface (“approve design for CH-010”, “assign gaps to IA”). The bridge interprets intent, maps it onto internal command objects, and captures the conversation transcript in audit logs.
+- Deterministic CLI aliases remain for playback and scripting (`codexa discover`, `codexa loop plan`, `codexa approve scope`), but they are optional.
+- Messaging and CLI adapters share the same command schema, ensuring human responses propagate into Markdown and audit artifacts regardless of entry point.
+- Optional adapters (web console, chat integrations) can reuse the same prompt grammar without changing downstream agents.
 
 ### 6. GitOps Layer
 - Branch hierarchy: `main` (human-controlled), `develop` (integration), and `phaseX/<agent>` working branches.
@@ -84,20 +86,23 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 5. Any resulting changes (plan updates, approvals, pauses) propagate through documentation, Git, and observability layers, ensuring closed-loop governance.
 
 ### 9. Discovery & Understanding Layer
-- **Discovery CLI:** `codexa discover --depth {quick|deep}`, `codexa summarize`, and `codexa suggest-change-zones` scan repositories, generate structural metrics, and identify change zones.
-- **System Model Graph:** Versioned YAML projections represent functions, modules, intents, tests, and risks. Agents may hydrate the graph into a local cache, but the repo-tracked projections remain canonical.
-- **Change Seeds:** `codexa seed <zone> <mission>` packages combine focused code slices, manifests, and baseline tests to launch new change journeys with traceability hooks back to discovery artifacts.
-- **Understanding Metrics:** Coverage and readiness scores are calculated from discovery outputs and stored alongside manifests so `/status` and dashboards communicate depth of comprehension before change execution.
+- **Context Intake:** Humans can attach folders, wiki exports, or unstructured notes. The ingestion helper indexes parsable material, logs `context_unparsed` items, and feeds references into discovery.
+- **Discovery Execution:** `codexa discover --config docs/discovery/config.yaml` runs full-mode analysis by default, streaming progress telemetry and refreshing manifests plus the System Model Graph. Quick mode remains available when humans request it.
+- **Iteration Loop:** Each discovery run appends to `docs/status/iteration_log.md`, raises follow-up IDs, and accepts conversational approvals/dismissals to avoid unnecessary reruns.
+- **Loop Planning & Seeds:** `codexa loop plan` captures the chosen execution scope (requirement/change/phase/milestone). `codexa seed --from loop-plan` packages scoped context, manifests, and baseline tests with traceability hooks back to discovery artifacts.
+- **Understanding Metrics:** Coverage and readiness scores calculated from manifests/System Model Graph updates feed directly into `/status`, governance summaries, and milestone storyboard artifacts.
 
-## Process Flow
-0. **Discovery**: Discovery Analyzer runs quick or deep discovery to generate manifests, refresh the System Model Graph, update understanding metrics, and verify change zones before workstream decomposition.
-1. **Initiation**: PM ingests a goal, updates `REQUIREMENTS.md`, and issues tasks to Designer and other agents (tracked in `docs/PROJECT_DETAIL.md`), referencing discovery outputs.
-2. **Design**: Designer drafts `design/ARCHITECTURE.md` and `design/DESIGN_SPEC.md`; human must approve high-impact changes.
-3. **Implementation**: Implementer branches from `phaseX/` namespace, commits code, and logs handoff records that reference updated files and discovery manifests.
-4. **Testing**: Tester executes planned suites, records results, and updates QA metrics. Failures trigger `log_concern()` entries and surface via CLI or messaging alerts.
-5. **Governance Review**: Human reviews project plan, high-impact variations, understanding coverage, and test results through the interaction adapters (CLI outputs or messaging summaries); approvals recorded in docs.
-6. **Promotion**: PM agent validates policy gates, merges into `develop`, and requests human `/promote` for tagging releases.
-7. **Feedback Loop**: Concerns, QA metrics, and updated discovery manifests feed into policy adjustments and roadmap updates captured in Markdown and audit logs.
+## Process Flow (MS-02 + MS-01)
+1. **Context Intake (optional)** — Humans attach roots, docs, or scratch notes; the system indexes what it can and reports anything unreadable.
+2. **Discovery Run** — `codexa discover --config docs/discovery/config.yaml` executes, streaming progress and refreshing manifests/System Model Graph projections.
+3. **Iteration Review** — The AI posts an iteration summary with follow-up IDs in `docs/status/iteration_log.md`, accepts conversational “accept/dismiss” prompts, and only re-runs discovery when required.
+4. **Requirement Curation** — Raw human material is ingested, normalised into curated FRs, and linked to discovery artifacts; changes (`CH-###`) are raised once context is clear.
+5. **Loop Planning** — PM prompts the human for execution scope (requirement/change/phase/milestone). The decision is stored in `loop-plan.json`.
+6. **Seed Generation** — Seed Planner runs `codexa seed --from loop-plan`, creating scoped bundles (`changes/CH-###/seed/`).
+7. **Review & Approvals** — Humans provide free-form feedback; the AI reconciles it into `changes/CH-###/seed/REVIEW.md` and blocks progress until required approvals or waivers are recorded.
+8. **Governance Summary** — Orchestrator compiles `summary.md`/`gaps.md`, prompts for publication approval, and handles any remaining remediation tasks.
+9. **Execution Rail (MS-01)** — `codexa loop start --from loop-plan` feeds the prepared scope into the established PM → Designer → Implementer → Tester loop with existing QA/governance gates.
+10. **Feedback & Metrics** — Outcomes, metrics, and new discovery insights roll back into the iteration log, requirements, and governance documentation.
 
 ## Data Contracts
 - **Handoff Record**: `{ from, to, purpose, inputs[], outputs[], impact, summary, status, timestamp }`
