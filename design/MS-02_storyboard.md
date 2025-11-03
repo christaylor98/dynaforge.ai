@@ -83,7 +83,7 @@ External dependencies kept intentionally light for MS-02: git worktree on local 
 - **Iteration loop:** After each review, the human can:
   - Amend manifests/incorporate context manually (e.g., `codexa model apply docs/context/fix.yaml`).
   - Re-run discovery (`codexa discover --config docs/discovery/config.yaml`) to refresh artifacts.
-  - Use `codexa followup --accept <id>` or `codexa followup --dismiss <id>` to resolve items without a full rerun.
+  - Issue conversational prompts like “accept follow-up issue-12” or “dismiss follow-up issue-5” to resolve items without a full rerun. CLI aliases remain available for power users.
   - Each cycle appends to `docs/status/iteration_log.md`, giving a clear history of what changed and which gaps remain.
 
 ### Stage 4 — Review Discovery Summary & Issues
@@ -91,15 +91,15 @@ External dependencies kept intentionally light for MS-02: git worktree on local 
   - Coverage snapshot (`coverage: <percentage>%`, `zones flagged: […]`).
   - Top concerns from `issues.md`.
   - “Need your help” items (unparsed context, missing dependencies, ambiguous modules).
-  - Suggested next steps (e.g., “Mark data access layer as external using `codexa followup --accept issue-12`”).
+  - Suggested next steps (e.g., “Mark data access layer as external”). The AI offers to apply each follow-up and seeks permission via a simple yes/no prompt.
 - **Human provides:** Acknowledgements or decisions (accept/dismiss follow-ups, add clarifications).
 - **CLI commands:** Only needed if the human chooses to act:
   ```shell
   # Accept a suggested model adjustment without re-running discovery
-  codexa followup --accept issue-12
+  codexa followup --accept issue-12  # optional CLI shortcut; conversational approval also supported
 
   # Log a clarification for a persistent gap
-  codexa followup annotate issue-17 --note "Handled by external billing service"
+  codexa followup annotate issue-17 --note "Handled by external billing service"  # optional CLI shortcut
   ```
 - **Agents active:** Coverage Metrics Service and Requirements Intelligence own the summary; Project Manager automatically logs accepted follow-ups and schedules reruns if requested.
 - **Documents created/updated:** `docs/status/iteration_log.md` updated with follow-up decisions; `analysis/system_model/` patched if `codexa followup --accept` applied adjustments.
@@ -169,33 +169,20 @@ External dependencies kept intentionally light for MS-02: git worktree on local 
 - **Documents created/updated:** `changes/CH-###/seed/CHANGE.yaml`, `plan.md`, `tasks.md`, `context/`, `tests/`, `manifest_refs.yaml`, `audit/handoffs/handoff_seed.jsonl`.
 - **`/status` snapshot:** `seed: ready` with explicit scope listing (e.g., `scope: change CH-010` or `scope: milestone MS-02`), plus outstanding approvals.
 
--### Stage 8 — Human Review, Architecture & Test Alignment
+### Stage 8 — Human Review, Architecture & Test Alignment
 - **Human provides:** Free-form feedback in whatever medium is natural—paste Slack snippets, drop notes into `docs/context/inbox/review_feedback.txt`, or reply in the orchestration chat. The AI digests that signal, annotates architecture/test artifacts, and only asks for clarification when something is ambiguous.
 - **System behaviour:** The orchestrator continually refreshes a living summary (`changes/CH-###/seed/REVIEW.md`) that captures scope, design deltas, test coverage, and open questions using the latest human inputs. No rigid template is required; the document mirrors the conversation in structured form for traceability.
-- **CLI commands (optional helpers, not required for feedback):**
-  ```shell
-  # Peek at the current roll-up the AI generated
-  codexa open review changes/CH-###/seed/REVIEW.md
-
-  # When satisfied, capture approvals or explicitly request changes
-  codexa approve design changes/CH-###/seed/REVIEW.md
-  codexa approve tests changes/CH-###/seed/REVIEW.md
-  codexa request-changes review --note "Need load-test scaffold before approval"
-  ```
+- **Prompt-first flow:** The human can simply say “approve design for CH-010,” “ask tester to add load tests,” or “skip for now.” The AI confirms intent, applies the change, and records it. For teams that prefer an explicit command, a single alias remains: `codexa approve scope --from loop-plan`.
+- **Skip protection:** If mandatory approvals (design/tests) are still outstanding when the human attempts to skip, the AI blocks progression, summarises what’s missing, and offers to log a waiver request or schedule follow-up conversations.
 - **Agents active:** Designer (updates architecture docs), Tester (baseline tests), Implementer (plan review), System Manager (approval logging). Each agent incorporates the human’s unstructured comments into the appropriate artifact and flags anything that still needs clarification.
 - **Documents created/updated:** `changes/CH-###/seed/REVIEW.md` (AI-authored digest with pointers back to raw human input), `docs/ARCHITECTURE.md`, design briefs under `design/`, `changes/CH-###/seed/tests/`, `changes/CH-###/seed/plan.md` annotated with approvals, `TRACEABILITY.md` evidence columns.
 - **`/status` snapshot:** `architecture: pending approval` until human signs off, then flips to `ready`.
 
 ### Stage 9 — Governance & Traceability Update
-- **System output:** The orchestrator automatically compiles a governance summary once approvals land. The CLI (and optional notification) surfaces:
+- **System output:** The orchestrator automatically compiles a governance summary once approvals land, then pops a conversational prompt: “Ready to publish governance report?” The AI also links the underlying artifacts:
   - `summary.md` with a concise report of what changed, evidence paths, and coverage deltas.
-  - `gaps.md` listing unresolved issues, required human inputs, and proposed remediation steps with suggested commands (e.g., re-run discovery with narrower scope).
-- **Human provides:** Input only if the gaps list exists—approve remediation plan, add missing context, or delegate follow-up. No commands are required unless remedial work is requested.
-- **CLI helpers (when needed):**
-  ```shell
-  codexa followup plan --from artifacts/ms02/storyboard/gaps.md
-  codexa followup accept gap-03  # acknowledge/assign fix
-  ```
+  - `gaps.md` listing unresolved issues, required human inputs, and proposed remediation steps.
+- **Prompt-first flow:** The human can respond “yes,” “assign gaps 2 and 3 to change planner,” or “skip for now.” If they attempt to skip while gaps remain, the AI blocks publication, explains the outstanding items, and offers to schedule follow-up tasks or record a waiver.
 - **Agents active:** Requirements Intelligence (trace updates), Impact Evaluator (risk notes), Project Manager (status publication).
 - **Documents created/updated:** `TRACEABILITY.md` evidence rows, `docs/status/change_journey.md`, `docs/status/impact_notes.md`, `artifacts/ms02/storyboard/summary.md`, `artifacts/ms02/storyboard/gaps.md`.
 - **`/status` snapshot:** `governance: complete` when no gaps remain; otherwise `governance: attention needed (see gaps.md)` with pointers to remediation items.
