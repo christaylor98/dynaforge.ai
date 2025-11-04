@@ -9,6 +9,7 @@ Create an autonomous, multi-agent engineering workshop that can design, implemen
 - **Human-as-governor**: The human reviewer directs phases, approves plans, and adjudicates high-impact variations through Discord commands and structured handoffs.
 - **Transparency and auditability**: Every artifact, handoff, concern, and command is logged, traceable, and version-controlled.
 - **Adaptive governance**: Change management and maturity gating scale process rigor as the product evolves, keeping automation aligned with human intent.
+- **Configuration lineage transparency**: Hybrid `.codexa/` project roots and versioned global templates keep discovery, planning, and execution reproducible across environments.
 - **Continuous improvement**: QA metrics, concern trends, and policy feedback loops drive iterative upgrades of both process and product.
 
 ## Desired Outcomes
@@ -17,9 +18,10 @@ Create an autonomous, multi-agent engineering workshop that can design, implemen
 - Quality gates and policy engines provide objective readiness signals for merges, promotions, and releases.
 - Audit logs and Markdown summaries create a living record of project decisions, risks, and approvals.
 - The framework can scale to multiple concurrent projects while preserving governance, reproducibility, and observability.
+- `.codexa/` scaffolding and `codexa doctor config` health checks ensure every environment derives configuration from the same lineage (project overrides + global control-plane templates).
 
 ## Operating Model (Phase 1 Scope)
-1. Project Manager orchestrates the RA→IA→IM→QA→TQA→GO loop, keeps `REQUIREMENTS_1_1.md` current, reads maturity metadata, and ensures change objects and metrics are captured.
+1. Project Manager orchestrates the RA→IA→IM→QA→TQA→GO loop, keeps `REQUIREMENTS_1_4.md` current, resolves `.codexa/config.yaml` overrides vs global templates, reads maturity metadata, and ensures change objects and metrics are captured.
 2. Requirements Analyst monitors requirement deltas, refreshes traceability artifacts, and raises impact summaries.
 3. Impact Assessor quantifies downstream effects, maintains `IMPACT_REPORT.md`, and flags ripple risks for downstream agents.
 4. Implementation Manager decomposes objectives into `WS-*` tasks, tracks execution evidence in `IM_PROGRESS.md`, and coordinates with the Project Manager.
@@ -29,10 +31,11 @@ Create an autonomous, multi-agent engineering workshop that can design, implemen
 8. QA Auditor validates FR↔WS↔TC linkage, while the Test Quality Assessor evaluates depth against risk tiers and maturity expectations.
 9. Governance Officer oversees compliance, maturity gate reviews, and approval workflows, partnering with the Change Evaluator and Vision Validator to keep work aligned with strategic intent.
 10. Human reviewer approves project plans, high-impact variations, and test completion, and can pause/resume agents or demand clarifications at any time.
+11. PM and GO co-own `.codexa/` scaffolding, versioned control-plane templates (`~/.config/codexa/`), and execution of `codexa doctor config` so discovery and loop planning run against validated configuration lineage.
 
 ## Adaptive Change & Maturity Management
 - Every change is represented as a structured `CH-###` entry recorded in `CHANGELOG.md`, with partial approvals and rationale captured for audit.
-- Project maturity is declared in `PROJECT_METADATA.md`; agents scale their enforcement (from lightweight M0 spikes to full M4 compliance) based on this signal.
+- Project maturity is declared in `.codexa/project_metadata.yaml` (mirrored in `PROJECT_METADATA.md`); agents scale their enforcement (from lightweight M0 spikes to full M4 compliance) based on this signal while logging provenance.
 - The Change Evaluator supplies ROI and disruption guidance (recommendations remain advisory), while the Vision Validator confirms alignment with the mission before major shifts proceed.
 - Governance Officer-led maturity reviews and the CLI/dashboard metrics (change density, lag, stability, vision drift) give humans rapid insight into system health.
 

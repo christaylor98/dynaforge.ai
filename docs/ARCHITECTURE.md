@@ -53,7 +53,8 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 - Persistent Markdown documents tracked in Git: `REQUIREMENTS.md`, `docs/PROJECT_OVERVIEW.md`, `docs/PROJECT_DETAIL.md`, design specs, and test reports.
 - Test outputs (`QA_REPORT.md`, `tests/TEST_RESULTS_DETAIL.md`) and generated metrics stored under `artifacts/` when large.
 - Human approvals appended inline (e.g., `✅ Approved by Human 2025-10-29`) to maintain full audit history.
-- Discovery artifacts (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`) and System Model Graph YAML projections remain the canonical understanding snapshot.
+- Discovery artifacts (`.codexa/manifests/system_manifest.yaml`, `.codexa/manifests/change_zones.md`, `.codexa/manifests/intent_map.md`) and System Model Graph YAML projections remain the canonical understanding snapshot.
+- `.codexa/` is the canonical project root for Codexa configuration (`config.yaml`, `agents/`, `rules/`, `workflows/`, `manifests/`, `README.md`); project configs may `extends:` templates under `~/.config/codexa/` for shared defaults.
 - MS-02 introduces iterative artifacts: `docs/status/iteration_log.md` (discovery follow-up history), `changes/CH-###/seed/REVIEW.md` (living review digest synthesised from human feedback), and governance roll-ups (`artifacts/ms02/storyboard/summary.md`, `gaps.md`) that record every decision point.
 
 ### 4. Policy & QA Engine
@@ -78,6 +79,11 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 - Tracks SLA compliance (e.g., alert acknowledgment times).
 - Surfaces understanding coverage %, discovery freshness timestamps, and change readiness heatmaps sourced from the System Model Graph.
 
+### 8. Operating Model Configuration
+- `codexa discover` resolves configuration roots by walking up to `.codexa/config.yaml`, falling back to `~/.config/codexa/` when a project override is absent; precedence is project overrides → project includes → global defaults → built-ins.
+- `codexa doctor config` (FR-44) verifies the hybrid hierarchy, lints required `.codexa/` folders, and reports template/version hashes used during the run; results flow into audit metadata (FR-06) and status documentation (FR-02).
+- Global control-plane templates (`~/.config/codexa/`) ship shared agent manifests, policy guardrails, and discovery presets; projects opt-in via `extends:` blocks recorded alongside manifests and System Model Graph projections.
+
 ### 8. Human Interaction Flow
 1. Human invokes a command through the Python CLI or messaging client; future adapters can reuse the same API surface.
 2. Interface adapter normalizes the request into a `Command Object` and appends it to `/audit/commands.jsonl`.
@@ -87,14 +93,14 @@ Codexa.ai is a multi-agent orchestration layer that manages the full software li
 
 ### 9. Discovery & Understanding Layer
 - **Context Intake:** Humans can attach folders, wiki exports, or unstructured notes. The ingestion helper indexes parsable material, logs `context_unparsed` items, and feeds references into discovery.
-- **Discovery Execution:** `codexa discover --config docs/discovery/config.yaml` runs full-mode analysis by default, streaming progress telemetry and refreshing manifests plus the System Model Graph. Quick mode remains available when humans request it.
+- **Discovery Execution:** `codexa discover --config .codexa/config.yaml` runs full-mode analysis by default, streaming progress telemetry and refreshing manifests plus the System Model Graph. Quick mode remains available when humans request it.
 - **Iteration Loop:** Each discovery run appends to `docs/status/iteration_log.md`, raises follow-up IDs, and accepts conversational approvals/dismissals to avoid unnecessary reruns.
 - **Loop Planning & Seeds:** `codexa loop plan` captures the chosen execution scope (requirement/change/phase/milestone). `codexa seed --from loop-plan` packages scoped context, manifests, and baseline tests with traceability hooks back to discovery artifacts.
 - **Understanding Metrics:** Coverage and readiness scores calculated from manifests/System Model Graph updates feed directly into `/status`, governance summaries, and milestone storyboard artifacts.
 
 ## Process Flow (MS-02 + MS-01)
 1. **Context Intake (optional)** — Humans attach roots, docs, or scratch notes; the system indexes what it can and reports anything unreadable.
-2. **Discovery Run** — `codexa discover --config docs/discovery/config.yaml` executes, streaming progress and refreshing manifests/System Model Graph projections.
+2. **Discovery Run** — `codexa discover --config .codexa/config.yaml` executes, streaming progress and refreshing manifests/System Model Graph projections.
 3. **Iteration Review** — The AI posts an iteration summary with follow-up IDs in `docs/status/iteration_log.md`, accepts conversational “accept/dismiss” prompts, and only re-runs discovery when required.
 4. **Requirement Curation** — Raw human material is ingested, normalised into curated FRs, and linked to discovery artifacts; changes (`CH-###`) are raised once context is clear.
 5. **Loop Planning** — PM prompts the human for execution scope (requirement/change/phase/milestone). The decision is stored in `loop-plan.json`.

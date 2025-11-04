@@ -20,6 +20,6 @@
 | INT-014 | Workspace settings focus area | .vscode/ | json | — |
 
 ## Generation Notes
-- Auto-generated 2025-11-03T22:13:13+00:00 via `scripts/discovery_bootstrap.py`.
+- Auto-generated 2025-11-04T08:26:41+00:00 via `scripts/discovery_bootstrap.py`.
 - Confidence values will be refined once semantic discovery is implemented.
 - Update follow-ups in lockstep with `docs/status/iteration_log.md`.

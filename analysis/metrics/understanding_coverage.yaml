@@ -1,7 +1,7 @@
 metadata:
-  generated_at: '2025-11-03T22:13:13+00:00'
+  generated_at: '2025-11-04T08:26:41+00:00'
   generator: codexa discover
-  commit_sha: 1473e4e1f70680dd10c80b0dc3e08e44f1c2c69f
+  commit_sha: 6863bcbaae2ba22a409ae192d620a2f68832329d
 inputs:
   config: docs/discovery/config.yaml
   manifest: analysis/system_manifest.yaml
@@ -17,7 +17,7 @@ coverage:
 zones:
 - zone: docs
   files: 80
-  bytes: 636962
+  bytes: 637009
   languages:
     markdown: 79
     yaml: 1
@@ -39,7 +39,7 @@ zones:
   summary: Automation utilities and CLI adjacencies
 - zone: audit
   files: 16
-  bytes: 80211
+  bytes: 81031
   languages:
     other: 14
     python: 2
@@ -80,7 +80,7 @@ zones:
   summary: Repository root assets
 - zone: analysis
   files: 5
-  bytes: 56957
+  bytes: 57329
   languages:
     yaml: 3
     markdown: 2
@@ -115,17 +115,17 @@ zones:
 insights_summary:
   files_indexed: 197
   python_files: 31
-  total_complexity: 1018
+  total_complexity: 0
 artifacts:
   system_manifest:
     path: analysis/system_manifest.yaml
-    sha256: 4c5817d0fe0f298b2fa448d2fe557fb584103355cb0b8a1ff37803420d681eac
+    sha256: cbf31f75cde2925399ba765b666763f67def06b01af25ad78cc8572e08629087
   change_zones:
     path: analysis/change_zones.md
-    sha256: 91b6b07c603a175c0ece0ee9210a4cb16a242383a0565144f49e5507d8b43cff
+    sha256: 14c665fe3b165f0a5418f5d28636aacccb89c3d81dd300b5d40f58cb829f2b98
   intent_map:
     path: analysis/intent_map.md
-    sha256: 4f07266f8be18d8fc331eccb75db433c32edfeaf5473a31c725a81ad2925c1db
+    sha256: 85ed9be91c2566c96872993481e4cc09e83cb3338f1bdf5913ae9b63c3dabd63
   metrics:
     path: analysis/metrics/understanding_coverage.yaml
     sha256: null

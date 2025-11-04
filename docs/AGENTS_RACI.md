@@ -1,7 +1,7 @@
 # Agents RACI Matrix
 
 ## Purpose
-This document consolidates the accountability model for the Codexa.ai agent ecosystem after Change Requests `CR001 → CR003` and requirements update `REQUIREMENTS_1_3`. It establishes a single reference for who is **Responsible, Accountable, Consulted,** and **Informed (RACI)** across the major workflows so prompts, audit metadata, and governance tooling remain consistent.
+This document consolidates the accountability model for the Codexa.ai agent ecosystem after Change Requests `CR001 → CR004` and requirements update `REQUIREMENTS_1_4`. It establishes a single reference for who is **Responsible, Accountable, Consulted,** and **Informed (RACI)** across the major workflows so prompts, audit metadata, and governance tooling remain consistent.
 
 ## Agent Roster
 | Agent | Core Focus | Primary Artifacts / Signals |
@@ -12,7 +12,7 @@ This document consolidates the accountability model for the Codexa.ai agent ecos
 | Requirements Analyst (RA) | Detects requirement deltas, refreshes traceability, generates impact summaries. | Traceability matrix, requirement notes |
 | Impact Assessor (IA) | Quantifies downstream effects, maintains `IMPACT_REPORT.md`, flags ripple risks. | `IMPACT_REPORT.md`, WS/FR annotations |
 | Requirement Elaboration Agent (RE) | Drafts and updates FR elaboration files, coordinates with reviewers, ensures acceptance criteria/examples captured. | `docs/requirements/elaborations/FR-###_elaboration.md` |
-| Discovery Analyzer (DA) | Runs discovery flows, generates structural/intent manifests, refreshes System Model Graph projections, and records iteration follow-ups. | `analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, System Model Graph YAML, `docs/status/iteration_log.md` |
+| Discovery Analyzer (DA) | Runs discovery flows, generates structural/intent manifests, refreshes System Model Graph projections, and records iteration follow-ups. | `.codexa/manifests/system_manifest.yaml`, `.codexa/manifests/change_zones.md`, `.codexa/manifests/intent_map.md`, System Model Graph YAML, `docs/status/iteration_log.md` |
 | Seed Planner (SP) | Consumes `loop-plan.json` and produces scoped seed bundles (`codexa seed --from loop-plan`) with context slices, manifests, and baseline tests. | `changes/CH-###/seed/`, discovery manifests |
 | Interaction Bridge (IB) | Normalises natural-language prompts (approvals, follow-ups, loop planning) into agent directives while preserving CLI aliases for deterministic playback. | `/audit/commands.jsonl`, conversation transcripts |
 | Analytics Lead (AN) | Tracks understanding coverage and change readiness metrics, updates `/status` dashboards. | Status snapshots, metrics exports, discovery telemetry |
@@ -84,9 +84,17 @@ This document consolidates the accountability model for the Codexa.ai agent ecos
 | Promotion / release readiness submission | GO | PM | QA, TQA, CE, VV | HR, IM |
 | Final promotion / phase approval | HR | HR | PM, GO | All agents |
 
+## Operating Model & Configuration
+| Activity | R | A | C | I |
+| --- | --- | --- | --- | --- |
+| `.codexa/` scaffolding & lint enforcement | PM | PM | GO, DA, IM | All agents |
+| Global control-plane template governance (`~/.config/codexa/`) | GO | GO | PM, DA, QA | HR, all agents |
+| Configuration discovery validation (`codexa doctor config`) | PM | GO | DA, AN | All agents |
+
 ## Usage Notes
-- RACI assignments are **advisory**: agents may collaborate freely, but handoff metadata and audit logs must reflect the roles defined here (see `FR-20`, `FR-25`, `FR-35`, `FR-38`–`FR-41` in `REQUIREMENTS_1_3.md`).
-- Discovery cadence recorded in `PROJECT_METADATA.md` should be coordinated between PM and DA so manifests stay fresh ahead of change planning.
+- RACI assignments are **advisory**: agents may collaborate freely, but handoff metadata and audit logs must reflect the roles defined here (see `FR-20`, `FR-25`, `FR-35`, `FR-38`–`FR-44` in `REQUIREMENTS_1_4.md`).
+- Discovery cadence recorded in `.codexa/project_metadata.yaml` (mirrored in `PROJECT_METADATA.md`) should be coordinated between PM and DA so manifests stay fresh ahead of change planning.
 - Maturity level from `PROJECT_METADATA.md` can modulate enforcement (e.g., QA/TQA involvement at M0 is optional); use the same RACI structure but deactivate roles not required at the current level.
 - Requirement elaborations should carry `responsible=RE`, `accountable=GO`, and `reviewed_by=HR` metadata when capturing approvals.
 - RACI tags written into audit JSONL should use lowercase `responsible`, `accountable`, `consulted`, `informed` fields referencing the agent identifiers above, including discovery roles (e.g., `responsible: da` for manifest generation).
+- When `.codexa/config.yaml` extends global templates, PM and GO should record provenance hashes in status and audit artifacts so configuration lineage remains reproducible.

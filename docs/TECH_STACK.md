@@ -27,11 +27,13 @@
 - **Model:** GPT-5
 - **IDE Assistants:** Cursor, Windsurf, Copilot
 - **Testing Agents:** Spekkit-like pipelines
-- **Discovery Loop:** `codexa discover --config docs/discovery/config.yaml` with iteration telemetry and conversational follow-up handling
+- **Discovery Loop:** `codexa discover --config .codexa/config.yaml` with iteration telemetry and conversational follow-up handling
 - **Loop Planning & Seeds:** `codexa loop plan`, `codexa seed --from loop-plan`, prompt-first approvals (`approve design for CH-010`, `publish governance report`) with optional CLI aliases
-- **Knowledge Store:** Repo-tracked YAML projections (`analysis/system_manifest.yaml`, `analysis/change_zones.md`, `analysis/intent_map.md`, `analysis/system_model/`) plus iteration logs and review digests
+- **Knowledge Store:** Repo-tracked YAML projections (`.codexa/manifests/system_manifest.yaml`, `.codexa/manifests/change_zones.md`, `.codexa/manifests/intent_map.md`, `.codexa/manifests/system_model/`) plus iteration logs and review digests
+- **Configuration Validation:** `codexa doctor config` (FR-44) linting for `.codexa/` scaffolding with inheritance from `~/.config/codexa/`; emits provenance hashes used by PM, GO, and analytics loops.
 
 ## Governance
 - **Version Control:** Git (branch-per-experiment worktrees)
 - **Traceability:** TRACABILITY.md links architecture ↔ requirements ↔ implementation
 - **Build System:** spekkit build process
+- **Operating Model:** Hybrid configuration hierarchy—`.codexa/` per project with optional `extends:` to `~/.config/codexa/`; CI guards enforce FR-42/FR-43 compliance.
