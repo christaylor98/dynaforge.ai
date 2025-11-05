@@ -1,0 +1,31 @@
+{
+  "id": "FR-12",
+  "type": "requirement",
+  "title": "GitOps workflow controls",
+  "status": "PLANNED",
+  "domains": [
+    "governance",
+    "implementation"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Integrate GitOps style pipeline triggers and rollbacks for declarative change control.",
+  "rationale": "Provides automated, auditable deployment and rollback path.",
+  "context": {
+    "tests": [
+      "TC-FR12-001"
+    ],
+    "evidence": [
+      ".github/workflows/gitops.yaml"
+    ]
+  },
+  "depends_on": [
+    "FR-06"
+  ],
+  "outputs": [
+    ".github/workflows/gitops.yaml"
+  ],
+  "hash": "fr12-1ff7",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "FR-28",
+  "type": "requirement",
+  "title": "`/df.*` analysis commands",
+  "status": "PLANNED",
+  "domains": [
+    "interaction",
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Implement `/df.clarify`, `/df.analyze`, `/df.checklist` and `codexa doctor` CLI commands emitting structured JSON logs.",
+  "rationale": "Standardises AI-driven diagnostics and impact analyses for governance ingestion.",
+  "context": {
+    "tests": [
+      "TC-FR28-001"
+    ],
+    "evidence": [
+      "artifacts/analyze/"
+    ]
+  },
+  "depends_on": [
+    "FR-09"
+  ],
+  "outputs": [
+    "artifacts/analyze/"
+  ],
+  "hash": "fr28-aad4",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

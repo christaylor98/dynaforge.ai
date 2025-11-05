@@ -1,0 +1,29 @@
+[
+  {
+    "id": "MS-01",
+    "name": "POC Spike (Minimum Agent Loop)",
+    "status": "CHANGE_IMPACTED",
+    "objective": "Prove the Codexa core by wiring the minimum agent chain (PM → Designer → Implementer → Tester).",
+    "scope": ["FR-01", "FR-02", "FR-04", "FR-06", "FR-09", "FR-10"],
+    "phases": ["P0", "P1"],
+    "workstreams": ["WS-01", "WS-02", "WS-04", "WS-05", "WS-07", "WS-08", "WS-101", "WS-103", "WS-105", "WS-108", "WS-109"]
+  },
+  {
+    "id": "MS-02",
+    "name": "Discovery MVP",
+    "status": "IN_PROGRESS",
+    "objective": "Deliver a runnable discovery pipeline that produces manifests, system model projections, and seeded change journeys.",
+    "scope": ["FR-38", "FR-39", "FR-40", "FR-41"],
+    "phases": ["P0", "P1", "P2", "P3"],
+    "workstreams": ["WS-09", "WS-110", "WS-201", "WS-202", "WS-306"]
+  },
+  {
+    "id": "MS-03",
+    "name": "Operating Model Integration",
+    "status": "IN_PROGRESS",
+    "objective": "Operationalise the CR004 operating model through `.codexa/` scaffolding and global configuration inheritance.",
+    "scope": ["FR-01", "FR-02", "FR-06", "FR-32", "FR-38", "FR-39", "FR-42", "FR-43", "FR-44"],
+    "phases": ["P0", "P1", "P2", "P3"],
+    "workstreams": ["WS-10", "WS-206", "WS-207", "WS-304"]
+  }
+]

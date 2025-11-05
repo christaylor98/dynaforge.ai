@@ -1,0 +1,56 @@
+[
+  {
+    "id": "DOMAIN-foundation",
+    "type": "domain",
+    "title": "Foundation",
+    "summary": "Core repository scaffolding, audit, and interaction primitives that underpin all milestones.",
+    "rationale": "Provides the structural and logging backbone required for agent orchestration.",
+    "hash": "dom-foundation",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-interaction",
+    "type": "domain",
+    "title": "Interaction",
+    "summary": "Human \u2194 AI command surface, approval flows, and audit command routing.",
+    "rationale": "Ensures every milestone remains observable and controllable by humans.",
+    "hash": "dom-interaction",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-governance",
+    "type": "domain",
+    "title": "Governance",
+    "summary": "Change control, approvals, provenance and configuration lineage management.",
+    "rationale": "Anchors trust and accountability across the Codexa ecosystem.",
+    "hash": "dom-governance",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-documentation",
+    "type": "domain",
+    "title": "Documentation",
+    "summary": "Human-readable knowledge artifacts generated or maintained by Codexa.",
+    "rationale": "Keeps all deliverables transparent and reviewable for stakeholders.",
+    "hash": "dom-documentation",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-discovery",
+    "type": "domain",
+    "title": "Discovery",
+    "summary": "Automated source inspection, manifest generation, and system-model synthesis.",
+    "rationale": "Forms the analytical core for Codexa\u2019s understanding and blast-radius analysis.",
+    "hash": "dom-discovery",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-metrics",
+    "type": "domain",
+    "title": "Metrics & Maturity",
+    "summary": "Understanding coverage, readiness, and process-maturity instrumentation.",
+    "rationale": "Quantifies progress and confidence for every change and milestone.",
+    "hash": "dom-metrics",
+    "last_verified": "2025-11-04T00:00:00Z"
+  }
+]

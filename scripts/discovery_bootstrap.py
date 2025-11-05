@@ -35,19 +35,46 @@ from codexa.discovery import (
     build_repository_insights,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
 
-CONFIG_DEFAULT = ROOT / "docs/discovery/config.yaml"
-MANIFEST_PATH = ROOT / "analysis/system_manifest.yaml"
-CHANGE_ZONES_PATH = ROOT / "analysis/change_zones.md"
-INTENT_MAP_PATH = ROOT / "analysis/intent_map.md"
-METRICS_PATH = ROOT / "analysis/metrics/understanding_coverage.yaml"
-HANDOFF_LOG_PATH = ROOT / "audit/handoff_discovery.jsonl"
-GAPS_PATH = ROOT / "artifacts/ms02/storyboard/gaps.md"
-HISTORY_PATH = ROOT / "analysis/history/discovery_runs.yaml"
-LOOP_PLAN_PATH = ROOT / "loop-plan.json"
-ITERATION_LOG_PATH = ROOT / "docs/status/iteration_log.md"
-STORYBOARD_SUMMARY_PATH = ROOT / "artifacts/ms02/storyboard/summary.md"
+def _resolve_root(root: Optional[Path | str]) -> Path:
+    base = Path(root) if root else Path(__file__).resolve().parents[1]
+    return base.expanduser().resolve()
+
+
+def _path_map(root: Path) -> dict[str, Path]:
+    return {
+        "CONFIG_DEFAULT": root / "docs/discovery/config.yaml",
+        "MANIFEST_PATH": root / "analysis/system_manifest.yaml",
+        "CHANGE_ZONES_PATH": root / "analysis/change_zones.md",
+        "INTENT_MAP_PATH": root / "analysis/intent_map.md",
+        "METRICS_PATH": root / "analysis/metrics/understanding_coverage.yaml",
+        "HANDOFF_LOG_PATH": root / "audit/handoff_discovery.jsonl",
+        "GAPS_PATH": root / "artifacts/ms02/storyboard/gaps.md",
+        "HISTORY_PATH": root / "analysis/history/discovery_runs.yaml",
+        "LOOP_PLAN_PATH": root / "loop-plan.json",
+        "ITERATION_LOG_PATH": root / "docs/status/iteration_log.md",
+        "STORYBOARD_SUMMARY_PATH": root / "artifacts/ms02/storyboard/summary.md",
+    }
+
+
+def _apply_root(root: Path) -> None:
+    globals().update(_path_map(root))
+
+
+ROOT = _resolve_root(os.environ.get("CODEXA_PROJECT_ROOT"))
+_apply_root(ROOT)
+
+
+def set_project_root(root: Path | str) -> Path:
+    """
+    Override the project root for discovery runs.
+
+    Returns the resolved absolute root path.
+    """
+    resolved = _resolve_root(root)
+    globals()["ROOT"] = resolved
+    _apply_root(resolved)
+    return resolved
 
 LANGUAGE_BY_SUFFIX = {
     ".py": "python",
@@ -970,9 +997,15 @@ def run_discovery(
     mode_override: Optional[str] = None,
     log_handoff: Optional[bool] = None,
     track_history: bool = True,
+    project_root: Path | str | None = None,
 ) -> dict:
     """Execute the discovery workflow and return a summary dictionary."""
+    if project_root:
+        set_project_root(project_root)
+
     config_path = Path(config_path) if config_path else CONFIG_DEFAULT
+    if not config_path.is_absolute():
+        config_path = ROOT / config_path
     config = load_config(config_path)
 
     if mode_override:
@@ -991,7 +1024,7 @@ def run_discovery(
     scan = scan_repository(config)
     timestamp = now_iso()
     coverage = compute_coverage(scan)
-    insights = build_repository_insights(scan.file_index)
+    insights = build_repository_insights(scan.file_index, root=ROOT)
     mode = config.get("run", {}).get("mode", "full")
 
     change_zones_content = render_change_zones(scan, timestamp, followups)
@@ -1074,9 +1107,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--config",
-        default=CONFIG_DEFAULT,
+        default=None,
         type=Path,
         help="Path to discovery configuration (YAML).",
+    )
+    parser.add_argument(
+        "--root",
+        type=Path,
+        help="Repository root to analyse (defaults to the directory containing this script).",
     )
     parser.add_argument(
         "--log-handoff",
@@ -1096,6 +1134,7 @@ def main() -> None:
     result = run_discovery(
         config_path=args.config,
         log_handoff=args.log_handoff,
+        project_root=args.root,
     )
 
     print("Discovery artifacts generated:")

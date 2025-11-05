@@ -1,0 +1,26 @@
+{
+  "workstream_status": {
+    "DONE": "Delivered; no outstanding work required.",
+    "IN_PROGRESS": "Currently being executed.",
+    "PLANNED": "Scoped but not yet started.",
+    "CHANGE_IMPACTED": "Previously delivered; rework required before reuse.",
+    "PARTIAL": "Partially complete or validated."
+  },
+  "requirement_status": {
+    "DONE": "Fully implemented with evidence.",
+    "PARTIAL": "Partially implemented or validated.",
+    "IN_PROGRESS": "Active development in progress.",
+    "PLANNED": "Defined but not implemented."
+  },
+  "test_status": {
+    "PASS": "Executed with evidence recorded.",
+    "PENDING": "Test exists but has not been executed or captured.",
+    "TODO": "Test not yet implemented."
+  },
+  "milestone_status": {
+    "DONE": "Accepted milestone; criteria met.",
+    "IN_PROGRESS": "Active milestone delivery.",
+    "PLANNED": "Defined milestone; work has not started.",
+    "CHANGE_IMPACTED": "Milestone requires re-validation due to new change input."
+  }
+}

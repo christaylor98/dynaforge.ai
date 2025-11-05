@@ -1,0 +1,31 @@
+{
+  "id": "FR-17",
+  "type": "requirement",
+  "title": "QA Auditor agent",
+  "status": "PLANNED",
+  "domains": [
+    "governance",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Generate traceability-gap reports with risk tiers for unresolved requirements.",
+  "rationale": "Highlights missing evidence or failing QA gates before milestone close.",
+  "context": {
+    "tests": [
+      "TC-FR17-001"
+    ],
+    "evidence": [
+      "docs/qa_gap_report.md"
+    ]
+  },
+  "depends_on": [
+    "FR-11"
+  ],
+  "outputs": [
+    "docs/qa_gap_report.md"
+  ],
+  "hash": "fr17-3aa1",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

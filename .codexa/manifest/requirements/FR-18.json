@@ -1,0 +1,31 @@
+{
+  "id": "FR-18",
+  "type": "requirement",
+  "title": "Test Synthesizer agent",
+  "status": "PLANNED",
+  "domains": [
+    "governance",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Auto-generate test cases from impact-assessment results to expand coverage.",
+  "rationale": "Automates regression test authoring for every new requirement.",
+  "context": {
+    "tests": [
+      "TC-FR18-001"
+    ],
+    "evidence": [
+      "tests/generated/"
+    ]
+  },
+  "depends_on": [
+    "FR-16"
+  ],
+  "outputs": [
+    "tests/generated/"
+  ],
+  "hash": "fr18-6cb9",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

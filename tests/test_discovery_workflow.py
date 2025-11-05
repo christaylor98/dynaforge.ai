@@ -102,6 +102,9 @@ class DiscoveryWorkflowTest(unittest.TestCase):
         self.assertIn("discovery_analyzer", output)
         self.assertIn("Coverage snapshot: 80.0%", output)
         mock_run_discovery.assert_called_once()
+        kwargs = mock_run_discovery.call_args.kwargs
+        self.assertEqual(kwargs["project_root"], Path.cwd().resolve())
+        self.assertIsNone(kwargs["config_path"])
 
     @mock.patch("codexa.cli.discovery_bootstrap.run_discovery")
     def test_cli_json_output(self, mock_run_discovery: mock.MagicMock) -> None:
@@ -129,6 +132,9 @@ class DiscoveryWorkflowTest(unittest.TestCase):
         self.assertEqual(parsed["blast_radius"]["level"], "subsystem")
         self.assertIn("requirements_intelligence", parsed["blast_radius"]["recommended_agents"])
         mock_run_discovery.assert_called_once()
+        kwargs = mock_run_discovery.call_args.kwargs
+        self.assertEqual(kwargs["project_root"], Path.cwd().resolve())
+        self.assertIsNone(kwargs["config_path"])
 
     @mock.patch("codexa.cli.discovery_bootstrap.run_discovery")
     def test_cli_mode_override_and_flags(self, mock_run_discovery: mock.MagicMock) -> None:
@@ -147,6 +153,7 @@ class DiscoveryWorkflowTest(unittest.TestCase):
         kwargs = mock_run_discovery.call_args.kwargs
         self.assertEqual(kwargs["mode_override"], "quick")
         self.assertFalse(kwargs["track_history"])
+        self.assertEqual(kwargs["project_root"], Path.cwd().resolve())
 
 
 class BlastRadiusPlannerSmokeTest(unittest.TestCase):

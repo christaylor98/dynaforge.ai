@@ -1,0 +1,33 @@
+{
+  "id": "FR-40",
+  "type": "requirement",
+  "title": "Loop plan \u2192 seed packaging",
+  "status": "IN PROGRESS",
+  "domains": [
+    "discovery",
+    "governance"
+  ],
+  "milestones": [
+    "MS-02"
+  ],
+  "summary": "Implement `codexa loop plan` and `codexa seed --from loop-plan` commands that capture scope and produce runnable seed bundles.",
+  "rationale": "Bridges discovery and change execution by bundling contextual artifacts and review digests.",
+  "context": {
+    "tests": [
+      "TC-FR40-001"
+    ],
+    "evidence": [
+      "loop-plan.json",
+      "changes/CH-###/seed/REVIEW.md"
+    ]
+  },
+  "depends_on": [
+    "FR-38"
+  ],
+  "outputs": [
+    "loop-plan.json",
+    "changes/*/seed/"
+  ],
+  "hash": "fr40-5ad2",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

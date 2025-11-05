@@ -1,0 +1,33 @@
+{
+  "id": "FR-10",
+  "type": "requirement",
+  "title": "Approval governance",
+  "status": "PARTIAL",
+  "domains": [
+    "governance"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-02"
+  ],
+  "summary": "Capture, enforce and audit human approval gates across all change flows.",
+  "rationale": "Ensures explicit human control at defined governance boundaries.",
+  "context": {
+    "tests": [
+      "TC-FR10-001",
+      "TC-FR10-002"
+    ],
+    "evidence": [
+      "audit/commands.jsonl",
+      "artifacts/phase1/approvals/denied.txt"
+    ]
+  },
+  "depends_on": [
+    "FR-09"
+  ],
+  "outputs": [
+    "audit/approvals.jsonl"
+  ],
+  "hash": "fr10-44b1",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

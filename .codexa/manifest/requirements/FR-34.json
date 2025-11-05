@@ -1,0 +1,31 @@
+{
+  "id": "FR-34",
+  "type": "requirement",
+  "title": "Maturity gate reviews",
+  "status": "PLANNED",
+  "domains": [
+    "governance",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Record and audit outcomes of maturity-level upgrades as change entries.",
+  "rationale": "Ensures objective progression and documented review outcomes.",
+  "context": {
+    "tests": [
+      "TC-FR34-001"
+    ],
+    "evidence": [
+      "changes/CH-###/maturity_reviews/"
+    ]
+  },
+  "depends_on": [
+    "FR-33"
+  ],
+  "outputs": [
+    "changes/maturity_reviews/"
+  ],
+  "hash": "fr34-61a0",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

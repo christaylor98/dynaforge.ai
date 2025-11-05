@@ -1,0 +1,31 @@
+{
+  "id": "FR-15",
+  "type": "requirement",
+  "title": "Requirements Analyst agent",
+  "status": "IN PROGRESS",
+  "domains": [
+    "governance",
+    "discovery"
+  ],
+  "milestones": [
+    "MS-02"
+  ],
+  "summary": "Automate conversational intake and curation of requirements linked to discovery artifacts.",
+  "rationale": "Streamlines requirement gathering and maintains bidirectional traceability.",
+  "context": {
+    "tests": [
+      "TC-FR15-001"
+    ],
+    "evidence": [
+      "docs/requirements/curated/"
+    ]
+  },
+  "depends_on": [
+    "FR-02"
+  ],
+  "outputs": [
+    "docs/requirements/curated/"
+  ],
+  "hash": "fr15-8b32",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

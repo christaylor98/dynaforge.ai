@@ -1,0 +1,34 @@
+{
+  "id": "FR-06",
+  "type": "requirement",
+  "title": "Structured handoff logging",
+  "status": "PARTIAL",
+  "domains": [
+    "foundation",
+    "governance"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-03"
+  ],
+  "summary": "Extend audit logging primitives to record agent hand-offs, configuration provenance and maturity data.",
+  "rationale": "Provides a verifiable trail of every automated or human transition.",
+  "context": {
+    "tests": [
+      "TC-FR06-001",
+      "TC-FR06-002"
+    ],
+    "evidence": [
+      "audit/handoff_ms01_phase0.jsonl",
+      "audit/commands.jsonl"
+    ]
+  },
+  "depends_on": [
+    "FR-01"
+  ],
+  "outputs": [
+    "audit/handoff.jsonl"
+  ],
+  "hash": "fr06-59c3",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

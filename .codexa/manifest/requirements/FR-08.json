@@ -1,0 +1,33 @@
+{
+  "id": "FR-08",
+  "type": "requirement",
+  "title": "Discord bridge commands",
+  "status": "PARTIAL",
+  "domains": [
+    "interaction",
+    "foundation"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-02"
+  ],
+  "summary": "Implement `/status`, `/clarify`, and extended interaction commands bridging human control surfaces.",
+  "rationale": "Enables transparent human oversight and AI responsiveness.",
+  "context": {
+    "tests": [
+      "TC-FR08-001",
+      "TC-FR08-002"
+    ],
+    "evidence": [
+      "pipelines/interaction_stub.py"
+    ]
+  },
+  "depends_on": [
+    "FR-01"
+  ],
+  "outputs": [
+    "artifacts/phase1/commands/"
+  ],
+  "hash": "fr08-32c9",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

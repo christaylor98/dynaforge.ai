@@ -1,0 +1,18 @@
+version: 0.1.0
+extends:
+  - "~/.config/codexa/core.yaml"
+project:
+  name: "dynaforge.ai"
+  milestone: "MS-03"
+  maturity: "M2"
+discovery:
+  manifests_dir: "./manifests"
+  default_mode: "quick"
+  telemetry:
+    enabled: true
+    path: "../docs/status/iteration_log.md"
+lint:
+  enforce_structure: true
+  required_files:
+    - "config.yaml"
+    - "README.md"

@@ -1,0 +1,30 @@
+{
+  "id": "FR-36",
+  "type": "requirement",
+  "title": "Maturity metrics tracking",
+  "status": "PLANNED",
+  "domains": [
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Track time-in-level, upgrade counts and active criteria over time.",
+  "rationale": "Provides longitudinal maturity analytics for governance reports.",
+  "context": {
+    "tests": [
+      "TC-FR36-001"
+    ],
+    "evidence": [
+      "metrics/maturity_history.json"
+    ]
+  },
+  "depends_on": [
+    "FR-35"
+  ],
+  "outputs": [
+    "metrics/maturity_history.json"
+  ],
+  "hash": "fr36-7c0a",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

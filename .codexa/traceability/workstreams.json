@@ -1,0 +1,100 @@
+[
+  { "id": "WS-01", "name": "Repository Skeleton", "phase": "P0",
+    "status": "DONE", "requirements": ["FR-01","FR-02"], "tests": ["TC-FR01-001"] },
+
+  { "id": "WS-02", "name": "Audit Logging Primitives", "phase": "P0",
+    "status": "DONE", "requirements": ["FR-06","FR-09"], "tests": ["TC-FR06-001"] },
+
+  { "id": "WS-03", "name": "Concern API & Schema Docs", "phase": "P0",
+    "status": "PARTIAL", "requirements": ["FR-07"], "tests": ["TC-FR07-001"] },
+
+  { "id": "WS-04", "name": "Interaction Stub", "phase": "P0",
+    "status": "DONE", "requirements": ["FR-08","FR-09"], "tests": ["TC-FR08-001","TC-FR09-001"] },
+
+  { "id": "WS-05", "name": "Project Manager Skeleton", "phase": "P0",
+    "status": "DONE", "requirements": ["FR-01","FR-02","FR-10"], "tests": ["TC-FR01-002","TC-FR10-001"] },
+
+  { "id": "WS-06", "name": "QA Policy Parser Stub", "phase": "P0",
+    "status": "PARTIAL", "requirements": ["FR-11"], "tests": ["TC-FR11-001"] },
+
+  { "id": "WS-07", "name": "Demo Workflow Target", "phase": "P0",
+    "status": "DONE", "requirements": ["FR-01","FR-06","FR-09"], "tests": ["TC-FR01-002","TC-FR06-001","TC-FR09-001"] },
+
+  { "id": "WS-08", "name": "Documentation Updates", "phase": "P0",
+    "status": "DONE", "requirements": ["FR-02","FR-10"], "tests": ["TC-FR01-001","TC-FR10-001"] },
+
+  { "id": "WS-09", "name": "Discovery Foundations", "phase": "P0",
+    "status": "IN_PROGRESS", "requirements": ["FR-38","FR-39","FR-41"], "tests": ["TC-FR38-001","TC-FR39-001","TC-FR41-001"] },
+
+  { "id": "WS-10", "name": "Operating Model Scaffolding", "phase": "P0",
+    "status": "IN_PROGRESS", "requirements": ["FR-42","FR-43","FR-44"], "tests": ["TC-FR42-001","TC-FR43-001","TC-FR44-001"] },
+
+  { "id": "WS-101", "name": "Multi-Agent Orchestration", "phase": "P1",
+    "status": "CHANGE_IMPACTED", "requirements": ["FR-01","FR-04","FR-06"], "tests": ["TC-FR01-002","TC-FR04-001","TC-FR06-001"] },
+
+  { "id": "WS-102", "name": "Concern Lifecycle", "phase": "P1",
+    "status": "IN_PROGRESS", "requirements": ["FR-07"], "tests": ["TC-FR07-001"] },
+
+  { "id": "WS-103", "name": "Human Approval Gates", "phase": "P1",
+    "status": "CHANGE_IMPACTED", "requirements": ["FR-10"], "tests": ["TC-FR10-001"] },
+
+  { "id": "WS-104", "name": "QA Policy Enforcement", "phase": "P1",
+    "status": "PLANNED", "requirements": ["FR-11"], "tests": ["TC-FR11-001","TC-FR11-002"] },
+
+  { "id": "WS-105", "name": "Interaction Bridge Expansion", "phase": "P1",
+    "status": "DONE", "requirements": ["FR-08","FR-09"], "tests": ["TC-FR08-002","TC-FR09-001"] },
+
+  { "id": "WS-106", "name": "Status Snapshots & Observability", "phase": "P1",
+    "status": "PLANNED", "requirements": ["FR-13"], "tests": ["TC-FR13-001"] },
+
+  { "id": "WS-107", "name": "Rollback & Pause Controls", "phase": "P1",
+    "status": "PLANNED", "requirements": ["FR-14"], "tests": ["TC-FR14-001"] },
+
+  { "id": "WS-108", "name": "Demo & Documentation", "phase": "P1",
+    "status": "IN_PROGRESS", "requirements": ["FR-02","FR-10"], "tests": ["TC-FR01-001","TC-FR10-001"] },
+
+  { "id": "WS-109", "name": "Implementer Micro-Loop & Retention", "phase": "P1",
+    "status": "CHANGE_IMPACTED", "requirements": ["FR-04","FR-27","FR-29"], "tests": ["TC-FR04-002","TC-FR27-001","TC-FR29-001"] },
+
+  { "id": "WS-110", "name": "Loop Planning & Seed Generation", "phase": "P1",
+    "status": "IN_PROGRESS", "requirements": ["FR-40"], "tests": ["TC-FR40-001"] },
+
+  { "id": "WS-201", "name": "Requirements Intelligence", "phase": "P2",
+    "status": "IN_PROGRESS", "requirements": ["FR-02","FR-15","FR-26","FR-37"], "tests": ["TC-FR02-002","TC-FR15-001","TC-FR26-001","TC-FR37-001"] },
+
+  { "id": "WS-202", "name": "Impact Assessment & Evaluator", "phase": "P2",
+    "status": "IN_PROGRESS", "requirements": ["FR-16"], "tests": ["TC-FR16-001"] },
+
+  { "id": "WS-203", "name": "Implementation Management", "phase": "P2",
+    "status": "PLANNED", "requirements": ["FR-21","FR-25","FR-31"], "tests": ["TC-FR21-001","TC-FR25-001","TC-FR31-001"] },
+
+  { "id": "WS-204", "name": "Governance & Multi-Gate Approvals", "phase": "P2",
+    "status": "PLANNED", "requirements": ["FR-10","FR-22","FR-34"], "tests": ["TC-FR10-002","TC-FR22-001","TC-FR34-001"] },
+
+  { "id": "WS-205", "name": "Change Router & Orchestration", "phase": "P2",
+    "status": "PLANNED", "requirements": ["FR-01","FR-23"], "tests": ["TC-FR01-003","TC-FR23-001"] },
+
+  { "id": "WS-206", "name": "Change Records & Audit Extensions", "phase": "P2",
+    "status": "PLANNED", "requirements": ["FR-06","FR-20","FR-26"], "tests": ["TC-FR06-002","TC-FR20-001","TC-FR26-001"] },
+
+  { "id": "WS-207", "name": "Interaction CLI Extensions", "phase": "P2",
+    "status": "PLANNED", "requirements": ["FR-24","FR-28","FR-44"], "tests": ["TC-FR24-001","TC-FR28-001","TC-FR44-001"] },
+
+  { "id": "WS-301", "name": "QA Auditor & Traceability Gaps", "phase": "P3",
+    "status": "PLANNED", "requirements": ["FR-17"], "tests": ["TC-FR17-001"] },
+
+  { "id": "WS-302", "name": "Test Synthesizer & Quality Depth", "phase": "P3",
+    "status": "PLANNED", "requirements": ["FR-05","FR-18","FR-19"], "tests": ["TC-FR05-002","TC-FR18-001","TC-FR19-001"] },
+
+  { "id": "WS-303", "name": "QA Policy Engine Enhancements", "phase": "P3",
+    "status": "PLANNED", "requirements": ["FR-11"], "tests": ["TC-FR11-003"] },
+
+  { "id": "WS-304", "name": "Maturity Metadata & Guides", "phase": "P3",
+    "status": "PLANNED", "requirements": ["FR-32","FR-33"], "tests": ["TC-FR32-001","TC-FR33-001"] },
+
+  { "id": "WS-305", "name": "Maturity-Aware Agent Prompts", "phase": "P3",
+    "status": "PLANNED", "requirements": ["FR-35"], "tests": ["TC-FR35-001"] },
+
+  { "id": "WS-306", "name": "Maturity Metrics & Snapshots", "phase": "P3",
+    "status": "PLANNED", "requirements": ["FR-13","FR-30","FR-36","FR-41"], "tests": ["TC-FR13-002","TC-FR30-001","TC-FR36-001","TC-FR41-001"] }
+]

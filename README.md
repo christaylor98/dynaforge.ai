@@ -107,6 +107,36 @@ Everything here is early — and open for your input.
 
 ---
 
+## 🛠️ Environment Setup
+
+We recommend using a dedicated Conda environment to keep dependencies aligned with the CLI:
+
+```bash
+conda create -n codexa python=3.11 pip
+conda activate codexa
+pip install -e .
+# optional: pip install pytest  # or other dev extras
+```
+
+Once activated, keep the environment active for all Codexa commands and tests.
+
+## 🔧 Local CLI Usage
+
+You can install the Codexa CLI from this repository and aim it at any project directory:
+
+```bash
+pip install -e .
+codexa discover --project /path/to/target --config docs/discovery/config.yaml
+```
+
+- `--project` overrides the discovery root; defaults to the current working directory.  
+- `--config` may be given relative to that root. If omitted, Codexa looks for the scaffolding in `<project>/.codexa`.  
+- The same override is available for the lower-level script: `python -m scripts.discovery_bootstrap --root /path/to/target`.
+
+Set the `CODEXA_PROJECT_ROOT` environment variable if you prefer a persistent default.
+
+---
+
 ## 🤝 Call for Like-Minded Contributors
 
 We’re looking for **builders, researchers, and practitioners** who share a passion for:

@@ -1,0 +1,30 @@
+{
+  "id": "FR-20",
+  "type": "requirement",
+  "title": "RACI metadata propagation",
+  "status": "PLANNED",
+  "domains": [
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Embed RACI roles in audit logs and artefact for accountability.",
+  "rationale": "Clarifies who is Responsible, Accountable, Consulted or Informed for each change.",
+  "context": {
+    "tests": [
+      "TC-FR20-001"
+    ],
+    "evidence": [
+      "audit/"
+    ]
+  },
+  "depends_on": [
+    "FR-06"
+  ],
+  "outputs": [
+    "audit/raci_metadata.json"
+  ],
+  "hash": "fr20-b178",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

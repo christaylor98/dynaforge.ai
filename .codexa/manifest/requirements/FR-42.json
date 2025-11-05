@@ -1,0 +1,33 @@
+{
+  "id": "FR-42",
+  "type": "requirement",
+  "title": ".codexa/ scaffolding lint",
+  "status": "IN PROGRESS",
+  "domains": [
+    "implementation",
+    "configuration",
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Define the linting and validation logic that enforces `.codexa/` scaffolding contracts and migration helpers.",
+  "rationale": "Guarantees consistent project scaffolding and configuration hygiene across deployments.",
+  "context": {
+    "tests": [
+      "TC-FR42-001"
+    ],
+    "evidence": [
+      ".codexa/"
+    ]
+  },
+  "depends_on": [
+    "FR-01"
+  ],
+  "outputs": [
+    "codexa doctor config",
+    "lint reports"
+  ],
+  "hash": "fr42-bf6d",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

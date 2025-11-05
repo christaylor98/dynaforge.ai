@@ -1,0 +1,35 @@
+{
+  "id": "FR-02",
+  "type": "requirement",
+  "title": "Status documentation currency",
+  "status": "PARTIAL",
+  "domains": [
+    "foundation",
+    "documentation"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-02",
+    "MS-03"
+  ],
+  "summary": "Maintain up-to-date project overview and status documentation automatically from discovery outputs.",
+  "rationale": "Provides continuous human visibility into system state and change lineage.",
+  "context": {
+    "tests": [
+      "TC-FR01-001",
+      "TC-FR02-002"
+    ],
+    "evidence": [
+      "docs/PROJECT_OVERVIEW.md",
+      "docs/status/iteration_log.md"
+    ]
+  },
+  "depends_on": [
+    "FR-01"
+  ],
+  "outputs": [
+    "docs/PROJECT_DETAIL.md"
+  ],
+  "hash": "fr02-8bd4",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "FR-32",
+  "type": "requirement",
+  "title": "Project metadata source",
+  "status": "PLANNED",
+  "domains": [
+    "documentation",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Capture project maturity, review history and criteria in `.codexa/project_metadata.yaml`.",
+  "rationale": "Centralize maturity and governance data with human-readable mirrors.",
+  "context": {
+    "tests": [
+      "TC-FR32-001"
+    ],
+    "evidence": [
+      ".codexa/project_metadata.yaml"
+    ]
+  },
+  "depends_on": [
+    "FR-11"
+  ],
+  "outputs": [
+    ".codexa/project_metadata.yaml"
+  ],
+  "hash": "fr32-dfe9",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

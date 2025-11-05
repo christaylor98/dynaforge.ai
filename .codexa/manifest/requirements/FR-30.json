@@ -1,0 +1,31 @@
+{
+  "id": "FR-30",
+  "type": "requirement",
+  "title": "Change velocity dashboard",
+  "status": "PLANNED",
+  "domains": [
+    "metrics",
+    "documentation"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Expose weekly/milestone velocity metrics via CLI and dashboard views.",
+  "rationale": "Visualises delivery throughput and identifies bottlenecks.",
+  "context": {
+    "tests": [
+      "TC-FR30-001"
+    ],
+    "evidence": [
+      "dashboards/change_velocity/"
+    ]
+  },
+  "depends_on": [
+    "FR-13"
+  ],
+  "outputs": [
+    "dashboards/change_velocity/index.html"
+  ],
+  "hash": "fr30-6cf9",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

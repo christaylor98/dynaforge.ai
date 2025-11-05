@@ -1,0 +1,32 @@
+{
+  "id": "FR-09",
+  "type": "requirement",
+  "title": "Command audit trail",
+  "status": "PARTIAL",
+  "domains": [
+    "interaction",
+    "governance"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-02"
+  ],
+  "summary": "Record every command event and response for traceability and replay.",
+  "rationale": "Supports auditability and test reproducibility.",
+  "context": {
+    "tests": [
+      "TC-FR09-001"
+    ],
+    "evidence": [
+      "audit/commands.jsonl"
+    ]
+  },
+  "depends_on": [
+    "FR-08"
+  ],
+  "outputs": [
+    "audit/commands.jsonl"
+  ],
+  "hash": "fr09-77ad",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

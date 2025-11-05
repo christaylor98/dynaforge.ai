@@ -1,0 +1,31 @@
+{
+  "id": "FR-16",
+  "type": "requirement",
+  "title": "Impact Assessor agent",
+  "status": "IN PROGRESS",
+  "domains": [
+    "governance",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-02"
+  ],
+  "summary": "Generate readiness heatmaps and impact scoring with conversational follow-ups.",
+  "rationale": "Provides objective prioritisation for change and testing focus.",
+  "context": {
+    "tests": [
+      "TC-FR16-001"
+    ],
+    "evidence": [
+      "design/MS-02_storyboard.md#stage-9"
+    ]
+  },
+  "depends_on": [
+    "FR-15"
+  ],
+  "outputs": [
+    "docs/impact_heatmap.md"
+  ],
+  "hash": "fr16-94ac",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "FR-43",
+  "type": "requirement",
+  "title": "Global control-plane bundle",
+  "status": "PLANNED",
+  "domains": [
+    "configuration",
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Publish a versioned global configuration bundle under `~/.config/codexa/` and record provenance.",
+  "rationale": "Centralises defaults and enables cross-project consistency through inherited settings.",
+  "context": {
+    "tests": [
+      "TC-FR43-001"
+    ],
+    "evidence": [
+      "~/.config/codexa/"
+    ]
+  },
+  "depends_on": [
+    "FR-42"
+  ],
+  "outputs": [
+    "~/.config/codexa/"
+  ],
+  "hash": "fr43-1c84",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

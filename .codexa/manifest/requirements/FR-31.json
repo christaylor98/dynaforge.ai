@@ -1,0 +1,30 @@
+{
+  "id": "FR-31",
+  "type": "requirement",
+  "title": "Partial change approvals",
+  "status": "PLANNED",
+  "domains": [
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Support sub-decision approvals within change records to allow incremental merges.",
+  "rationale": "Improves agility and accountability in multi-part changes.",
+  "context": {
+    "tests": [
+      "TC-FR31-001"
+    ],
+    "evidence": [
+      "changes/CH-###/status.md"
+    ]
+  },
+  "depends_on": [
+    "FR-10"
+  ],
+  "outputs": [
+    "changes/CH-###/status.md"
+  ],
+  "hash": "fr31-134a",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

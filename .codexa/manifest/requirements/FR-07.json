@@ -1,0 +1,32 @@
+{
+  "id": "FR-07",
+  "type": "requirement",
+  "title": "Concern lifecycle automation",
+  "status": "PARTIAL",
+  "domains": [
+    "foundation",
+    "governance"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-02"
+  ],
+  "summary": "Provide APIs and schema docs to log, mirror, and resolve concerns raised during execution.",
+  "rationale": "Allows traceable resolution of issues within governance loops.",
+  "context": {
+    "tests": [
+      "TC-FR07-001"
+    ],
+    "evidence": [
+      "pipelines/concern_tools.py"
+    ]
+  },
+  "depends_on": [
+    "FR-06"
+  ],
+  "outputs": [
+    "docs/WORKFLOW.md"
+  ],
+  "hash": "fr07-9f2e",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

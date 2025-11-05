@@ -1,4 +1,4 @@
-# Traceability Matrix
+# Traceability Data - Human Readable
 
 _Last updated: 2025-11-04 — maintained by Codex agent._
 
@@ -20,7 +20,7 @@ _Last updated: 2025-11-04 — maintained by Codex agent._
 
 | Phase | Workstream | Role in MS-03 | Current Status |
 | --- | --- | --- | --- |
-| Phase 0 — Foundation | WS-10 Operating Model Scaffolding | Create `.codexa/` scaffolding, migration helpers, and lint checks (FR-42). | PLANNED |
+| Phase 0 — Foundation | WS-10 Operating Model Scaffolding | Create `.codexa/` scaffolding, migration helpers, and lint checks (FR-42). | IN PROGRESS |
 | Phase 1 — Core Agent Loop | WS-207 Interaction CLI Extensions | Ship `codexa doctor config` with automated precedence tests and telemetry (FR-44). | PLANNED |
 | Phase 2 — Change Governance Loop | WS-206 Change Records & Audit Extensions | Append configuration provenance to audit/logging flows (FR-06 updates). | PLANNED |
 | Phase 3 — QA & Maturity Automation | WS-304 Maturity Metadata & Guides | Relocate canonical maturity metadata into `.codexa/project_metadata.yaml` and sync the guide (FR-32). | PLANNED |
@@ -87,7 +87,7 @@ _Last updated: 2025-11-04 — maintained by Codex agent._
 | WS-07 Demo Workflow Target | DONE | FR-01, FR-06, FR-09 | Deterministic demo package (`artifacts/phase0/demo/2025-11-02/README.md`) |
 | WS-08 Documentation Updates | DONE | FR-02, FR-10 | Documentation aligned to CH-001 (`docs/PROJECT_DETAIL.md`, `docs/VERSION_CONTROL.md`) |
 | WS-09 Discovery Foundations | IN PROGRESS | FR-38, FR-39, FR-41 | Discovery config + telemetry + iteration log (`.codexa/config.yaml`, `docs/status/iteration_log.md`, `design/MS-02_storyboard.md#stage-2`) |
-| WS-10 Operating Model Scaffolding | PLANNED | FR-42, FR-43, FR-44 | `.codexa/` scaffolding + global templates + config validation tests (pending CR004 implementation). |
+| WS-10 Operating Model Scaffolding | IN PROGRESS | FR-42, FR-43, FR-44 | `.codexa/` contract published; scaffolding CLI/lint + global bundle + config doctor pending implementation. |
 
 ### WS-01 Repository Skeleton
 
@@ -157,7 +157,7 @@ _Last updated: 2025-11-04 — maintained by Codex agent._
 
 | Requirement | Requirement Status | Tests | Test Status | Notes |
 | --- | --- | --- | --- | --- |
-| FR-42 `.codexa/` scaffolding lint | PLANNED | TC-FR42-001 | TODO | `codexa init`/`doctor` must create/validate required directories and README; migration helper for Spec-Kit pending. |
+| FR-42 `.codexa/` scaffolding lint | IN PROGRESS | TC-FR42-001 | TODO | `.codexa/` directory contract established; scaffold CLI/lint + migration helper outstanding. |
 | FR-43 Global control-plane bundle | PLANNED | TC-FR43-001 | TODO | Publish versioned defaults under `~/.config/codexa/`; provenance logged in docs + audit. |
 | FR-44 Configuration discovery validation | PLANNED | TC-FR44-001 | TODO | `codexa doctor config` to exercise project/global/hybrid precedence with automated tests and telemetry. |
 
@@ -368,52 +368,3 @@ _Last updated: 2025-11-04 — maintained by Codex agent._
 | FR-41 Understanding coverage & readiness metrics | PLANNED | TC-FR41-001 | TODO | Report % coverage of mapped components and readiness heatmaps sourced from discovery artifacts. |
 
 ---
-
-## Overview by Requirement
-
-| Requirement | Current Status | Validating Workstreams | Primary Tests / Evidence |
-| --- | --- | --- | --- |
-| FR-01 Project Manager agent coordination | PARTIAL | WS-01, WS-05, WS-07, WS-101, WS-205 | TC-FR01-001, TC-FR01-002, TC-FR01-003 (TODO); needs config-root lineage captured per CR004 (`artifacts/phase1/orchestration/run.log`). |
-| FR-02 Status documentation | PARTIAL | WS-01, WS-05, WS-08, WS-108, WS-201 | TC-FR01-001, TC-FR02-002 (TODO); hero docs must surface `.codexa/` lineage + template hashes. |
-| FR-03 Designer agent deliverables | PARTIAL | WS-101 | TC-FR03-001, `design/DESIGN_SPEC.md` |
-| FR-04 Implementer branch + artifact discipline | PARTIAL | WS-101 | TC-FR04-001, `docs/IMPLEMENTATION_PLAN.md` |
-| FR-05 Tester-owned QA artifacts | PARTIAL | WS-104, WS-302 | TC-FR05-001, TC-FR05-002 (TODO), `tests/TEST_PLAN.md` |
-| FR-06 Handoff logging | PARTIAL | WS-02, WS-04, WS-07, WS-101, WS-206 | TC-FR06-001, TC-FR06-002 (TODO); need discovery + config provenance added to audit events (`artifacts/phase0/demo/`). |
-| FR-07 Concern lifecycle | PARTIAL | WS-03, WS-102 | TC-FR07-001, `pipelines/concern_tools.py` |
-| FR-08 Discord bridge commands | PARTIAL | WS-04, WS-105 | TC-FR08-001, TC-FR08-002 (TODO), `artifacts/phase1/commands/` |
-| FR-09 Command audit trail | PARTIAL | WS-02, WS-04, WS-05, WS-105 | TC-FR09-001, `audit/commands.jsonl` |
-| FR-10 Approval governance | PARTIAL | WS-05, WS-08, WS-103, WS-108, WS-204 | TC-FR10-001, TC-FR10-002 (TODO), `artifacts/phase1/approvals/denied.txt` |
-| FR-11 QA policy enforcement | PARTIAL | WS-06, WS-104, WS-303 | TC-FR11-001, TC-FR11-002 (TODO), TC-FR11-003 (TODO) |
-| FR-12 GitOps workflow controls | PLANNED | Future phase | TC-FR12-001 (TODO) |
-| FR-13 Status snapshots | PLANNED | WS-106, WS-306 | TC-FR13-001 (TODO), TC-FR13-002 (TODO) |
-| FR-14 Rollback & pause controls | PLANNED | WS-107 | TC-FR14-001 (TODO) |
-| FR-15 Requirements Analyst agent | IN PROGRESS | WS-201 | TC-FR15-001 (TODO), curated intake pipeline (`design/MS-02_storyboard.md#stage-5`) |
-| FR-16 Impact Assessor agent | IN PROGRESS | WS-202 | TC-FR16-001 (TODO), readiness heatmap governance prompts |
-| FR-17 QA Auditor agent | PLANNED | WS-301 | TC-FR17-001 (TODO) |
-| FR-18 Test Synthesizer agent | PLANNED | WS-302 | TC-FR18-001 (TODO) |
-| FR-19 Test Quality Assessor | PLANNED | WS-302 | TC-FR19-001 (TODO) |
-| FR-20 RACI metadata propagation | PLANNED | WS-206 | TC-FR20-001 (TODO) |
-| FR-21 Implementation Manager agent | PLANNED | WS-203 | TC-FR21-001 (TODO) |
-| FR-22 Governance Officer agent | PLANNED | WS-204 | TC-FR22-001 (TODO) |
-| FR-23 Automated orchestration triggers | PLANNED | WS-205 | TC-FR23-001 (TODO) |
-| FR-24 `/impact` and `/trace` commands | PLANNED | WS-207 | TC-FR24-001 (TODO) |
-| FR-25 Change workspace management | PLANNED | WS-203 | TC-FR25-001 (TODO), `changes/CH-###/` template plan |
-| FR-26 Bidirectional change traceability | IN PROGRESS | WS-201, WS-206 | TC-FR26-001 (TODO); loop-plan metadata threads discovery ⇄ change ⇄ execution |
-| FR-27 Implementer run retention | PLANNED | WS-109 | TC-FR27-001 (TODO), retention policy spec |
-| FR-28 `/df.*` analysis commands | PLANNED | WS-207 | TC-FR28-001 (TODO), `/df.*` CLI design notes |
-| FR-29 SpekKit-inspired micro-task loop | PLANNED | WS-109 | TC-FR29-001 (TODO), planner/executor design draft |
-| FR-30 Change velocity dashboard | PLANNED | WS-306 | TC-FR30-001 (TODO) |
-| FR-31 Partial change approvals | PLANNED | WS-203 | TC-FR31-001 (TODO) |
-| FR-32 Project metadata source | PLANNED | WS-304 | TC-FR32-001 (TODO); migrate canonical file to `.codexa/project_metadata.yaml` with mirrors for human docs. |
-| FR-33 Process maturity guide | PLANNED | WS-304 | TC-FR33-001 (TODO) |
-| FR-34 Maturity gate reviews | PLANNED | WS-204 | TC-FR34-001 (TODO) |
-| FR-35 Maturity-aware agent prompts | PLANNED | WS-305 | TC-FR35-001 (TODO) |
-| FR-36 Maturity metrics tracking | PLANNED | WS-306 | TC-FR36-001 (TODO) |
-| FR-37 Requirement elaboration workflow | IN PROGRESS | WS-201 | TC-FR37-001 (TODO); elaborations now embed discovery evidence before loop planning |
-| FR-38 Discovery pipeline artifacts | IN PROGRESS | WS-09 | TC-FR38-001 (TODO); telemetry + iteration log updates (`.codexa/config.yaml`, `docs/status/iteration_log.md`) |
-| FR-39 System Model Graph (YAML projections) | IN PROGRESS | WS-09 | TC-FR39-001 (TODO); projections now include iteration/follow-up metadata (`.codexa/manifests/system_model/`) |
-| FR-40 Loop plan → seed packaging | IN PROGRESS | WS-110 | TC-FR40-001 (TODO); loop plan + `codexa seed --from loop-plan` flow (`design/MS-02_storyboard.md#stage-7`) |
-| FR-41 Understanding coverage & readiness metrics | IN PROGRESS | WS-09, WS-306 | TC-FR41-001 (TODO); coverage surfaced via `/status` + governance summary (`design/MS-02_storyboard.md#stage-9`) |
-| FR-42 `.codexa/` scaffolding lint | PLANNED | WS-10 | TC-FR42-001 (TODO); scaffold + lint `.codexa/` root and Spec-Kit migration helper. |
-| FR-43 Global control-plane bundle | PLANNED | WS-10 | TC-FR43-001 (TODO); publish versioned defaults under `~/.config/codexa/` with provenance logging. |
-| FR-44 Configuration discovery validation | PLANNED | WS-10 | TC-FR44-001 (TODO); `codexa doctor config` to enforce hybrid precedence and schema validation. |

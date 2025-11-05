@@ -1,0 +1,31 @@
+{
+  "id": "FR-37",
+  "type": "requirement",
+  "title": "Requirement elaboration workflow",
+  "status": "IN PROGRESS",
+  "domains": [
+    "governance",
+    "documentation"
+  ],
+  "milestones": [
+    "MS-02"
+  ],
+  "summary": "Support iterative elaboration of requirements with embedded discovery evidence before loop planning continues.",
+  "rationale": "Improves clarity and verification of evolving requirements.",
+  "context": {
+    "tests": [
+      "TC-FR37-001"
+    ],
+    "evidence": [
+      "design/MS-02_storyboard.md#stage-5"
+    ]
+  },
+  "depends_on": [
+    "FR-15"
+  ],
+  "outputs": [
+    "docs/requirements/elaborated/"
+  ],
+  "hash": "fr37-8dfb",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

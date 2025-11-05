@@ -1,0 +1,31 @@
+{
+  "id": "FR-33",
+  "type": "requirement",
+  "title": "Process maturity guide",
+  "status": "PLANNED",
+  "domains": [
+    "documentation",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Publish human guide explaining maturity levels and agent participation expectations.",
+  "rationale": "Gives teams consistent criteria for level advancement.",
+  "context": {
+    "tests": [
+      "TC-FR33-001"
+    ],
+    "evidence": [
+      "docs/PROCESS_MATURITY_GUIDE.md"
+    ]
+  },
+  "depends_on": [
+    "FR-32"
+  ],
+  "outputs": [
+    "docs/PROCESS_MATURITY_GUIDE.md"
+  ],
+  "hash": "fr33-9bc3",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

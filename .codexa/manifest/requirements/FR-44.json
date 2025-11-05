@@ -1,0 +1,32 @@
+{
+  "id": "FR-44",
+  "type": "requirement",
+  "title": "Configuration discovery validation",
+  "status": "PLANNED",
+  "domains": [
+    "configuration",
+    "governance",
+    "implementation"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Implement `codexa doctor config` to verify precedence across project/global/hybrid configurations with telemetry reporting.",
+  "rationale": "Validates configuration lineage and prevents drift between local and global defaults.",
+  "context": {
+    "tests": [
+      "TC-FR44-001"
+    ],
+    "evidence": [
+      "codexa doctor config telemetry"
+    ]
+  },
+  "depends_on": [
+    "FR-43"
+  ],
+  "outputs": [
+    "docs/config_validation_report.md"
+  ],
+  "hash": "fr44-4ee8",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

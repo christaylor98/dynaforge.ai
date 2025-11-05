@@ -1,0 +1,819 @@
+[
+  {
+    "id": "MS-01",
+    "type": "milestone",
+    "title": "POC Spike (Minimum Agent Loop)",
+    "status": "CHANGE IMPACTED",
+    "domains": ["foundation", "interaction", "governance", "documentation"],
+    "depends_on": ["FR-01","FR-02","FR-04","FR-06","FR-08","FR-09","FR-10"],
+    "outputs": [
+      "artifacts/phase0/demo/2025-11-02/",
+      "docs/PROJECT_OVERVIEW.md",
+      "docs/IMPLEMENTATION_PLAN.md"
+    ],
+    "summary": "Proves the Codexa core by wiring the minimum agent chain (PM→Designer→Implementer→Tester) with logging, approvals and demo collateral.",
+    "rationale": "Validates orchestration and audit hand-offs end-to-end before expanding scope.",
+    "context": {
+      "scope_guidance": "Enable a human to run, observe and judge the agent loop.",
+      "readiness_note": "Streams marked CHANGE IMPACTED or PARTIAL must rerun before acceptance."
+    },
+    "hash": "ms01-a1f3",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "MS-02",
+    "type": "milestone",
+    "title": "Discovery MVP",
+    "status": "IN PROGRESS",
+    "domains": ["discovery", "implementation", "governance", "metrics"],
+    "depends_on": ["FR-15","FR-16","FR-26","FR-38","FR-39","FR-40","FR-41"],
+    "outputs": [
+      "manifest.json",
+      "docs/status/iteration_log.md",
+      "loop-plan.json",
+      "design/MS-02_storyboard.md"
+    ],
+    "summary": "Delivers a runnable discovery pipeline producing manifests, System Model Graph projections, understanding metrics and seeded change journeys.",
+    "rationale": "Establishes Codexa’s automated discovery loop and governance data flow.",
+    "context": {
+      "scope_guidance": "Prioritise quick/deep discovery modes and first loop-plan/seed workflow.",
+      "readiness_note": "Demo readiness once discovery runs populate manifests and human scope selection works."
+    },
+    "hash": "ms02-c9e1",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "MS-03",
+    "type": "milestone",
+    "title": "Operating Model Integration",
+    "status": "IN PROGRESS",
+    "domains": ["implementation", "configuration", "governance", "documentation"],
+    "depends_on": ["FR-01","FR-02","FR-06","FR-32","FR-38","FR-39","FR-42","FR-43","FR-44"],
+    "outputs": [
+      "docs/CHANGE_REQUEST_004_operating_model.md",
+      ".codexa/",
+      "codexa doctor config"
+    ],
+    "summary": "Operationalises the CR004 operating model so every Codexa deployment resolves configuration lineage through .codexa/ scaffolding and inherits global defaults.",
+    "rationale": "Unifies configuration and provenance handling across deployments with linting, control-plane bundle and telemetry validation.",
+    "context": {
+      "scope_guidance": "Deliver FR-42–FR-44 and related FR-01/02/06/32/38/39 updates; advanced registries out of scope.",
+      "readiness_note": "Requires .codexa/ linting in CI, published defaults with hashes, successful config doctor tests and audit lineage records."
+    },
+    "hash": "ms03-dd92",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-foundation",
+    "type": "domain",
+    "title": "Foundation",
+    "summary": "Core repository scaffolding, audit, and interaction primitives that underpin all milestones.",
+    "rationale": "Provides the structural and logging backbone required for agent orchestration.",
+    "hash": "dom-foundation",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-interaction",
+    "type": "domain",
+    "title": "Interaction",
+    "summary": "Human ↔ AI command surface, approval flows, and audit command routing.",
+    "rationale": "Ensures every milestone remains observable and controllable by humans.",
+    "hash": "dom-interaction",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-governance",
+    "type": "domain",
+    "title": "Governance",
+    "summary": "Change control, approvals, provenance and configuration lineage management.",
+    "rationale": "Anchors trust and accountability across the Codexa ecosystem.",
+    "hash": "dom-governance",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-documentation",
+    "type": "domain",
+    "title": "Documentation",
+    "summary": "Human-readable knowledge artifacts generated or maintained by Codexa.",
+    "rationale": "Keeps all deliverables transparent and reviewable for stakeholders.",
+    "hash": "dom-documentation",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-discovery",
+    "type": "domain",
+    "title": "Discovery",
+    "summary": "Automated source inspection, manifest generation, and system-model synthesis.",
+    "rationale": "Forms the analytical core for Codexa’s understanding and blast-radius analysis.",
+    "hash": "dom-discovery",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "DOMAIN-metrics",
+    "type": "domain",
+    "title": "Metrics & Maturity",
+    "summary": "Understanding coverage, readiness, and process-maturity instrumentation.",
+    "rationale": "Quantifies progress and confidence for every change and milestone.",
+    "hash": "dom-metrics",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+
+  {
+    "id": "FR-01",
+    "type": "requirement",
+    "title": "Project Manager agent coordination",
+    "status": "PARTIAL",
+    "domains": ["foundation","governance"],
+    "milestones": ["MS-01","MS-03"],
+    "summary": "Define and implement the PM agent orchestration logic coordinating Designer, Implementer and Tester agents.",
+    "rationale": "Ensures deterministic multi-agent sequencing and auditability.",
+    "context": {
+      "tests": ["TC-FR01-001","TC-FR01-002"],
+      "evidence": ["artifacts/work/CH-001/run-04/manifest.json"]
+    },
+    "depends_on": [],
+    "outputs": ["docs/IMPLEMENTATION_PLAN.md"],
+    "hash": "fr01-221a",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-02",
+    "type": "requirement",
+    "title": "Status documentation currency",
+    "status": "PARTIAL",
+    "domains": ["foundation","documentation"],
+    "milestones": ["MS-01","MS-02","MS-03"],
+    "summary": "Maintain up-to-date project overview and status documentation automatically from discovery outputs.",
+    "rationale": "Provides continuous human visibility into system state and change lineage.",
+    "context": {
+      "tests": ["TC-FR01-001","TC-FR02-002"],
+      "evidence": ["docs/PROJECT_OVERVIEW.md","docs/status/iteration_log.md"]
+    },
+    "depends_on": ["FR-01"],
+    "outputs": ["docs/PROJECT_DETAIL.md"],
+    "hash": "fr02-8bd4",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-06",
+    "type": "requirement",
+    "title": "Structured handoff logging",
+    "status": "PARTIAL",
+    "domains": ["foundation","governance"],
+    "milestones": ["MS-01","MS-03"],
+    "summary": "Extend audit logging primitives to record agent hand-offs, configuration provenance and maturity data.",
+    "rationale": "Provides a verifiable trail of every automated or human transition.",
+    "context": {
+      "tests": ["TC-FR06-001","TC-FR06-002"],
+      "evidence": ["audit/handoff_ms01_phase0.jsonl","audit/commands.jsonl"]
+    },
+    "depends_on": ["FR-01"],
+    "outputs": ["audit/handoff.jsonl"],
+    "hash": "fr06-59c3",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-07",
+    "type": "requirement",
+    "title": "Concern lifecycle automation",
+    "status": "PARTIAL",
+    "domains": ["foundation","governance"],
+    "milestones": ["MS-01","MS-02"],
+    "summary": "Provide APIs and schema docs to log, mirror, and resolve concerns raised during execution.",
+    "rationale": "Allows traceable resolution of issues within governance loops.",
+    "context": {
+      "tests": ["TC-FR07-001"],
+      "evidence": ["pipelines/concern_tools.py"]
+    },
+    "depends_on": ["FR-06"],
+    "outputs": ["docs/WORKFLOW.md"],
+    "hash": "fr07-9f2e",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-08",
+    "type": "requirement",
+    "title": "Discord bridge commands",
+    "status": "PARTIAL",
+    "domains": ["interaction","foundation"],
+    "milestones": ["MS-01","MS-02"],
+    "summary": "Implement `/status`, `/clarify`, and extended interaction commands bridging human control surfaces.",
+    "rationale": "Enables transparent human oversight and AI responsiveness.",
+    "context": {
+      "tests": ["TC-FR08-001","TC-FR08-002"],
+      "evidence": ["pipelines/interaction_stub.py"]
+    },
+    "depends_on": ["FR-01"],
+    "outputs": ["artifacts/phase1/commands/"],
+    "hash": "fr08-32c9",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-09",
+    "type": "requirement",
+    "title": "Command audit trail",
+    "status": "PARTIAL",
+    "domains": ["interaction","governance"],
+    "milestones": ["MS-01","MS-02"],
+    "summary": "Record every command event and response for traceability and replay.",
+    "rationale": "Supports auditability and test reproducibility.",
+    "context": {
+      "tests": ["TC-FR09-001"],
+      "evidence": ["audit/commands.jsonl"]
+    },
+    "depends_on": ["FR-08"],
+    "outputs": ["audit/commands.jsonl"],
+    "hash": "fr09-77ad",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-10",
+    "type": "requirement",
+    "title": "Approval governance",
+    "status": "PARTIAL",
+    "domains": ["governance"],
+    "milestones": ["MS-01","MS-02"],
+    "summary": "Capture, enforce and audit human approval gates across all change flows.",
+    "rationale": "Ensures explicit human control at defined governance boundaries.",
+    "context": {
+      "tests": ["TC-FR10-001","TC-FR10-002"],
+      "evidence": ["audit/commands.jsonl","artifacts/phase1/approvals/denied.txt"]
+    },
+    "depends_on": ["FR-09"],
+    "outputs": ["audit/approvals.jsonl"],
+    "hash": "fr10-44b1",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-38",
+    "type": "requirement",
+    "title": "Discovery pipeline artifacts",
+    "status": "IN PROGRESS",
+    "domains": ["discovery","implementation","metrics"],
+    "milestones": ["MS-02","MS-03"],
+    "summary": "Implement the Codexa discovery pipeline producing manifests, metrics and blast-radius logs.",
+    "rationale": "Provides a reproducible foundation for system-model understanding and later governance analysis.",
+    "context": {
+      "tests": ["TC-FR38-001"],
+      "evidence": [
+        ".codexa/config.yaml",
+        "docs/status/iteration_log.md",
+        "design/MS-02_storyboard.md#stage-2"
+      ]
+    },
+    "depends_on": ["FR-02"],
+    "outputs": [
+      "manifest.json",
+      "docs/status/iteration_log.md"
+    ],
+    "hash": "fr38-66e1",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-39",
+    "type": "requirement",
+    "title": "System Model Graph (YAML projections)",
+    "status": "IN PROGRESS",
+    "domains": ["discovery","documentation","metrics"],
+    "milestones": ["MS-02","MS-03"],
+    "summary": "Generate and maintain canonical YAML projections of the System Model Graph from discovery outputs.",
+    "rationale": "Ensures a persistent, repo-tracked representation of structural relationships for AI reasoning and governance.",
+    "context": {
+      "tests": ["TC-FR39-001"],
+      "evidence": [".codexa/manifests/system_model/"]
+    },
+    "depends_on": ["FR-38"],
+    "outputs": [
+      ".codexa/manifests/system_model/",
+      "docs/system_model_graph.yaml"
+    ],
+    "hash": "fr39-bb17",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-40",
+    "type": "requirement",
+    "title": "Loop plan → seed packaging",
+    "status": "IN PROGRESS",
+    "domains": ["discovery","governance"],
+    "milestones": ["MS-02"],
+    "summary": "Implement `codexa loop plan` and `codexa seed --from loop-plan` commands that capture scope and produce runnable seed bundles.",
+    "rationale": "Bridges discovery and change execution by bundling contextual artifacts and review digests.",
+    "context": {
+      "tests": ["TC-FR40-001"],
+      "evidence": [
+        "loop-plan.json",
+        "changes/CH-###/seed/REVIEW.md"
+      ]
+    },
+    "depends_on": ["FR-38"],
+    "outputs": ["loop-plan.json","changes/*/seed/"],
+    "hash": "fr40-5ad2",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-41",
+    "type": "requirement",
+    "title": "Understanding coverage & readiness metrics",
+    "status": "IN PROGRESS",
+    "domains": ["metrics","discovery"],
+    "milestones": ["MS-02","MS-03"],
+    "summary": "Expose understanding coverage, readiness heatmaps and change stability ratios within `/status` and governance summaries.",
+    "rationale": "Quantifies system comprehension and readiness for each milestone or change.",
+    "context": {
+      "tests": ["TC-FR41-001"],
+      "evidence": ["design/MS-02_storyboard.md#stage-9"]
+    },
+    "depends_on": ["FR-39"],
+    "outputs": ["docs/status/metrics_summary.md"],
+    "hash": "fr41-0b91",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-42",
+    "type": "requirement",
+    "title": ".codexa/ scaffolding lint",
+    "status": "IN PROGRESS",
+    "domains": ["implementation","configuration","governance"],
+    "milestones": ["MS-03"],
+    "summary": "Define the linting and validation logic that enforces `.codexa/` scaffolding contracts and migration helpers.",
+    "rationale": "Guarantees consistent project scaffolding and configuration hygiene across deployments.",
+    "context": {
+      "tests": ["TC-FR42-001"],
+      "evidence": [".codexa/"]
+    },
+    "depends_on": ["FR-01"],
+    "outputs": ["codexa doctor config","lint reports"],
+    "hash": "fr42-bf6d",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-43",
+    "type": "requirement",
+    "title": "Global control-plane bundle",
+    "status": "PLANNED",
+    "domains": ["configuration","governance"],
+    "milestones": ["MS-03"],
+    "summary": "Publish a versioned global configuration bundle under `~/.config/codexa/` and record provenance.",
+    "rationale": "Centralises defaults and enables cross-project consistency through inherited settings.",
+    "context": {
+      "tests": ["TC-FR43-001"],
+      "evidence": ["~/.config/codexa/"]
+    },
+    "depends_on": ["FR-42"],
+    "outputs": ["~/.config/codexa/"],
+    "hash": "fr43-1c84",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-44",
+    "type": "requirement",
+    "title": "Configuration discovery validation",
+    "status": "PLANNED",
+    "domains": ["configuration","governance","implementation"],
+    "milestones": ["MS-03"],
+    "summary": "Implement `codexa doctor config` to verify precedence across project/global/hybrid configurations with telemetry reporting.",
+    "rationale": "Validates configuration lineage and prevents drift between local and global defaults.",
+    "context": {
+      "tests": ["TC-FR44-001"],
+      "evidence": ["codexa doctor config telemetry"]
+    },
+    "depends_on": ["FR-43"],
+    "outputs": ["docs/config_validation_report.md"],
+    "hash": "fr44-4ee8",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-11",
+    "type": "requirement",
+    "title": "QA policy enforcement engine",
+    "status": "PARTIAL",
+    "domains": ["governance","metrics"],
+    "milestones": ["MS-01","MS-02"],
+    "summary": "Implement QA policy parser and enforcement engine that validates maturity gates before merges.",
+    "rationale": "Ensures quality policies are machine-enforced and test coverage thresholds maintained.",
+    "context": {
+      "tests": ["TC-FR11-001","TC-FR11-002","TC-FR11-003"],
+      "evidence": ["pipelines/policy_parser.py"]
+    },
+    "depends_on": ["FR-06"],
+    "outputs": ["reports/qa_policy_enforcement.md"],
+    "hash": "fr11-102d",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-13",
+    "type": "requirement",
+    "title": "Status snapshots & observability metrics",
+    "status": "PLANNED",
+    "domains": ["metrics","documentation"],
+    "milestones": ["MS-02","MS-03"],
+    "summary": "Provide `/status` snapshot generation with change-density, lag, drift and stability metrics.",
+    "rationale": "Allows stakeholders to view objective progress and stability indicators per milestone.",
+    "context": {
+      "tests": ["TC-FR13-001","TC-FR13-002"],
+      "evidence": ["docs/status/metrics_summary.md"]
+    },
+    "depends_on": ["FR-11"],
+    "outputs": ["docs/status_snapshot.json"],
+    "hash": "fr13-5ef2",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-15",
+    "type": "requirement",
+    "title": "Requirements Analyst agent",
+    "status": "IN PROGRESS",
+    "domains": ["governance","discovery"],
+    "milestones": ["MS-02"],
+    "summary": "Automate conversational intake and curation of requirements linked to discovery artifacts.",
+    "rationale": "Streamlines requirement gathering and maintains bidirectional traceability.",
+    "context": {
+      "tests": ["TC-FR15-001"],
+      "evidence": ["docs/requirements/curated/"]
+    },
+    "depends_on": ["FR-02"],
+    "outputs": ["docs/requirements/curated/"],
+    "hash": "fr15-8b32",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-16",
+    "type": "requirement",
+    "title": "Impact Assessor agent",
+    "status": "IN PROGRESS",
+    "domains": ["governance","metrics"],
+    "milestones": ["MS-02"],
+    "summary": "Generate readiness heatmaps and impact scoring with conversational follow-ups.",
+    "rationale": "Provides objective prioritisation for change and testing focus.",
+    "context": {
+      "tests": ["TC-FR16-001"],
+      "evidence": ["design/MS-02_storyboard.md#stage-9"]
+    },
+    "depends_on": ["FR-15"],
+    "outputs": ["docs/impact_heatmap.md"],
+    "hash": "fr16-94ac",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-17",
+    "type": "requirement",
+    "title": "QA Auditor agent",
+    "status": "PLANNED",
+    "domains": ["governance","metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Generate traceability-gap reports with risk tiers for unresolved requirements.",
+    "rationale": "Highlights missing evidence or failing QA gates before milestone close.",
+    "context": {
+      "tests": ["TC-FR17-001"],
+      "evidence": ["docs/qa_gap_report.md"]
+    },
+    "depends_on": ["FR-11"],
+    "outputs": ["docs/qa_gap_report.md"],
+    "hash": "fr17-3aa1",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-18",
+    "type": "requirement",
+    "title": "Test Synthesizer agent",
+    "status": "PLANNED",
+    "domains": ["governance","metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Auto-generate test cases from impact-assessment results to expand coverage.",
+    "rationale": "Automates regression test authoring for every new requirement.",
+    "context": {
+      "tests": ["TC-FR18-001"],
+      "evidence": ["tests/generated/"]
+    },
+    "depends_on": ["FR-16"],
+    "outputs": ["tests/generated/"],
+    "hash": "fr18-6cb9",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-19",
+    "type": "requirement",
+    "title": "Test Quality Assessor",
+    "status": "PLANNED",
+    "domains": ["metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Calculate test-depth and risk coverage metrics, surfacing QA maturity ratios.",
+    "rationale": "Measures effectiveness of generated and manual tests.",
+    "context": {
+      "tests": ["TC-FR19-001"],
+      "evidence": ["tests/metrics/coverage.json"]
+    },
+    "depends_on": ["FR-18"],
+    "outputs": ["tests/metrics/coverage.json"],
+    "hash": "fr19-07b2",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-20",
+    "type": "requirement",
+    "title": "RACI metadata propagation",
+    "status": "PLANNED",
+    "domains": ["governance"],
+    "milestones": ["MS-03"],
+    "summary": "Embed RACI roles in audit logs and artefact for accountability.",
+    "rationale": "Clarifies who is Responsible, Accountable, Consulted or Informed for each change.",
+    "context": {
+      "tests": ["TC-FR20-001"],
+      "evidence": ["audit/"]
+    },
+    "depends_on": ["FR-06"],
+    "outputs": ["audit/raci_metadata.json"],
+    "hash": "fr20-b178",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-26",
+    "type": "requirement",
+    "title": "Bidirectional change traceability",
+    "status": "IN PROGRESS",
+    "domains": ["governance","documentation"],
+    "milestones": ["MS-02","MS-03"],
+    "summary": "Link every change, requirement and test through shared metadata and hashes.",
+    "rationale": "Provides full lifecycle traceability for audit and AI reasoning.",
+    "context": {
+      "tests": ["TC-FR26-001"],
+      "evidence": ["loop-plan.json","changes/CH-###/"]
+    },
+    "depends_on": ["FR-15","FR-06"],
+    "outputs": ["docs/traceability.md"],
+    "hash": "fr26-8e2f",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-32",
+    "type": "requirement",
+    "title": "Project metadata source",
+    "status": "PLANNED",
+    "domains": ["documentation","metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Capture project maturity, review history and criteria in `.codexa/project_metadata.yaml`.",
+    "rationale": "Centralize maturity and governance data with human-readable mirrors.",
+    "context": {
+      "tests": ["TC-FR32-001"],
+      "evidence": [".codexa/project_metadata.yaml"]
+    },
+    "depends_on": ["FR-11"],
+    "outputs": [".codexa/project_metadata.yaml"],
+    "hash": "fr32-dfe9",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-33",
+    "type": "requirement",
+    "title": "Process maturity guide",
+    "status": "PLANNED",
+    "domains": ["documentation","metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Publish human guide explaining maturity levels and agent participation expectations.",
+    "rationale": "Gives teams consistent criteria for level advancement.",
+    "context": {
+      "tests": ["TC-FR33-001"],
+      "evidence": ["docs/PROCESS_MATURITY_GUIDE.md"]
+    },
+    "depends_on": ["FR-32"],
+    "outputs": ["docs/PROCESS_MATURITY_GUIDE.md"],
+    "hash": "fr33-9bc3",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-34",
+    "type": "requirement",
+    "title": "Maturity gate reviews",
+    "status": "PLANNED",
+    "domains": ["governance","metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Record and audit outcomes of maturity-level upgrades as change entries.",
+    "rationale": "Ensures objective progression and documented review outcomes.",
+    "context": {
+      "tests": ["TC-FR34-001"],
+      "evidence": ["changes/CH-###/maturity_reviews/"]
+    },
+    "depends_on": ["FR-33"],
+    "outputs": ["changes/maturity_reviews/"],
+    "hash": "fr34-61a0",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-35",
+    "type": "requirement",
+    "title": "Maturity-aware agent prompts",
+    "status": "PLANNED",
+    "domains": ["metrics","implementation"],
+    "milestones": ["MS-03"],
+    "summary": "Adapt prompts for PM, GO, CE, IM, QA/TQA agents based on maturity level.",
+    "rationale": "Aligns AI behaviour and expectations with organisation maturity.",
+    "context": {
+      "tests": ["TC-FR35-001"],
+      "evidence": ["prompt_templates/"]
+    },
+    "depends_on": ["FR-33"],
+    "outputs": ["prompt_templates/maturity/"],
+    "hash": "fr35-cb19",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-36",
+    "type": "requirement",
+    "title": "Maturity metrics tracking",
+    "status": "PLANNED",
+    "domains": ["metrics"],
+    "milestones": ["MS-03"],
+    "summary": "Track time-in-level, upgrade counts and active criteria over time.",
+    "rationale": "Provides longitudinal maturity analytics for governance reports.",
+    "context": {
+      "tests": ["TC-FR36-001"],
+      "evidence": ["metrics/maturity_history.json"]
+    },
+    "depends_on": ["FR-35"],
+    "outputs": ["metrics/maturity_history.json"],
+    "hash": "fr36-7c0a",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-37",
+    "type": "requirement",
+    "title": "Requirement elaboration workflow",
+    "status": "IN PROGRESS",
+    "domains": ["governance","documentation"],
+    "milestones": ["MS-02"],
+    "summary": "Support iterative elaboration of requirements with embedded discovery evidence before loop planning continues.",
+    "rationale": "Improves clarity and verification of evolving requirements.",
+    "context": {
+      "tests": ["TC-FR37-001"],
+      "evidence": ["design/MS-02_storyboard.md#stage-5"]
+    },
+    "depends_on": ["FR-15"],
+    "outputs": ["docs/requirements/elaborated/"],
+    "hash": "fr37-8dfb",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-04",
+    "type": "requirement",
+    "title": "Implementer branch + artifact discipline",
+    "status": "PARTIAL",
+    "domains": ["implementation","governance"],
+    "milestones": ["MS-01"],
+    "summary": "Define Implementer micro-loop enforcing branch policy, artifact retention and deterministic builds.",
+    "rationale": "Guarantees reproducible implementation runs that respect governance expectations.",
+    "context": {
+      "tests": ["TC-FR04-001","TC-FR04-002"],
+      "evidence": ["docs/IMPLEMENTATION_PLAN.md"]
+    },
+    "depends_on": ["FR-01"],
+    "outputs": ["artifacts/implementer_runs/"],
+    "hash": "fr04-f2a0",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-05",
+    "type": "requirement",
+    "title": "Tester-owned QA artifacts (risk depth)",
+    "status": "PARTIAL",
+    "domains": ["metrics","governance"],
+    "milestones": ["MS-03"],
+    "summary": "Establish Tester/TQA-owned QA artifacts capturing risk depth and coverage ratios.",
+    "rationale": "Ensures testing accountability and consistent measurement of QA quality.",
+    "context": {
+      "tests": ["TC-FR05-001","TC-FR05-002"],
+      "evidence": ["tests/TEST_PLAN.md"]
+    },
+    "depends_on": ["FR-04"],
+    "outputs": ["tests/TEST_PLAN.md"],
+    "hash": "fr05-7e1b",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-12",
+    "type": "requirement",
+    "title": "GitOps workflow controls",
+    "status": "PLANNED",
+    "domains": ["governance","implementation"],
+    "milestones": ["MS-03"],
+    "summary": "Integrate GitOps style pipeline triggers and rollbacks for declarative change control.",
+    "rationale": "Provides automated, auditable deployment and rollback path.",
+    "context": {
+      "tests": ["TC-FR12-001"],
+      "evidence": [".github/workflows/gitops.yaml"]
+    },
+    "depends_on": ["FR-06"],
+    "outputs": [".github/workflows/gitops.yaml"],
+    "hash": "fr12-1ff7",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-14",
+    "type": "requirement",
+    "title": "Pause / resume & rollback controls",
+    "status": "PLANNED",
+    "domains": ["governance","implementation"],
+    "milestones": ["MS-02"],
+    "summary": "Implement CLI and audit logging for pausing, resuming and rolling back automated workflows.",
+    "rationale": "Enables safe interruption and recovery of long-running orchestration loops.",
+    "context": {
+      "tests": ["TC-FR14-001"],
+      "evidence": ["scripts/rollback_controls.sh"]
+    },
+    "depends_on": ["FR-01"],
+    "outputs": ["scripts/rollback_controls.sh"],
+    "hash": "fr14-7b2d",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-27",
+    "type": "requirement",
+    "title": "Implementer run retention policy",
+    "status": "PLANNED",
+    "domains": ["implementation","governance"],
+    "milestones": ["MS-03"],
+    "summary": "Purge successful implementer runs after 48 h / 2 GB while respecting `.retain` markers.",
+    "rationale": "Prevents disk bloat and enforces governance on storage use.",
+    "context": {
+      "tests": ["TC-FR27-001"],
+      "evidence": ["docs/retention_policy.md"]
+    },
+    "depends_on": ["FR-04"],
+    "outputs": ["configs/retention_policy.yaml"],
+    "hash": "fr27-2a9e",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-28",
+    "type": "requirement",
+    "title": "`/df.*` analysis commands",
+    "status": "PLANNED",
+    "domains": ["interaction","governance"],
+    "milestones": ["MS-03"],
+    "summary": "Implement `/df.clarify`, `/df.analyze`, `/df.checklist` and `codexa doctor` CLI commands emitting structured JSON logs.",
+    "rationale": "Standardises AI-driven diagnostics and impact analyses for governance ingestion.",
+    "context": {
+      "tests": ["TC-FR28-001"],
+      "evidence": ["artifacts/analyze/"]
+    },
+    "depends_on": ["FR-09"],
+    "outputs": ["artifacts/analyze/"],
+    "hash": "fr28-aad4",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-29",
+    "type": "requirement",
+    "title": "SpekKit-inspired micro-task loop",
+    "status": "PLANNED",
+    "domains": ["implementation","governance"],
+    "milestones": ["MS-03"],
+    "summary": "Re-implement SpekKit micro-task loop for planner/executor/cleanup stages without code reuse.",
+    "rationale": "Provides lightweight deterministic task orchestration for implementer agents.",
+    "context": {
+      "tests": ["TC-FR29-001"],
+      "evidence": ["docs/REQUIREMENTS_1_4.md"]
+    },
+    "depends_on": ["FR-04"],
+    "outputs": ["src/microtask_loop/"],
+    "hash": "fr29-52bb",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-30",
+    "type": "requirement",
+    "title": "Change velocity dashboard",
+    "status": "PLANNED",
+    "domains": ["metrics","documentation"],
+    "milestones": ["MS-03"],
+    "summary": "Expose weekly/milestone velocity metrics via CLI and dashboard views.",
+    "rationale": "Visualises delivery throughput and identifies bottlenecks.",
+    "context": {
+      "tests": ["TC-FR30-001"],
+      "evidence": ["dashboards/change_velocity/"]
+    },
+    "depends_on": ["FR-13"],
+    "outputs": ["dashboards/change_velocity/index.html"],
+    "hash": "fr30-6cf9",
+    "last_verified": "2025-11-04T00:00:00Z"
+  },
+  {
+    "id": "FR-31",
+    "type": "requirement",
+    "title": "Partial change approvals",
+    "status": "PLANNED",
+    "domains": ["governance"],
+    "milestones": ["MS-03"],
+    "summary": "Support sub-decision approvals within change records to allow incremental merges.",
+    "rationale": "Improves agility and accountability in multi-part changes.",
+    "context": {
+      "tests": ["TC-FR31-001"],
+      "evidence": ["changes/CH-###/status.md"]
+    },
+    "depends_on": ["FR-10"],
+    "outputs": ["changes/CH-###/status.md"],
+    "hash": "fr31-134a",
+    "last_verified": "2025-11-04T00:00:00Z"
+  }
+]
+

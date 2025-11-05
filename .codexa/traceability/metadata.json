@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "title": "Traceability Matrix",
+    "last_updated": "2025-11-04",
+    "maintained_by": "Codex agent"
+  },
+  "milestone_strategy": {
+    "principles": [
+      "A milestone is a curated slice of requirements across phases that results in a system a human can exercise end-to-end; it must be testable and usable, even if only a small subset of total scope is complete.",
+      "Milestones may take the form of spikes/POCs, betas, or full releases. Percent completion of requirements is less important than demonstrating a coherent workflow a real user can trial.",
+      "Delivery cadence is driven by the human stakeholder: we request the next milestone definition from them and focus the workstreams, requirements, and tests in this matrix around that target until accepted."
+    ],
+    "current_target_milestone": "Current target milestone - MS-03 Operating Model Integration: land the CR004 operating model by enforcing `.codexa/` scaffolding, global control-plane inheritance, and configuration validation (`docs/CHANGE_REQUEST_004_operating_model.md`, FR-01/02/06/32/38/39, FR-42-FR-44)."
+  }
+}

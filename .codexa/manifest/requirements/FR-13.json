@@ -1,0 +1,33 @@
+{
+  "id": "FR-13",
+  "type": "requirement",
+  "title": "Status snapshots & observability metrics",
+  "status": "PLANNED",
+  "domains": [
+    "metrics",
+    "documentation"
+  ],
+  "milestones": [
+    "MS-02",
+    "MS-03"
+  ],
+  "summary": "Provide `/status` snapshot generation with change-density, lag, drift and stability metrics.",
+  "rationale": "Allows stakeholders to view objective progress and stability indicators per milestone.",
+  "context": {
+    "tests": [
+      "TC-FR13-001",
+      "TC-FR13-002"
+    ],
+    "evidence": [
+      "docs/status/metrics_summary.md"
+    ]
+  },
+  "depends_on": [
+    "FR-11"
+  ],
+  "outputs": [
+    "docs/status_snapshot.json"
+  ],
+  "hash": "fr13-5ef2",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "FR-14",
+  "type": "requirement",
+  "title": "Pause / resume & rollback controls",
+  "status": "PLANNED",
+  "domains": [
+    "governance",
+    "implementation"
+  ],
+  "milestones": [
+    "MS-02"
+  ],
+  "summary": "Implement CLI and audit logging for pausing, resuming and rolling back automated workflows.",
+  "rationale": "Enables safe interruption and recovery of long-running orchestration loops.",
+  "context": {
+    "tests": [
+      "TC-FR14-001"
+    ],
+    "evidence": [
+      "scripts/rollback_controls.sh"
+    ]
+  },
+  "depends_on": [
+    "FR-01"
+  ],
+  "outputs": [
+    "scripts/rollback_controls.sh"
+  ],
+  "hash": "fr14-7b2d",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

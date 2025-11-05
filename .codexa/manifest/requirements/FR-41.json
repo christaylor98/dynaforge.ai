@@ -1,0 +1,32 @@
+{
+  "id": "FR-41",
+  "type": "requirement",
+  "title": "Understanding coverage & readiness metrics",
+  "status": "IN PROGRESS",
+  "domains": [
+    "metrics",
+    "discovery"
+  ],
+  "milestones": [
+    "MS-02",
+    "MS-03"
+  ],
+  "summary": "Expose understanding coverage, readiness heatmaps and change stability ratios within `/status` and governance summaries.",
+  "rationale": "Quantifies system comprehension and readiness for each milestone or change.",
+  "context": {
+    "tests": [
+      "TC-FR41-001"
+    ],
+    "evidence": [
+      "design/MS-02_storyboard.md#stage-9"
+    ]
+  },
+  "depends_on": [
+    "FR-39"
+  ],
+  "outputs": [
+    "docs/status/metrics_summary.md"
+  ],
+  "hash": "fr41-0b91",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "FR-19",
+  "type": "requirement",
+  "title": "Test Quality Assessor",
+  "status": "PLANNED",
+  "domains": [
+    "metrics"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Calculate test-depth and risk coverage metrics, surfacing QA maturity ratios.",
+  "rationale": "Measures effectiveness of generated and manual tests.",
+  "context": {
+    "tests": [
+      "TC-FR19-001"
+    ],
+    "evidence": [
+      "tests/metrics/coverage.json"
+    ]
+  },
+  "depends_on": [
+    "FR-18"
+  ],
+  "outputs": [
+    "tests/metrics/coverage.json"
+  ],
+  "hash": "fr19-07b2",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

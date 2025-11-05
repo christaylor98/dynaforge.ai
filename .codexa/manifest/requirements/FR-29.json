@@ -1,0 +1,31 @@
+{
+  "id": "FR-29",
+  "type": "requirement",
+  "title": "SpekKit-inspired micro-task loop",
+  "status": "PLANNED",
+  "domains": [
+    "implementation",
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Re-implement SpekKit micro-task loop for planner/executor/cleanup stages without code reuse.",
+  "rationale": "Provides lightweight deterministic task orchestration for implementer agents.",
+  "context": {
+    "tests": [
+      "TC-FR29-001"
+    ],
+    "evidence": [
+      "docs/REQUIREMENTS_1_4.md"
+    ]
+  },
+  "depends_on": [
+    "FR-04"
+  ],
+  "outputs": [
+    "src/microtask_loop/"
+  ],
+  "hash": "fr29-52bb",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

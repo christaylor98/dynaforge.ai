@@ -31,6 +31,9 @@ class FileInsight:
 class RepositoryAnalyzer:
     """Run lightweight structural analysis for supported languages."""
 
+    def __init__(self, root: Path | None = None) -> None:
+        self.root = (root or Path.cwd()).resolve()
+
     def analyse(self, file_index: Iterable[Mapping[str, object]]) -> list[FileInsight]:
         insights: list[FileInsight] = []
         for entry in file_index:
@@ -54,7 +57,7 @@ class RepositoryAnalyzer:
         return insights
 
     def _analyse_python(self, relative_path: Path, size: int) -> FileInsight:
-        abs_path = Path.cwd() / relative_path
+        abs_path = self.root / relative_path
         try:
             source = abs_path.read_text(encoding="utf-8")
         except (OSError, UnicodeDecodeError):
@@ -104,6 +107,10 @@ class RepositoryAnalyzer:
         )
 
 
-def build_repository_insights(file_index: Iterable[Mapping[str, object]]) -> list[dict[str, object]]:
-    analyzer = RepositoryAnalyzer()
+def build_repository_insights(
+    file_index: Iterable[Mapping[str, object]],
+    *,
+    root: Path | None = None,
+) -> list[dict[str, object]]:
+    analyzer = RepositoryAnalyzer(root=root)
     return [insight.to_dict() for insight in analyzer.analyse(file_index)]

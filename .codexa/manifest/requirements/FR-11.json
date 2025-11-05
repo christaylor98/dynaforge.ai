@@ -1,0 +1,34 @@
+{
+  "id": "FR-11",
+  "type": "requirement",
+  "title": "QA policy enforcement engine",
+  "status": "PARTIAL",
+  "domains": [
+    "governance",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-01",
+    "MS-02"
+  ],
+  "summary": "Implement QA policy parser and enforcement engine that validates maturity gates before merges.",
+  "rationale": "Ensures quality policies are machine-enforced and test coverage thresholds maintained.",
+  "context": {
+    "tests": [
+      "TC-FR11-001",
+      "TC-FR11-002",
+      "TC-FR11-003"
+    ],
+    "evidence": [
+      "pipelines/policy_parser.py"
+    ]
+  },
+  "depends_on": [
+    "FR-06"
+  ],
+  "outputs": [
+    "reports/qa_policy_enforcement.md"
+  ],
+  "hash": "fr11-102d",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

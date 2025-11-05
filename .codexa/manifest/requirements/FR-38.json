@@ -1,0 +1,36 @@
+{
+  "id": "FR-38",
+  "type": "requirement",
+  "title": "Discovery pipeline artifacts",
+  "status": "IN PROGRESS",
+  "domains": [
+    "discovery",
+    "implementation",
+    "metrics"
+  ],
+  "milestones": [
+    "MS-02",
+    "MS-03"
+  ],
+  "summary": "Implement the Codexa discovery pipeline producing manifests, metrics and blast-radius logs.",
+  "rationale": "Provides a reproducible foundation for system-model understanding and later governance analysis.",
+  "context": {
+    "tests": [
+      "TC-FR38-001"
+    ],
+    "evidence": [
+      ".codexa/config.yaml",
+      "docs/status/iteration_log.md",
+      "design/MS-02_storyboard.md#stage-2"
+    ]
+  },
+  "depends_on": [
+    "FR-02"
+  ],
+  "outputs": [
+    "manifest.json",
+    "docs/status/iteration_log.md"
+  ],
+  "hash": "fr38-66e1",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

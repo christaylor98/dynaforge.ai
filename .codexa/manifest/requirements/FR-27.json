@@ -1,0 +1,31 @@
+{
+  "id": "FR-27",
+  "type": "requirement",
+  "title": "Implementer run retention policy",
+  "status": "PLANNED",
+  "domains": [
+    "implementation",
+    "governance"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Purge successful implementer runs after 48 h / 2 GB while respecting `.retain` markers.",
+  "rationale": "Prevents disk bloat and enforces governance on storage use.",
+  "context": {
+    "tests": [
+      "TC-FR27-001"
+    ],
+    "evidence": [
+      "docs/retention_policy.md"
+    ]
+  },
+  "depends_on": [
+    "FR-04"
+  ],
+  "outputs": [
+    "configs/retention_policy.yaml"
+  ],
+  "hash": "fr27-2a9e",
+  "last_verified": "2025-11-04T00:00:00Z"
+}

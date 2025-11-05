@@ -1,0 +1,34 @@
+[
+  {
+    "id": "P0",
+    "name": "Foundation",
+    "workstreams": [
+      "WS-01","WS-02","WS-03","WS-04","WS-05",
+      "WS-06","WS-07","WS-08","WS-09","WS-10"
+    ]
+  },
+  {
+    "id": "P1",
+    "name": "Core Agent Loop",
+    "workstreams": [
+      "WS-101","WS-102","WS-103","WS-104","WS-105",
+      "WS-106","WS-107","WS-108","WS-109","WS-110"
+    ]
+  },
+  {
+    "id": "P2",
+    "name": "Change Governance Loop",
+    "workstreams": [
+      "WS-201","WS-202","WS-203","WS-204",
+      "WS-205","WS-206","WS-207"
+    ]
+  },
+  {
+    "id": "P3",
+    "name": "QA & Maturity Automation",
+    "workstreams": [
+      "WS-301","WS-302","WS-303",
+      "WS-304","WS-305","WS-306"
+    ]
+  }
+]

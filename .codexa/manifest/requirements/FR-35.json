@@ -1,0 +1,31 @@
+{
+  "id": "FR-35",
+  "type": "requirement",
+  "title": "Maturity-aware agent prompts",
+  "status": "PLANNED",
+  "domains": [
+    "metrics",
+    "implementation"
+  ],
+  "milestones": [
+    "MS-03"
+  ],
+  "summary": "Adapt prompts for PM, GO, CE, IM, QA/TQA agents based on maturity level.",
+  "rationale": "Aligns AI behaviour and expectations with organisation maturity.",
+  "context": {
+    "tests": [
+      "TC-FR35-001"
+    ],
+    "evidence": [
+      "prompt_templates/"
+    ]
+  },
+  "depends_on": [
+    "FR-33"
+  ],
+  "outputs": [
+    "prompt_templates/maturity/"
+  ],
+  "hash": "fr35-cb19",
+  "last_verified": "2025-11-04T00:00:00Z"
+}
