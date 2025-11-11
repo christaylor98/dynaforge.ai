@@ -1,32 +1,9 @@
 {
   "id": "FR-05",
-  "type": "requirement",
-  "title": "Tester-owned QA artifacts (risk depth)",
-  "status": "PARTIAL",
-  "domains": [
-    "metrics",
-    "governance"
-  ],
-  "milestones": [
-    "MS-03"
-  ],
-  "summary": "Establish Tester/TQA-owned QA artifacts capturing risk depth and coverage ratios.",
-  "rationale": "Ensures testing accountability and consistent measurement of QA quality.",
-  "context": {
-    "tests": [
-      "TC-FR05-001",
-      "TC-FR05-002"
-    ],
-    "evidence": [
-      "tests/TEST_PLAN.md"
-    ]
-  },
-  "depends_on": [
-    "FR-04"
-  ],
-  "outputs": [
-    "tests/TEST_PLAN.md"
-  ],
-  "hash": "fr05-7e1b",
-  "last_verified": "2025-11-04T00:00:00Z"
+  "title": "Baseline understanding for pipelines",
+  "domain": "pipelines",
+  "status": "discovered",
+  "summary": "Primary product code and frameworks.",
+  "file_count": 17,
+  "generated_at": "2025-11-10T10:08:03+00:00"
 }

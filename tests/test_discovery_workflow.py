@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import io
-import json
 import tempfile
 import unittest
 from collections import Counter
@@ -91,20 +90,33 @@ class DiscoveryWorkflowTest(unittest.TestCase):
             },
             "coverage": {"coverage_percent": 80.0},
             "insights": [],
+            "inferred_domains": [
+                {
+                    "path": "typer",
+                    "kind": "code",
+                    "file_count": 120,
+                    "name": "Typer",
+                    "languages": {"python": 120},
+                    "description": "Primary product code and frameworks.",
+                }
+            ],
         }
 
         buf = io.StringIO()
         with mock.patch("sys.stdout", buf):
-            cli.main(["discover", "--output", "text", "--no-history"])
+            cli.main(["discover"])
 
         output = buf.getvalue()
-        self.assertIn("Blast radius level: local", output)
+        self.assertIn("🚨 Blast radius: local", output)
         self.assertIn("discovery_analyzer", output)
-        self.assertIn("Coverage snapshot: 80.0%", output)
+        self.assertIn("📈 Coverage: 80.0%", output)
+        self.assertIn("Inferred domains:", output)
+        self.assertIn("typer: code", output)
         mock_run_discovery.assert_called_once()
         kwargs = mock_run_discovery.call_args.kwargs
         self.assertEqual(kwargs["project_root"], Path.cwd().resolve())
-        self.assertIsNone(kwargs["config_path"])
+        expected_config = (Path.cwd() / ".codexa" / "config.yaml").resolve()
+        self.assertEqual(kwargs["config_path"], expected_config)
 
     @mock.patch("codexa.cli.discovery_bootstrap.run_discovery")
     def test_cli_json_output(self, mock_run_discovery: mock.MagicMock) -> None:
@@ -122,19 +134,38 @@ class DiscoveryWorkflowTest(unittest.TestCase):
         }
 
         mock_run_discovery.return_value = payload
+        mock_run_discovery.return_value["inferred_domains"] = [
+            {
+                "path": "typer",
+                "kind": "code",
+                "file_count": 120,
+                "name": "Typer",
+                "languages": {"python": 120},
+                "description": "Primary product code and frameworks.",
+            },
+            {
+                "path": "docs",
+                "kind": "docs",
+                "file_count": 80,
+                "name": "Docs",
+                "languages": {"markdown": 80},
+                "description": "Documentation sources and published guides.",
+            },
+        ]
 
         buf = io.StringIO()
         with mock.patch("sys.stdout", buf):
-            cli.main(["discover", "--output", "json", "--no-history"])
+            cli.main(["discover"])
 
         output = buf.getvalue()
-        parsed = json.loads(output)
-        self.assertEqual(parsed["blast_radius"]["level"], "subsystem")
-        self.assertIn("requirements_intelligence", parsed["blast_radius"]["recommended_agents"])
+        self.assertIn("🚨 Blast radius: subsystem", output)
+        self.assertIn("requirements_intelligence", output)
+        self.assertIn("Project appears centered on typer", output)
         mock_run_discovery.assert_called_once()
         kwargs = mock_run_discovery.call_args.kwargs
         self.assertEqual(kwargs["project_root"], Path.cwd().resolve())
-        self.assertIsNone(kwargs["config_path"])
+        expected_config = (Path.cwd() / ".codexa" / "config.yaml").resolve()
+        self.assertEqual(kwargs["config_path"], expected_config)
 
     @mock.patch("codexa.cli.discovery_bootstrap.run_discovery")
     def test_cli_mode_override_and_flags(self, mock_run_discovery: mock.MagicMock) -> None:
@@ -143,17 +174,80 @@ class DiscoveryWorkflowTest(unittest.TestCase):
             "blast_radius": {"level": "none", "changed_zones": [], "removed_zones": [], "notes": [], "recommended_agents": []},
             "coverage": {"coverage_percent": 75.0},
             "insights": [],
+            "inferred_domains": [
+                {
+                    "path": "typer",
+                    "kind": "code",
+                    "file_count": 120,
+                    "name": "Typer",
+                    "languages": {"python": 120},
+                    "description": "Primary product code and frameworks.",
+                }
+            ],
         }
 
         buf = io.StringIO()
         with mock.patch("sys.stdout", buf):
-            cli.main(["discover", "--mode", "quick", "--no-history", "--output", "json"])
+            cli.main(["discover"])
 
         mock_run_discovery.assert_called_once()
         kwargs = mock_run_discovery.call_args.kwargs
-        self.assertEqual(kwargs["mode_override"], "quick")
-        self.assertFalse(kwargs["track_history"])
+        self.assertIsNone(kwargs["mode_override"])
+        self.assertTrue(kwargs["track_history"])
         self.assertEqual(kwargs["project_root"], Path.cwd().resolve())
+        expected_config = (Path.cwd() / ".codexa" / "config.yaml").resolve()
+        self.assertEqual(kwargs["config_path"], expected_config)
+
+    @mock.patch("codexa.cli.discovery_bootstrap.run_discovery")
+    def test_cli_bootstraps_config_when_missing(self, mock_run_discovery: mock.MagicMock) -> None:
+        mock_run_discovery.return_value = {
+            "paths": {"manifest": "analysis/system_manifest.yaml", "change_zones": "analysis/change_zones.md", "intent_map": "analysis/intent_map.md", "metrics": "analysis/metrics.yaml"},
+            "blast_radius": {"level": "local", "changed_zones": [], "removed_zones": [], "notes": [], "recommended_agents": []},
+            "coverage": {"coverage_percent": 42.0},
+            "insights": [],
+            "inferred_domains": [
+                {
+                    "path": "typer",
+                    "kind": "code",
+                    "file_count": 120,
+                    "name": "Typer",
+                    "languages": {"python": 120},
+                    "description": "Primary product code and frameworks.",
+                }
+            ],
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            project_root = Path(tmpdir)
+            buf = io.StringIO()
+            with mock.patch("sys.stdout", buf):
+                cli.main(["discover", "--project", str(project_root)])
+
+            config_path = project_root / ".codexa" / "config.yaml"
+            self.assertTrue(config_path.exists())
+
+            mock_run_discovery.assert_called_once()
+            kwargs = mock_run_discovery.call_args.kwargs
+            self.assertEqual(kwargs["project_root"], project_root.resolve())
+            self.assertEqual(kwargs["config_path"], config_path.resolve())
+
+            output = buf.getvalue()
+            self.assertIn("[bootstrap] Saved discovery config", output)
+
+
+    def test_scan_repository_handles_external_root(self) -> None:
+        original_root = db.ROOT
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                tmp_path = Path(tmpdir)
+                (tmp_path / "src").mkdir()
+                (tmp_path / "src" / "sample.py").write_text("print('hi')\n", encoding="utf-8")
+
+                db.set_project_root(tmp_path)
+                scan = db.scan_repository({"run": {}})
+                self.assertGreater(scan.total_files, 0)
+        finally:
+            db.set_project_root(original_root)
 
 
 class BlastRadiusPlannerSmokeTest(unittest.TestCase):

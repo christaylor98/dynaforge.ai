@@ -130,10 +130,20 @@ codexa discover --project /path/to/target --config docs/discovery/config.yaml
 ```
 
 - `--project` overrides the discovery root; defaults to the current working directory.  
-- `--config` may be given relative to that root. If omitted, Codexa looks for the scaffolding in `<project>/.codexa`.  
+- `--config` may be given relative to that root. If the referenced file is missing, the CLI now scans the repo, prints a recommendation, and writes a starter `.codexa/config.yaml` automatically.  
 - The same override is available for the lower-level script: `python -m scripts.discovery_bootstrap --root /path/to/target`.
 
 Set the `CODEXA_PROJECT_ROOT` environment variable if you prefer a persistent default.
+
+Running `codexa` with no arguments gives you a quick status dashboard — latest discovery snapshot, coverage, open follow-ups, and the next action it recommends (often just re-running discovery if things are stale).
+
+`codexa discover` now narrates what it finds: it infers the primary domains (code, docs, tests, automation), writes structured manifests under `.codexa/manifest/`, drops YAML artifacts inside `.codexa/manifests/`, and prints a short project summary (e.g., “Project appears centered on typer…”) alongside metrics.
+
+Generate a ready-made Markdown briefing any time with:
+
+```bash
+codexa report            # writes .codexa/reports/discovery_report.md
+```
 
 ---
 

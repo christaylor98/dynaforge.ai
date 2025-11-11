@@ -1,31 +1,9 @@
 {
   "id": "FR-01",
-  "type": "requirement",
-  "title": "Project Manager agent coordination",
-  "status": "PARTIAL",
-  "domains": [
-    "foundation",
-    "governance"
-  ],
-  "milestones": [
-    "MS-01",
-    "MS-03"
-  ],
-  "summary": "Define and implement the PM agent orchestration logic coordinating Designer, Implementer and Tester agents.",
-  "rationale": "Ensures deterministic multi-agent sequencing and auditability.",
-  "context": {
-    "tests": [
-      "TC-FR01-001",
-      "TC-FR01-002"
-    ],
-    "evidence": [
-      "artifacts/work/CH-001/run-04/manifest.json"
-    ]
-  },
-  "depends_on": [],
-  "outputs": [
-    "docs/IMPLEMENTATION_PLAN.md"
-  ],
-  "hash": "fr01-221a",
-  "last_verified": "2025-11-04T00:00:00Z"
+  "title": "Baseline understanding for docs",
+  "domain": "docs",
+  "status": "discovered",
+  "summary": "Published documentation content authored with MkDocs.",
+  "file_count": 85,
+  "generated_at": "2025-11-10T10:08:03+00:00"
 }

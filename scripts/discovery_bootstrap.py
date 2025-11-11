@@ -22,7 +22,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable, Mapping, Optional
+from typing import Callable, Iterable, Mapping, Optional
 
 import hashlib
 
@@ -34,6 +34,7 @@ from codexa.discovery import (
     DiscoveryRunRecord,
     build_repository_insights,
 )
+from codexa.manifest_builder import write_manifest_bundle
 
 
 def _resolve_root(root: Optional[Path | str]) -> Path:
@@ -43,22 +44,44 @@ def _resolve_root(root: Optional[Path | str]) -> Path:
 
 def _path_map(root: Path) -> dict[str, Path]:
     return {
-        "CONFIG_DEFAULT": root / "docs/discovery/config.yaml",
-        "MANIFEST_PATH": root / "analysis/system_manifest.yaml",
-        "CHANGE_ZONES_PATH": root / "analysis/change_zones.md",
-        "INTENT_MAP_PATH": root / "analysis/intent_map.md",
-        "METRICS_PATH": root / "analysis/metrics/understanding_coverage.yaml",
-        "HANDOFF_LOG_PATH": root / "audit/handoff_discovery.jsonl",
-        "GAPS_PATH": root / "artifacts/ms02/storyboard/gaps.md",
-        "HISTORY_PATH": root / "analysis/history/discovery_runs.yaml",
-        "LOOP_PLAN_PATH": root / "loop-plan.json",
-        "ITERATION_LOG_PATH": root / "docs/status/iteration_log.md",
-        "STORYBOARD_SUMMARY_PATH": root / "artifacts/ms02/storyboard/summary.md",
+        "CONFIG_DEFAULT": root / ".codexa/discovery/config.yaml",
+        "MANIFEST_PATH": root / ".codexa/manifests/system_manifest.yaml",
+        "CHANGE_ZONES_PATH": root / ".codexa/manifests/change_zones.md",
+        "INTENT_MAP_PATH": root / ".codexa/manifests/intent_map.md",
+        "METRICS_PATH": root / ".codexa/manifests/understanding_coverage.yaml",
+        "HANDOFF_LOG_PATH": root / ".codexa/logs/handoff_discovery.jsonl",
+        "GAPS_PATH": root / ".codexa/artifacts/ms02/storyboard/gaps.md",
+        "HISTORY_PATH": root / ".codexa/history/discovery_runs.yaml",
+        "LOOP_PLAN_PATH": root / ".codexa/loop-plan.json",
+        "ITERATION_LOG_PATH": root / ".codexa/docs/status/iteration_log.md",
+        "STORYBOARD_SUMMARY_PATH": root / ".codexa/artifacts/ms02/storyboard/summary.md",
     }
 
 
 def _apply_root(root: Path) -> None:
     globals().update(_path_map(root))
+
+
+def _apply_output_overrides(root: Path, outputs: Mapping[str, object] | None) -> None:
+    if not outputs:
+        return
+    mapping = {
+        "manifest_path": "MANIFEST_PATH",
+        "change_zones_path": "CHANGE_ZONES_PATH",
+        "intent_map_path": "INTENT_MAP_PATH",
+        "metrics_path": "METRICS_PATH",
+    }
+    updates: dict[str, Path] = {}
+    for key, global_name in mapping.items():
+        value = outputs.get(key) if isinstance(outputs, Mapping) else None
+        if not value:
+            continue
+        path_value = Path(str(value))
+        if not path_value.is_absolute():
+            path_value = root / path_value
+        updates[global_name] = path_value
+    if updates:
+        globals().update(updates)
 
 
 ROOT = _resolve_root(os.environ.get("CODEXA_PROJECT_ROOT"))
@@ -172,6 +195,11 @@ def scan_repository(config: Mapping[str, object]) -> ScanResult:
     skip_paths = [str(item) for item in run_cfg.get("skip_paths", [])]
     focus_patterns = [str(item) for item in run_cfg.get("focus", [])]
 
+    try:
+        self_relative_path = Path(__file__).resolve().relative_to(ROOT)
+    except ValueError:
+        self_relative_path = None
+
     language_counts: Counter = Counter()
     zone_stats: dict[str, dict[str, object]] = defaultdict(
         lambda: {
@@ -197,7 +225,7 @@ def scan_repository(config: Mapping[str, object]) -> ScanResult:
 
         for filename in filenames:
             rel_file = (rel_dir / filename)
-            if rel_file == Path(__file__).relative_to(ROOT):
+            if self_relative_path and rel_file == self_relative_path:
                 continue
             if should_skip(rel_file, skip_paths):
                 continue
@@ -991,6 +1019,16 @@ def append_handoff_entry(
         handle.write(json.dumps(entry) + "\n")
 
 
+def _emit_progress(callback, percent: int, message: str) -> None:
+    if not callback:
+        return
+    try:
+        callback(int(percent), message)
+    except Exception:
+        # Progress updates should never break a discovery run.
+        pass
+
+
 def run_discovery(
     config_path: Path | None = None,
     *,
@@ -998,15 +1036,19 @@ def run_discovery(
     log_handoff: Optional[bool] = None,
     track_history: bool = True,
     project_root: Path | str | None = None,
+    progress_callback: Optional[Callable[[int, str], None]] = None,
 ) -> dict:
     """Execute the discovery workflow and return a summary dictionary."""
     if project_root:
         set_project_root(project_root)
 
+    _emit_progress(progress_callback, 5, "Loading discovery config…")
     config_path = Path(config_path) if config_path else CONFIG_DEFAULT
     if not config_path.is_absolute():
         config_path = ROOT / config_path
     config = load_config(config_path)
+
+    _apply_output_overrides(ROOT, config.get("outputs"))
 
     if mode_override:
         config.setdefault("run", {})["mode"] = mode_override
@@ -1021,7 +1063,9 @@ def run_discovery(
     if log_handoff is None:
         log_handoff = default_log_handoff
 
+    _emit_progress(progress_callback, 15, "Scanning repository…")
     scan = scan_repository(config)
+    _emit_progress(progress_callback, 30, "Computing coverage and insights…")
     timestamp = now_iso()
     coverage = compute_coverage(scan)
     insights = build_repository_insights(scan.file_index, root=ROOT)
@@ -1038,6 +1082,7 @@ def run_discovery(
         "metrics": None,
     }
 
+    _emit_progress(progress_callback, 50, "Building manifests and reports…")
     manifest = build_manifest(
         config,
         scan,
@@ -1052,6 +1097,7 @@ def run_discovery(
     manifest_hash = sha256_text(manifest_content)
     artifact_hashes["system_manifest"] = manifest_hash
 
+    _emit_progress(progress_callback, 65, "Computing coverage metrics…")
     metrics_data = build_metrics_data(
         scan,
         coverage,
@@ -1064,20 +1110,29 @@ def run_discovery(
     metrics_hash = sha256_text(metrics_content)
     artifact_hashes["metrics"] = metrics_hash
 
+    _emit_progress(progress_callback, 75, "Writing artifacts to disk…")
     write_text(CHANGE_ZONES_PATH, change_zones_content)
     write_text(INTENT_MAP_PATH, intent_map_content)
     write_text(MANIFEST_PATH, manifest_content)
     write_text(METRICS_PATH, metrics_content)
 
+    domains = write_manifest_bundle(
+        ROOT,
+        file_index=scan.file_index,
+        generated_at=timestamp,
+    )
+
     record = DiscoveryRunRecord.from_metrics(metrics_data)
     planner = BlastRadiusPlanner()
     previous_record = load_previous_record() if track_history else None
+    _emit_progress(progress_callback, 85, "Planning blast radius…")
     radius_result = planner.plan(record, previous_record)
 
     if track_history:
         append_history(record=record, blast_radius=radius_result)
 
     if log_handoff:
+        _emit_progress(progress_callback, 92, "Updating audit trail…")
         append_handoff_entry(
             timestamp=timestamp,
             loop_scope=loop_scope,
@@ -1086,7 +1141,7 @@ def run_discovery(
             artifact_hashes=artifact_hashes,
         )
 
-    return {
+    result = {
         "timestamp": timestamp,
         "mode": mode,
         "coverage": coverage,
@@ -1100,7 +1155,11 @@ def run_discovery(
         "blast_radius": radius_result.to_dict(),
         "record": record.to_dict(),
         "insights": insights,
+        "inferred_domains": [domain.to_dict() for domain in domains],
     }
+
+    _emit_progress(progress_callback, 100, "Discovery complete.")
+    return result
 
 
 def main() -> None:

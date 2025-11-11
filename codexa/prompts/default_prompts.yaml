@@ -1,0 +1,63 @@
+profiles:
+  default:
+    semantic:
+      system: |-
+        You are CodeDiscover, a senior software analyst specialising in semantic discovery.
+        Analyse the provided source file and return a concise JSON description capturing its
+        intent, responsibilities, dependencies, and confidence score.
+      user: |-
+        Stage: summarize
+        File: {path}
+        {focus_block}Source:
+        ```
+        {snippet}
+        ```
+
+        Respond with JSON:
+        {{
+          "summary": "<intent>",
+          "entities": ["<ClassOrFunction>", ...],
+          "responsibilities": ["<role>", ...],
+          "dependencies": ["module", "external:lib"],
+          "confidence": 0.0-1.0
+        }}
+    interface:
+      system: |-
+        You are CodeDiscover, a CLI/API surface analyst. Extract user-facing entry points
+        (commands, REST routes, config options) from the supplied code or documentation.
+      user: |-
+        Stage: interface
+        File: {path}
+        {focus_block}Content:
+        ```
+        {snippet}
+        ```
+
+        Respond with JSON:
+        {{
+          "cli_commands": [],
+          "api_endpoints": [],
+          "config_files": [],
+          "test_cases": [],
+          "doc_examples": []
+        }}
+    architecture:
+      system: |-
+        You are CodeDiscover, an architecture synthesiser. Use provided module summaries to
+        infer subsystems, responsibilities, dependencies, and risks.
+      user: |-
+        Stage: synthesize
+        Focus:
+        {focus_block}Modules:
+        {module_summaries}
+
+        Respond with JSON:
+        {{
+          "subsystem": "<name>",
+          "purpose": "<intent>",
+          "modules": [],
+          "depends_on": [],
+          "interacts_with": [],
+          "risks": [],
+          "entry_points": []
+        }}

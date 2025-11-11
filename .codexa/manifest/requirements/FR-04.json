@@ -1,32 +1,9 @@
 {
   "id": "FR-04",
-  "type": "requirement",
-  "title": "Implementer branch + artifact discipline",
-  "status": "PARTIAL",
-  "domains": [
-    "implementation",
-    "governance"
-  ],
-  "milestones": [
-    "MS-01"
-  ],
-  "summary": "Define Implementer micro-loop enforcing branch policy, artifact retention and deterministic builds.",
-  "rationale": "Guarantees reproducible implementation runs that respect governance expectations.",
-  "context": {
-    "tests": [
-      "TC-FR04-001",
-      "TC-FR04-002"
-    ],
-    "evidence": [
-      "docs/IMPLEMENTATION_PLAN.md"
-    ]
-  },
-  "depends_on": [
-    "FR-01"
-  ],
-  "outputs": [
-    "artifacts/implementer_runs/"
-  ],
-  "hash": "fr04-f2a0",
-  "last_verified": "2025-11-04T00:00:00Z"
+  "title": "Baseline understanding for audit",
+  "domain": "audit",
+  "status": "discovered",
+  "summary": "Supporting assets (config, media, or misc).",
+  "file_count": 17,
+  "generated_at": "2025-11-10T10:08:03+00:00"
 }

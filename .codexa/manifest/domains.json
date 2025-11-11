@@ -1,56 +1,197 @@
-[
-  {
-    "id": "DOMAIN-foundation",
-    "type": "domain",
-    "title": "Foundation",
-    "summary": "Core repository scaffolding, audit, and interaction primitives that underpin all milestones.",
-    "rationale": "Provides the structural and logging backbone required for agent orchestration.",
-    "hash": "dom-foundation",
-    "last_verified": "2025-11-04T00:00:00Z"
-  },
-  {
-    "id": "DOMAIN-interaction",
-    "type": "domain",
-    "title": "Interaction",
-    "summary": "Human \u2194 AI command surface, approval flows, and audit command routing.",
-    "rationale": "Ensures every milestone remains observable and controllable by humans.",
-    "hash": "dom-interaction",
-    "last_verified": "2025-11-04T00:00:00Z"
-  },
-  {
-    "id": "DOMAIN-governance",
-    "type": "domain",
-    "title": "Governance",
-    "summary": "Change control, approvals, provenance and configuration lineage management.",
-    "rationale": "Anchors trust and accountability across the Codexa ecosystem.",
-    "hash": "dom-governance",
-    "last_verified": "2025-11-04T00:00:00Z"
-  },
-  {
-    "id": "DOMAIN-documentation",
-    "type": "domain",
-    "title": "Documentation",
-    "summary": "Human-readable knowledge artifacts generated or maintained by Codexa.",
-    "rationale": "Keeps all deliverables transparent and reviewable for stakeholders.",
-    "hash": "dom-documentation",
-    "last_verified": "2025-11-04T00:00:00Z"
-  },
-  {
-    "id": "DOMAIN-discovery",
-    "type": "domain",
-    "title": "Discovery",
-    "summary": "Automated source inspection, manifest generation, and system-model synthesis.",
-    "rationale": "Forms the analytical core for Codexa\u2019s understanding and blast-radius analysis.",
-    "hash": "dom-discovery",
-    "last_verified": "2025-11-04T00:00:00Z"
-  },
-  {
-    "id": "DOMAIN-metrics",
-    "type": "domain",
-    "title": "Metrics & Maturity",
-    "summary": "Understanding coverage, readiness, and process-maturity instrumentation.",
-    "rationale": "Quantifies progress and confidence for every change and milestone.",
-    "hash": "dom-metrics",
-    "last_verified": "2025-11-04T00:00:00Z"
-  }
-]
+{
+  "domains": [
+    {
+      "name": "Docs",
+      "path": "docs",
+      "kind": "docs",
+      "file_count": 85,
+      "languages": {
+        "markdown": 84,
+        "yaml": 1
+      },
+      "description": "Published documentation content authored with MkDocs."
+    },
+    {
+      "name": "Codexa",
+      "path": "codexa",
+      "kind": "code",
+      "file_count": 63,
+      "languages": {
+        "python": 29,
+        "yaml": 1,
+        "other": 33
+      },
+      "description": "Primary product code and frameworks."
+    },
+    {
+      "name": "Tests",
+      "path": "tests",
+      "kind": "tests",
+      "file_count": 36,
+      "languages": {
+        "python": 14,
+        "markdown": 2,
+        "other": 18,
+        "json": 2
+      },
+      "description": "Integration and tutorial coverage for the CLI framework."
+    },
+    {
+      "name": "Audit",
+      "path": "audit",
+      "kind": "assets",
+      "file_count": 17,
+      "languages": {
+        "other": 15,
+        "python": 2
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    },
+    {
+      "name": "Pipelines",
+      "path": "pipelines",
+      "kind": "code",
+      "file_count": 17,
+      "languages": {
+        "python": 9,
+        "other": 8
+      },
+      "description": "Primary product code and frameworks."
+    },
+    {
+      "name": "Scripts",
+      "path": "scripts",
+      "kind": "automation",
+      "file_count": 13,
+      "languages": {
+        "python": 7,
+        "other": 6
+      },
+      "description": "Automation scripts for docs, publishing, and maintenance."
+    },
+    {
+      "name": "Changes",
+      "path": "changes",
+      "kind": "docs",
+      "file_count": 12,
+      "languages": {
+        "markdown": 12
+      },
+      "description": "Documentation sources and published guides."
+    },
+    {
+      "name": "Backlog",
+      "path": "backlog",
+      "kind": "docs",
+      "file_count": 12,
+      "languages": {
+        "markdown": 12
+      },
+      "description": "Documentation sources and published guides."
+    },
+    {
+      "name": "Agents",
+      "path": "agents",
+      "kind": "code",
+      "file_count": 9,
+      "languages": {
+        "python": 4,
+        "other": 5
+      },
+      "description": "Primary product code and frameworks."
+    },
+    {
+      "name": "Codexa.Egg Info",
+      "path": "codexa.egg-info",
+      "kind": "assets",
+      "file_count": 6,
+      "languages": {
+        "text": 5,
+        "other": 1
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    },
+    {
+      "name": "Analysis",
+      "path": "analysis",
+      "kind": "docs",
+      "file_count": 5,
+      "languages": {
+        "markdown": 2,
+        "yaml": 3
+      },
+      "description": "Documentation sources and published guides."
+    },
+    {
+      "name": "Design",
+      "path": "design",
+      "kind": "docs",
+      "file_count": 3,
+      "languages": {
+        "markdown": 2,
+        "other": 1
+      },
+      "description": "Documentation sources and published guides."
+    },
+    {
+      "name": "Loop Plan.Json",
+      "path": "loop-plan.json",
+      "kind": "assets",
+      "file_count": 1,
+      "languages": {
+        "json": 1
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    },
+    {
+      "name": "Qa Policy.Yaml",
+      "path": "QA_POLICY.yaml",
+      "kind": "assets",
+      "file_count": 1,
+      "languages": {
+        "yaml": 1
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    },
+    {
+      "name": "Pyproject.Toml",
+      "path": "pyproject.toml",
+      "kind": "assets",
+      "file_count": 1,
+      "languages": {
+        "toml": 1
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    },
+    {
+      "name": "Readme.Md",
+      "path": "README.md",
+      "kind": "docs",
+      "file_count": 1,
+      "languages": {
+        "markdown": 1
+      },
+      "description": "Documentation sources and published guides."
+    },
+    {
+      "name": "Makefile",
+      "path": "Makefile",
+      "kind": "assets",
+      "file_count": 1,
+      "languages": {
+        "other": 1
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    },
+    {
+      "name": ".Vscode",
+      "path": ".vscode",
+      "kind": "assets",
+      "file_count": 1,
+      "languages": {
+        "json": 1
+      },
+      "description": "Supporting assets (config, media, or misc)."
+    }
+  ]
+}

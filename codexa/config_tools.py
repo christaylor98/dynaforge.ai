@@ -11,6 +11,8 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
+from collections import Counter
+
 import yaml
 
 REQUIRED_DIRS = ["agents", "rules", "workflows", "manifests", "logs", "state"]
@@ -21,6 +23,10 @@ AUDIT_LOG = Path("audit") / "doctor_config.jsonl"
 
 class ConfigDoctorError(Exception):
     """Raised when configuration inspection encounters a fatal error."""
+
+
+class AutoConfigError(Exception):
+    """Raised when automatic configuration generation fails."""
 
 
 def _hash_file(path: Path) -> Optional[str]:
@@ -243,6 +249,270 @@ def append_doctor_audit(report: Dict[str, Any]) -> None:
     AUDIT_LOG.parent.mkdir(parents=True, exist_ok=True)
     with AUDIT_LOG.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(report, sort_keys=True) + "\n")
+
+
+AUTO_SKIP_DIRS: Tuple[str, ...] = (
+    ".git",
+    ".hg",
+    ".svn",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".idea",
+    ".vscode",
+    ".DS_Store",
+    "__pycache__",
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    "logs",
+    "tmp",
+    "temp",
+    "venv",
+    ".venv",
+    ".tox",
+    ".ruff_cache",
+    ".gitmodules",
+    ".terraform",
+    "target",
+    "out",
+    "env",
+)
+
+FOCUS_DIR_CANDIDATES: Tuple[str, ...] = (
+    "src",
+    "app",
+    "apps",
+    "service",
+    "services",
+    "backend",
+    "frontend",
+    "lib",
+    "packages",
+    "core",
+    "server",
+    "client",
+    "api",
+)
+
+LANGUAGE_BY_SUFFIX: Dict[str, str] = {
+    ".py": "python",
+    ".md": "markdown",
+    ".mdx": "markdown",
+    ".markdown": "markdown",
+    ".yaml": "yaml",
+    ".yml": "yaml",
+    ".json": "json",
+    ".toml": "toml",
+    ".ini": "ini",
+    ".cfg": "ini",
+    ".sh": "shell",
+    ".bash": "shell",
+    ".ps1": "powershell",
+    ".txt": "text",
+    ".rst": "rst",
+    ".sql": "sql",
+    ".ts": "typescript",
+    ".tsx": "typescript",
+    ".rs": "rust",
+    ".js": "javascript",
+    ".jsx": "javascript",
+    ".java": "java",
+    ".go": "go",
+    ".c": "c",
+    ".h": "c-header",
+    ".cpp": "cpp",
+    ".hpp": "cpp-header",
+    ".cs": "csharp",
+    ".swift": "swift",
+}
+
+MAX_LANGUAGE_SAMPLE = 5000
+
+
+def _should_skip_during_scan(parts: Tuple[str, ...]) -> bool:
+    for part in parts:
+        if part in AUTO_SKIP_DIRS:
+            return True
+        if part.startswith(".") and part not in (".", "..", ".codexa"):
+            return True
+    return False
+
+
+def _detect_languages(project_root: Path) -> Counter:
+    languages: Counter = Counter()
+    files_seen = 0
+    for path in project_root.rglob("*"):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(project_root)
+        if _should_skip_during_scan(relative.parts):
+            continue
+        language = LANGUAGE_BY_SUFFIX.get(path.suffix.lower(), "other")
+        languages[language] += 1
+        files_seen += 1
+        if files_seen >= MAX_LANGUAGE_SAMPLE:
+            break
+    return languages
+
+
+def _candidate_skip_paths(project_root: Path) -> List[str]:
+    skips: List[str] = []
+    for entry in project_root.iterdir():
+        if not entry.is_dir():
+            continue
+        name = entry.name
+        if name in AUTO_SKIP_DIRS or (name.startswith(".") and name not in (".codexa",)):
+            skips.append(f"{name}/")
+    return sorted(skips)
+
+
+def _candidate_focus_paths(project_root: Path, languages: Counter) -> List[str]:
+    focus: List[str] = []
+    for candidate in FOCUS_DIR_CANDIDATES:
+        if (project_root / candidate).is_dir():
+            focus.append(f"{candidate}/**")
+    for entry in project_root.iterdir():
+        if not entry.is_dir():
+            continue
+        name = entry.name
+        if name.startswith('.') or name in AUTO_SKIP_DIRS:
+            continue
+        if name in FOCUS_DIR_CANDIDATES:
+            continue
+        package_init = entry / "__init__.py"
+        has_python = any(child.suffix == ".py" for child in entry.glob("*.py"))
+        if package_init.exists() or has_python:
+            focus.append(f"{name}/**")
+    if (project_root / "tests").is_dir():
+        focus.append("tests/**/*.py")
+    # Deduplicate while preserving order
+    seen: set[str] = set()
+    deduped: List[str] = []
+    for pattern in focus:
+        if pattern in seen:
+            continue
+        seen.add(pattern)
+        deduped.append(pattern)
+    focus = deduped
+
+    if not focus:
+        primary_language, *_ = languages.most_common(1) or [(None, 0)]
+        if primary_language == "python":
+            focus.append("**/*.py")
+        elif primary_language == "typescript":
+            focus.append("**/*.ts")
+        elif primary_language == "javascript":
+            focus.append("**/*.js")
+    return focus
+
+
+def _cpu_workers(default: int = 4) -> int:
+    cpu_total = os.cpu_count() or default
+    return max(2, min(cpu_total, 12))
+
+
+def generate_config_recommendation(project_root: Path) -> Dict[str, Any]:
+    """
+    Analyse *project_root* and return a recommendation report containing:
+      - summary statistics
+      - suggested configuration dictionary
+      - rendered YAML text
+    """
+
+    project_root = project_root.expanduser().resolve()
+    if not project_root.exists():
+        raise AutoConfigError(f"{project_root} does not exist.")
+
+    languages = _detect_languages(project_root)
+    skip_paths = _candidate_skip_paths(project_root)
+    focus_paths = _candidate_focus_paths(project_root, languages)
+
+    language_summary = [
+        {"language": language, "files": count}
+        for language, count in languages.most_common(5)
+    ]
+    primary_languages = [
+        language
+        for language, _ in languages.most_common(3)
+        if language and language != "other"
+    ]
+
+    summary = {
+        "project_root": str(project_root),
+        "top_level_dirs": sorted(
+            [entry.name for entry in project_root.iterdir() if entry.is_dir()]
+        ),
+        "language_sample": language_summary,
+        "skip_suggestions": skip_paths,
+        "focus_suggestions": focus_paths,
+    }
+
+    timestamp = _dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    config: Dict[str, Any] = {
+        "metadata": {
+            "version": "0.1.0",
+            "generated_at": timestamp,
+            "generator": "codexa init --auto-config",
+        },
+        "project": {
+            "name": project_root.name or "project",
+        },
+        "run": {
+            "mode": "full",
+            "focus": focus_paths,
+            "skip_paths": skip_paths,
+            "languages": {
+                "include": primary_languages,
+                "exclude": [],
+            },
+            "concurrency": {
+                "workers": _cpu_workers(),
+                "batch_size": 200,
+            },
+            "telemetry": {
+                "enable_progress": True,
+                "progress_interval_seconds": 5,
+            },
+        },
+        "outputs": {
+        "manifest_path": ".codexa/manifests/system_manifest.yaml",
+        "change_zones_path": ".codexa/manifests/change_zones.md",
+        "intent_map_path": ".codexa/manifests/intent_map.md",
+        "metrics_path": ".codexa/manifests/understanding_coverage.yaml",
+        "system_model_refresh": True,
+        },
+        "audit": {
+            "write_handoff": True,
+            "log_followups": True,
+        },
+        "notes": [
+            "Review skip/focus suggestions and adjust before committing.",
+            "Hand-edit telemetry or audit locations if your repository stores them elsewhere.",
+        ],
+    }
+
+    yaml_text = yaml.safe_dump(config, sort_keys=False)
+
+    return {
+        "summary": summary,
+        "config": config,
+        "yaml": yaml_text,
+    }
+
+
+def write_config_yaml(
+    config_yaml: str,
+    target_path: Path,
+    *,
+    force: bool = False,
+) -> Path:
+    target_path = target_path.expanduser().resolve()
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    if target_path.exists() and not force:
+        raise FileExistsError(str(target_path))
+    target_path.write_text(config_yaml, encoding="utf-8")
+    return target_path
 
 
 _DEFAULT_CONFIG_TEMPLATE = """\
